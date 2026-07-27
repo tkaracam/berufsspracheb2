@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { cookies } from "next/headers";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/components/layout/theme-provider";
 import { LanguageProvider } from "@/components/layout/language-provider";
@@ -7,7 +6,7 @@ import { FocusModeProvider } from "@/components/layout/focus-mode-provider";
 import { PageBackground } from "@/components/layout/page-background";
 import { Toaster } from "@/components/ui/sonner";
 import { APP_NAME, APP_DESCRIPTION } from "@/lib/constants";
-import { type Locale, defaultLocale, rtlLocales } from "@/lib/i18n/dictionaries";
+import { defaultLocale, rtlLocales } from "@/lib/i18n/dictionaries";
 import "./globals.css";
 import "./theme.css";
 
@@ -47,18 +46,12 @@ export const metadata: Metadata = {
   },
 };
 
-async function getInitialLocale(): Promise<Locale> {
-  const cookieStore = await cookies();
-  const cookie = cookieStore.get("NEXT_LOCALE")?.value as Locale | undefined;
-  return cookie && ["de", "tr", "en", "ar", "uk"].includes(cookie) ? cookie : defaultLocale;
-}
-
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = await getInitialLocale();
+  const locale = defaultLocale;
   const isRtl = rtlLocales.includes(locale);
 
   return (
