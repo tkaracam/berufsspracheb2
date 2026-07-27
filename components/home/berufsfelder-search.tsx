@@ -2,18 +2,102 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { Search, X } from "lucide-react";
+import {
+  Search,
+  X,
+  Truck,
+  Package,
+  HeartPulse,
+  Baby,
+  UtensilsCrossed,
+  ShoppingCart,
+  Building2,
+  Monitor,
+  Hammer,
+  Sparkles,
+  ShieldCheck,
+  Briefcase,
+  Leaf,
+  Car,
+  Scissors,
+  Beef,
+  Plane,
+  HeartHandshake,
+  Sun,
+  Landmark,
+  Megaphone,
+  FlaskConical,
+  Cog,
+  Shirt,
+  Dumbbell,
+  Palette,
+  Zap,
+  Road,
+  Printer,
+  Layers,
+  Glasses,
+  Home,
+  Files,
+  Watch,
+  Sofa,
+  Cat,
+  Music,
+  Droplets,
+} from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+
+const ICON_MAP = {
+  Truck,
+  Package,
+  HeartPulse,
+  Baby,
+  UtensilsCrossed,
+  ShoppingCart,
+  Building2,
+  Monitor,
+  Hammer,
+  Sparkles,
+  ShieldCheck,
+  Briefcase,
+  Leaf,
+  Car,
+  Scissors,
+  Beef,
+  Plane,
+  HeartHandshake,
+  Sun,
+  Landmark,
+  Megaphone,
+  FlaskConical,
+  Cog,
+  Shirt,
+  Dumbbell,
+  Palette,
+  Zap,
+  Road,
+  Printer,
+  Layers,
+  Glasses,
+  Home,
+  Files,
+  Watch,
+  Sofa,
+  Cat,
+  Music,
+  Droplets,
+} satisfies Record<string, React.ElementType>;
+
+export type IconName = keyof typeof ICON_MAP;
 
 interface Module {
   id: string;
   href: string;
   title: string;
   description: string;
-  icon: React.ElementType;
+  icon: IconName;
   words: number;
   jobs: number;
 }
@@ -62,7 +146,7 @@ export function BerufsfelderSearch({ modules }: Props) {
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {filtered.map((feld) => {
-          const Icon = feld.icon;
+          const Icon = ICON_MAP[feld.icon] ?? Briefcase;
           return (
             <Link key={feld.id} href={feld.href} className="group block">
               <Card className="h-full border-t-4 border-t-blue-500 transition-all duration-200 hover:-translate-y-1 hover:shadow-md hover:border-primary/40">
