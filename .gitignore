@@ -39,3 +39,9 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local Node runtime for build environments without global npm
+/.node
+
+# temporary audio generation artifacts
+*.aiff

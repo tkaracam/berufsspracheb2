@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-anki-again: var(--anki-again);
+  --color-anki-hard: var(--anki-hard);
+  --color-anki-good: var(--anki-good);
+  --color-anki-easy: var(--anki-easy);
+}
+
+:root {
+  /* Farbschema: Deutsche Flagge (Schwarz-Rot-Gold).
+     Primär = Schwarz, Akzent = Rot, Sekundär = Gold. */
+  --background: #faf9f6;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #1a1a1a;
+  --primary-foreground: #ffffff;
+  --secondary: #ffce00;
+  --secondary-foreground: #1a1a1a;
+  --muted: #f0efea;
+  --muted-foreground: #555555;
+  --accent: #dd0000;
+  --accent-foreground: #ffffff;
+  --destructive: #dd0000;
+  --border: #e0dfda;
+  --input: #e0dfda;
+  --ring: #ffce00;
+  --chart-1: #1a1a1a;
+  --chart-2: #dd0000;
+  --chart-3: #ffce00;
+  --chart-4: #555555;
+  --chart-5: #999999;
+  --radius: 0.75rem;
+  --sidebar: #f5f4ef;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #1a1a1a;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffce00;
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: #e0dfda;
+  --sidebar-ring: #ffce00;
+  /* Anki-Lernfarben */
+  --anki-again: #D32F2F;
+  --anki-hard: #455A64;
+  --anki-good: #4CAF50;
+  --anki-easy: #03A9F4;
+}
+
+.dark {
+  /* Dunkelmodus: Schwarzer Hintergrund, Gold als Primärfarbe, Rot als Akzent. */
+  --background: #1a1a1a;
+  --foreground: #faf9f6;
+  --card: #262626;
+  --card-foreground: #faf9f6;
+  --popover: #262626;
+  --popover-foreground: #faf9f6;
+  --primary: #ffce00;
+  --primary-foreground: #1a1a1a;
+  --secondary: #333333;
+  --secondary-foreground: #faf9f6;
+  --muted: #333333;
+  --muted-foreground: #aaaaaa;
+  --accent: #dd0000;
+  --accent-foreground: #ffffff;
+  --destructive: #ff4444;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #ffce00;
+  --chart-1: #ffce00;
+  --chart-2: #dd0000;
+  --chart-3: #ffffff;
+  --chart-4: #888888;
+  --chart-5: #555555;
+  --sidebar: #1f1f1f;
+  --sidebar-foreground: #faf9f6;
+  --sidebar-primary: #ffce00;
+  --sidebar-primary-foreground: #1a1a1a;
+  --sidebar-accent: #dd0000;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(255, 255, 255, 0.12);
+  --sidebar-ring: #ffce00;
+  /* Anki-Lernfarben (Dunkelmodus) */
+  --anki-again: #FF5252;
+  --anki-hard: #607D8B;
+  --anki-good: #66BB6A;
+  --anki-easy: #29B6F6;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.animate-confetti-fall {
+  animation-name: confetti-fall;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
