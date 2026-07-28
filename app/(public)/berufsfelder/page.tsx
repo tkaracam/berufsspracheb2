@@ -4,7 +4,6 @@ import { APP_NAME } from "@/lib/constants";
 import { getBerufsfelder, getAllFachwoerter, getBerufeByFeld } from "@/lib/queries";
 import { BerufsfelderSearch } from "@/components/home/berufsfelder-search";
 import type { IconName } from "@/components/home/berufsfelder-search";
-import { PhoneFrame } from "@/components/concept27/phone-frame";
 import { MobileTabs } from "@/components/concept27/mobile-tabs";
 
 export const metadata = { title: `Berufsfelder – ${APP_NAME}` };
@@ -45,7 +44,7 @@ export default async function BerufsfelderPage() {
   }));
 
   return (
-    <PhoneFrame className="max-w-[380px]">
+    <div className="mx-auto w-full max-w-[380px] rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(180deg,#fffefb_0%,#fffaf5_100%)] px-5 pb-5 pt-4 shadow-[0_28px_60px_-38px_rgba(101,79,50,0.22)]">
       <div className="flex items-center justify-between">
         <p className="text-[2rem] text-slate-900 [font-family:Georgia,serif]">Berufsfelder</p>
         <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-[#eadfce] bg-white shadow-sm">
@@ -104,6 +103,6 @@ export default async function BerufsfelderPage() {
       </div>
 
       <MobileTabs active="berufsfelder" />
-    </PhoneFrame>
+    </div>
   );
 }

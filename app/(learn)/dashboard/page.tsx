@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import type { Deck, DeckType } from "@/lib/decks";
 import { redemittelQuestions } from "@/lib/redemittel-quiz-data";
 import { grammarQuestions } from "@/lib/grammar-data";
-import { PhoneFrame } from "@/components/concept27/phone-frame";
 import { MobileTabs } from "@/components/concept27/mobile-tabs";
 
 export const metadata = { title: `Dashboard – ${APP_NAME}` };
@@ -78,7 +77,7 @@ export default async function LearnerDashboardPage() {
   const weekdayLabels = ["M", "D", "M", "D", "F", "S", "S"];
 
   return (
-    <PhoneFrame className="max-w-[380px]">
+    <div className="mx-auto w-full max-w-[380px] rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(180deg,#fffefb_0%,#fffaf5_100%)] px-5 pb-5 pt-4 shadow-[0_28px_60px_-38px_rgba(101,79,50,0.22)]">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-[2rem] leading-none text-slate-900 [font-family:Georgia,serif]">
@@ -191,7 +190,7 @@ export default async function LearnerDashboardPage() {
       </div>
 
       <MobileTabs active="lernen" />
-    </PhoneFrame>
+    </div>
   );
 }
 

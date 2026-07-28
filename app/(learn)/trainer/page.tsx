@@ -2,7 +2,6 @@ import Link from "next/link";
 import { CalendarDays, Heart, MessageCircle, Mic, Settings2 } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
-import { PhoneFrame } from "@/components/concept27/phone-frame";
 import { MobileTabs } from "@/components/concept27/mobile-tabs";
 
 export const metadata = { title: `Trainer – ${APP_NAME}` };
@@ -33,7 +32,7 @@ const trainerActions = [
 
 export default function TrainerPage() {
   return (
-    <PhoneFrame className="max-w-[380px]">
+    <div className="mx-auto w-full max-w-[380px] rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(180deg,#fffefb_0%,#fffaf5_100%)] px-5 pb-5 pt-4 shadow-[0_28px_60px_-38px_rgba(101,79,50,0.22)]">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-[2rem] text-slate-900 [font-family:Georgia,serif]">Dein Trainer</p>
@@ -132,6 +131,6 @@ export default function TrainerPage() {
       </div>
 
       <MobileTabs active="trainer" />
-    </PhoneFrame>
+    </div>
   );
 }
