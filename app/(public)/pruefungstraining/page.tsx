@@ -77,19 +77,27 @@ export default function PruefungstrainingPage() {
   return (
     <div className="relative flex-1 overflow-hidden py-12">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-rose-500/5 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.45),_transparent_58%)]" />
+        <div className="absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-sky-200/20 blur-3xl" />
+        <div className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-rose-100/30 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4">
-        <div className="mx-auto mb-10 max-w-3xl text-center">
-          <h1 className="text-3xl font-bold md:text-4xl">
-            DTB B2 – Prüfungstraining
-          </h1>
-          <p className="mt-4 text-lg text-muted-foreground">
-            Zielgerichtet auf den Deutsch-Test für den Beruf B2 vorbereiten:
-            Lesen, Hören, Schreiben und Sprechen.
-          </p>
+        <div className="mx-auto mb-10 max-w-5xl">
+          <div className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#ffffff_0%,#f4faff_55%,#eef8ff_100%)] p-6 shadow-[0_24px_70px_-38px_rgba(59,130,246,0.24)] md:p-8">
+            <div className="max-w-3xl">
+              <span className="inline-flex items-center rounded-full border border-sky-100 bg-white/85 px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
+                DTB B2 Vorbereitung
+              </span>
+              <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+                Prüfungstraining
+              </h1>
+              <p className="mt-4 text-lg leading-7 text-slate-600">
+                Bereiten Sie sich gezielt auf Lesen, Hören, Schreiben und
+                Sprechen im Deutsch-Test für den Beruf B2 vor.
+              </p>
+            </div>
+          </div>
         </div>
 
         <div className="mx-auto mb-12 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
@@ -101,18 +109,18 @@ export default function PruefungstrainingPage() {
           ].map((stat) => {
             const Icon = stat.icon;
             return (
-              <Card key={stat.label} className="text-center transition-all hover:shadow-md">
+              <Card key={stat.label} className="rounded-[1.6rem] border border-sky-100 bg-white/88 text-center transition-all hover:shadow-md">
                 <CardContent className="p-5">
-                  <Icon className="mx-auto mb-2 h-5 w-5 text-primary" />
-                  <p className="text-2xl font-bold">{stat.value}</p>
-                  <p className="text-xs text-muted-foreground">{stat.label}</p>
+                  <Icon className="mx-auto mb-2 h-5 w-5 text-sky-600" />
+                  <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
+                  <p className="text-xs text-slate-500">{stat.label}</p>
                 </CardContent>
               </Card>
             );
           })}
         </div>
 
-        <div className="mx-auto mb-12 max-w-3xl rounded-xl border bg-muted/30 p-5 text-center text-sm text-muted-foreground">
+        <div className="mx-auto mb-12 max-w-3xl rounded-[1.6rem] border border-sky-100 bg-white/85 p-5 text-center text-sm text-slate-500 shadow-[0_16px_35px_-26px_rgba(15,23,42,0.22)]">
           In mindestens 3 der 4 Fertigkeiten müssen {examInfo.minSkillPoints} Punkte erreicht werden.
           Eine Fertigkeit kann zwischen {examInfo.compensableMinPercentage}% und 60% liegen.
         </div>
@@ -137,15 +145,15 @@ export default function PruefungstrainingPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {START_MODULES.map((m) => (
               <Link key={m.title} href={m.href} className="group block">
-                <Card className="h-full transition-all hover:-translate-y-1 hover:shadow-md hover:border-primary/40">
+                <Card className="h-full rounded-[1.6rem] border border-sky-100 bg-white/88 transition-all hover:-translate-y-1 hover:shadow-md hover:border-sky-200">
                   <CardContent className="flex items-center gap-4 p-5">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 transition-colors group-hover:bg-sky-500 group-hover:text-white">
                       <m.icon className="h-5 w-5" />
                     </div>
                     <div className="flex-1">
-                      <p className="font-medium">{m.title}</p>
+                      <p className="font-medium text-slate-900">{m.title}</p>
                     </div>
-                    <Play className="h-4 w-4 text-muted-foreground transition-colors group-hover:text-primary" />
+                    <Play className="h-4 w-4 text-slate-400 transition-colors group-hover:text-sky-600" />
                   </CardContent>
                 </Card>
               </Link>

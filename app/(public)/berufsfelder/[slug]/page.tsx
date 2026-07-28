@@ -25,9 +25,9 @@ interface Props {
 }
 
 const difficultyColors: Record<string, string> = {
-  leicht: "bg-green-100 text-green-700 dark:bg-green-950 dark:text-green-300",
-  mittel: "bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300",
-  schwer: "bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300",
+  leicht: "bg-green-100 text-green-700",
+  mittel: "bg-amber-100 text-amber-700",
+  schwer: "bg-red-100 text-red-700",
 };
 
 export async function generateMetadata({ params }: Props) {
@@ -49,21 +49,28 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
   const fachwoerter = await getFachwoerterByFeld(slug);
 
   return (
-    <div className="flex-1 py-12 container mx-auto px-4">
-      <Button variant="ghost" size="sm" asChild className="mb-6">
+    <div className="container mx-auto flex-1 px-4 py-12">
+      <Button variant="ghost" size="sm" asChild className="mb-6 rounded-xl">
         <Link href="/berufsfelder">
           <ArrowLeft className="mr-2 h-4 w-4" /> Zurück zur Übersicht
         </Link>
       </Button>
 
-      <div className="max-w-3xl mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{feld.title}</h1>
-        <p className="text-lg text-muted-foreground">{feld.description}</p>
+      <div className="mb-10 max-w-5xl">
+        <div className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#ffffff_0%,#f4faff_55%,#eef8ff_100%)] p-6 shadow-[0_24px_70px_-38px_rgba(59,130,246,0.24)] md:p-8">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center rounded-full border border-sky-100 bg-white/85 px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
+              Berufsfeld
+            </span>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">{feld.title}</h1>
+            <p className="mt-4 text-lg leading-7 text-slate-600">{feld.description}</p>
+          </div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
-          <Card>
+          <Card className="rounded-[1.8rem] border border-sky-100 bg-white/88 shadow-[0_20px_50px_-34px_rgba(59,130,246,0.2)]">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Users className="h-5 w-5" />
@@ -85,7 +92,7 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-[1.8rem] border border-sky-100 bg-white/88 shadow-[0_20px_50px_-34px_rgba(59,130,246,0.2)]">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <BookOpen className="h-5 w-5" />
@@ -101,7 +108,7 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
                 {fachwoerter.map((wort) => (
                   <div
                     key={wort.id}
-                    className="group relative flex flex-col gap-2 rounded-xl border p-4 transition-colors hover:bg-muted/50 hover:border-primary/30"
+                    className="group relative flex flex-col gap-2 rounded-[1.4rem] border border-sky-100 bg-white p-4 transition-colors hover:border-sky-200 hover:bg-sky-50/30"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div>
@@ -151,7 +158,7 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
         </div>
 
         <div className="space-y-6">
-          <Card className="bg-primary/5 border-primary/20">
+          <Card className="rounded-[1.8rem] border border-sky-100 bg-[linear-gradient(180deg,#ffffff_0%,#f4faff_100%)] shadow-[0_20px_50px_-34px_rgba(59,130,246,0.2)]">
             <CardHeader>
               <CardTitle>Jetzt üben</CardTitle>
               <CardDescription>
@@ -159,10 +166,10 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-3">
-              <Button className="w-full" asChild>
+              <Button className="w-full rounded-2xl bg-sky-500 hover:bg-sky-600" asChild>
                 <Link href="/register">Kostenlos registrieren</Link>
               </Button>
-              <Button variant="outline" className="w-full" asChild>
+              <Button variant="outline" className="w-full rounded-2xl border-sky-100 bg-white text-slate-700 hover:bg-white" asChild>
                 <Link href="/trainer/fachwortschatz">
                   <Dumbbell className="mr-2 h-4 w-4" /> Fachwortschatz üben
                 </Link>

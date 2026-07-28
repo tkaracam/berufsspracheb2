@@ -144,25 +144,34 @@ function SearchPageContent() {
   };
 
   return (
-    <div className="flex-1 py-12 container mx-auto px-4">
-      <div className="max-w-3xl mx-auto text-center mb-10">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">Suche</h1>
-        <p className="text-muted-foreground text-lg">
-          Durchsuchen Sie Fachwörter, Nomen-Verb-Verbindungen, Grammatik,
-          Redemittel und mehr.
-        </p>
+    <div className="container mx-auto flex-1 px-4 py-12">
+      <div className="mx-auto mb-10 max-w-5xl">
+        <div className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#ffffff_0%,#f4faff_55%,#eef8ff_100%)] p-6 shadow-[0_24px_70px_-38px_rgba(59,130,246,0.24)] md:p-8">
+          <div className="max-w-3xl">
+            <span className="inline-flex items-center rounded-full border border-sky-100 bg-white/85 px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
+              Inhalte schnell finden
+            </span>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+              Suche
+            </h1>
+            <p className="mt-4 text-lg leading-7 text-slate-600">
+              Durchsuchen Sie Fachwörter, Nomen-Verb-Verbindungen, Grammatik,
+              Redemittel und weitere Lerninhalte.
+            </p>
+          </div>
+        </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="max-w-2xl mx-auto mb-10">
+      <form onSubmit={handleSubmit} className="mx-auto mb-10 max-w-2xl">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+          <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Suchbegriff eingeben ..."
-            className="pl-10 py-6 text-lg"
+            className="h-14 rounded-2xl border-sky-100 bg-white/88 pl-12 pr-28 text-lg shadow-[0_18px_40px_-28px_rgba(15,23,42,0.25)]"
           />
-          <Button type="submit" className="absolute right-1 top-1/2 -translate-y-1/2">
+          <Button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-xl bg-sky-500 hover:bg-sky-600">
             Suchen
           </Button>
         </div>
@@ -178,17 +187,17 @@ function SearchPageContent() {
         {results.length > 0 ? (
           <div className="space-y-3">
             {results.map((r) => (
-              <Card key={r.id}>
+              <Card key={r.id} className="rounded-[1.6rem] border border-sky-100 bg-white/88 shadow-[0_18px_40px_-30px_rgba(59,130,246,0.2)]">
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
-                    <Badge variant="outline" className="shrink-0 gap-1">
+                    <Badge variant="outline" className="shrink-0 gap-1 rounded-full border-sky-100 bg-sky-50 text-sky-700">
                       {typeIcons[r.type] ?? null}
                       {r.type}
                     </Badge>
                     <div className="flex-1 min-w-0">
-                      <p className="font-medium">{r.title}</p>
+                      <p className="font-medium text-slate-900">{r.title}</p>
                       {r.subtitle && (
-                        <p className="text-sm text-muted-foreground">{r.subtitle}</p>
+                        <p className="text-sm text-slate-500">{r.subtitle}</p>
                       )}
                     </div>
                     {r.href && (
@@ -202,8 +211,8 @@ function SearchPageContent() {
             ))}
           </div>
         ) : submittedQuery ? (
-          <Card>
-            <CardContent className="py-12 text-center text-muted-foreground">
+          <Card className="rounded-[1.6rem] border border-sky-100 bg-white/88">
+            <CardContent className="py-12 text-center text-slate-500">
               Keine Ergebnisse gefunden.
             </CardContent>
           </Card>
@@ -217,7 +226,7 @@ export default function SearchPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex-1 py-12 container mx-auto px-4">
+        <div className="container mx-auto flex-1 px-4 py-12">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl font-bold mb-4">Suche</h1>
             <p className="text-muted-foreground">Suche wird geladen ...</p>

@@ -13,7 +13,6 @@ import {
 import { APP_NAME } from "@/lib/constants";
 import { useTranslation } from "@/components/layout/language-provider";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
 import { useFocusMode } from "./focus-mode-provider";
@@ -120,7 +119,6 @@ export function PublicNavbar() {
 
         <div className="flex items-center gap-1">
           <LanguageSwitcher />
-          <ThemeToggle />
           <Button variant="ghost" size="sm" asChild className="hidden sm:flex">
             <Link href="/login">{t.nav.login}</Link>
           </Button>

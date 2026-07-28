@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { ThemeProvider } from "@/components/layout/theme-provider";
 import { LanguageProvider } from "@/components/layout/language-provider";
 import { FocusModeProvider } from "@/components/layout/focus-mode-provider";
 import { PageBackground } from "@/components/layout/page-background";
@@ -58,23 +57,15 @@ export default function RootLayout({
     <html
       lang={locale}
       dir={isRtl ? "rtl" : "ltr"}
-      suppressHydrationWarning
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="relative min-h-full flex flex-col bg-background text-foreground">
         <PageBackground />
         <LanguageProvider initialLocale={locale}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <FocusModeProvider>
-              {children}
-              <Toaster position="top-center" richColors />
-            </FocusModeProvider>
-          </ThemeProvider>
+          <FocusModeProvider>
+            {children}
+            <Toaster position="top-center" richColors />
+          </FocusModeProvider>
         </LanguageProvider>
       </body>
     </html>

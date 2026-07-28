@@ -143,7 +143,7 @@ export function BerufsfelderSearch({ modules }: Props) {
   return (
     <div className="space-y-8">
       <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
-        <div className="rounded-[1.75rem] border border-white/60 bg-white/80 p-4 shadow-[0_24px_70px_-38px_rgba(15,23,42,0.4)] backdrop-blur dark:border-slate-800/70 dark:bg-slate-950/75">
+        <div className="rounded-[1.75rem] border border-white/60 bg-white/80 p-4 shadow-[0_24px_70px_-38px_rgba(15,23,42,0.4)] backdrop-blur">
           <div className="relative">
             <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
             <Input
@@ -173,7 +173,7 @@ export function BerufsfelderSearch({ modules }: Props) {
                 variant={activeFilter === filter.key ? "default" : "outline"}
                 className={`rounded-2xl px-4 ${
                   activeFilter === filter.key
-                    ? "bg-slate-950 text-white hover:bg-slate-800 dark:bg-white dark:text-slate-950 dark:hover:bg-slate-100"
+                    ? "bg-slate-950 text-white hover:bg-slate-800"
                     : "bg-background/80"
                 }`}
                 onClick={() => setActiveFilter(filter.key)}
@@ -226,13 +226,13 @@ export function BerufsfelderSearch({ modules }: Props) {
           const Icon = ICON_MAP[feld.icon] ?? Briefcase;
           return (
             <Link key={feld.id} href={feld.href} className="group block">
-              <Card className="h-full overflow-hidden rounded-[1.75rem] border border-border/70 bg-white/85 transition-all duration-300 hover:-translate-y-1.5 hover:border-sky-200 hover:shadow-[0_24px_50px_-30px_rgba(15,23,42,0.45)] dark:bg-slate-950/75 dark:hover:border-sky-900">
+              <Card className="h-full overflow-hidden rounded-[1.75rem] border border-border/70 bg-white/85 transition-all duration-300 hover:-translate-y-1.5 hover:border-sky-200 hover:shadow-[0_24px_50px_-30px_rgba(15,23,42,0.45)]">
                 <CardHeader className="pb-4">
                   <div className="mb-4 flex items-start justify-between gap-3">
                     <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-600 text-white shadow-md transition-transform duration-300 group-hover:scale-110">
                       <Icon className="h-6 w-6" />
                     </div>
-                    <Badge variant="outline" className="rounded-full border-sky-200 bg-sky-50 text-sky-700 dark:border-sky-900 dark:bg-sky-950/40 dark:text-sky-300">
+                    <Badge variant="outline" className="rounded-full border-sky-200 bg-sky-50 text-sky-700">
                       B2
                     </Badge>
                   </div>
@@ -242,7 +242,7 @@ export function BerufsfelderSearch({ modules }: Props) {
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="pt-0">
-                  <div className="rounded-2xl bg-slate-50 p-3 dark:bg-slate-900/80">
+                  <div className="rounded-2xl bg-slate-50 p-3">
                     <div className="flex flex-wrap gap-2">
                       <Badge variant="secondary" className="rounded-full">
                         {feld.words} Begriffe

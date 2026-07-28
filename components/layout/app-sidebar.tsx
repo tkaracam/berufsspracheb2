@@ -16,7 +16,6 @@ import { APP_NAME } from "@/lib/constants";
 import { useTranslation } from "@/components/layout/language-provider";
 import { LanguageSwitcher } from "@/components/layout/language-switcher";
 import { useFocusMode } from "./focus-mode-provider";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { getNavItems, getMobileNavItems, type NavItem } from "@/lib/nav-items";
 import type { Database } from "@/types/database";
 
@@ -42,7 +41,6 @@ function SidebarContent({ items, userName, userEmail }: SidebarContentProps) {
           <span className="truncate">{APP_NAME}</span>
         </Link>
         <div className="flex items-center gap-1">
-          <ThemeToggle />
           <LanguageSwitcher />
         </div>
       </div>
@@ -221,7 +219,6 @@ export function AppSidebar({ role, userName, userEmail }: AppSidebarProps) {
           {APP_NAME}
         </Link>
         <div className="flex items-center gap-1">
-          <ThemeToggle />
           <LanguageSwitcher />
           <Sheet>
             <SheetTrigger
