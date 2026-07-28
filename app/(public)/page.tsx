@@ -104,21 +104,21 @@ export default async function HomePage() {
 
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white/90 px-3 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Für Berufssprachkurs, Prüfung und Arbeitsalltag
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#eadfce] bg-white/90 px-3 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-[#73beb2]" />
+              Sprache. Kompetenz. Zukunft.
             </div>
 
-            <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-6xl">
-              Berufsdeutsch lernen,
+            <h1 className="mt-6 max-w-3xl text-4xl font-semibold leading-tight tracking-tight text-slate-900 md:text-6xl">
+              Sprache öffnet Türen.
               <br />
-              <span className="text-sky-600">klar sprechen, sicher handeln.</span>
+              <span className="text-[#73beb2]">Wir öffnen sie mit dir.</span>
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              {APP_NAME} verbindet Fachwortschatz, Kommunikation und
-              Prüfungstraining in einer ruhigen, klaren Lernoberfläche, damit
-              Sie direkt ins Üben kommen.
+              Lerne Berufsdeutsch in einer ruhigen, freundlichen App mit
+              Fachwortschatz, Kommunikation und Prüfungstraining für den echten
+              Arbeitsalltag.
             </p>
 
             <SearchHero />
@@ -127,7 +127,7 @@ export default async function HomePage() {
               <Button
                 size="lg"
                 asChild
-                className="h-12 rounded-2xl bg-sky-500 px-7 text-base shadow-[0_18px_40px_-22px_rgba(59,130,246,0.75)] hover:bg-sky-600"
+                className="h-12 rounded-2xl bg-[#73beb2] px-7 text-base shadow-[0_18px_40px_-22px_rgba(115,190,178,0.55)] hover:bg-[#64aea3]"
               >
                 <Link href={user ? "/dashboard" : "/register"}>
                   {user ? "Weiterlernen" : "Jetzt kostenlos starten"}
@@ -138,7 +138,7 @@ export default async function HomePage() {
                 size="lg"
                 variant="outline"
                 asChild
-                className="h-12 rounded-2xl border-sky-100 bg-white/85 px-7 text-base text-slate-700 hover:bg-white"
+                className="h-12 rounded-2xl border-[#eadfce] bg-white/85 px-7 text-base text-slate-700 hover:bg-white"
               >
                 <Link href="/berufsfelder">Berufsfelder ansehen</Link>
               </Button>
@@ -152,9 +152,9 @@ export default async function HomePage() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white/88 px-3 py-1.5 text-sm text-slate-600 shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-full border border-[#eadfce] bg-white/88 px-3 py-1.5 text-sm text-slate-600 shadow-sm"
                 >
-                  <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                  <CheckCircle2 className="h-4 w-4 text-[#73beb2]" />
                   {item}
                 </span>
               ))}
@@ -162,11 +162,11 @@ export default async function HomePage() {
           </div>
 
           <div className="relative">
-            <div className="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(circle_at_top,_rgba(147,197,253,0.4),_transparent_55%)] blur-3xl" />
+            <div className="absolute inset-0 rounded-[2.5rem] bg-[radial-gradient(circle_at_top,_rgba(115,190,178,0.25),_transparent_55%)] blur-3xl" />
 
-            <div className="relative rounded-[2.5rem] border border-white/80 bg-white/78 p-4 shadow-[0_30px_80px_-40px_rgba(59,130,246,0.35)] backdrop-blur">
-              <div className="overflow-hidden rounded-[2.1rem] border border-sky-100 bg-[linear-gradient(180deg,#eff7ff_0%,#ffffff_28%,#ffffff_100%)]">
-                <div className="border-b border-sky-100 px-5 pb-5 pt-6">
+            <div className="relative rounded-[2.5rem] border border-white/80 bg-white/80 p-4 shadow-[0_30px_80px_-40px_rgba(115,190,178,0.26)] backdrop-blur">
+              <div className="overflow-hidden rounded-[2.1rem] border border-[#eadfce] bg-[linear-gradient(180deg,#fff8f0_0%,#ffffff_28%,#ffffff_100%)]">
+                <div className="border-b border-[#eadfce] px-5 pb-5 pt-6">
                   {userSummary ? (
                     <>
                       <div className="flex items-start justify-between gap-4">
@@ -183,7 +183,7 @@ export default async function HomePage() {
                         </div>
                         <Button
                           asChild
-                          className="rounded-2xl bg-sky-500 px-4 hover:bg-sky-600"
+                          className="rounded-2xl bg-[#73beb2] px-4 hover:bg-[#64aea3]"
                         >
                           <Link href="/dashboard">
                             <Play className="mr-2 h-4 w-4" />
@@ -193,15 +193,15 @@ export default async function HomePage() {
                       </div>
 
                       <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                        <div className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)]">
+                        <div className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(32,50,58,0.16)]">
                           <p className="text-2xl font-bold text-slate-900">{userSummary.todayDone}</p>
                           <p className="mt-1 text-sm text-slate-500">Heute gelernt</p>
                         </div>
-                        <div className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)]">
+                        <div className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(32,50,58,0.16)]">
                           <p className="text-2xl font-bold text-slate-900">{userSummary.streak}</p>
                           <p className="mt-1 text-sm text-slate-500">Streak</p>
                         </div>
-                        <div className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)]">
+                        <div className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(32,50,58,0.16)]">
                           <p className="text-2xl font-bold text-slate-900">{userSummary.favorites}</p>
                           <p className="mt-1 text-sm text-slate-500">Favoriten</p>
                         </div>
@@ -214,31 +214,31 @@ export default async function HomePage() {
                         Eine ruhige App, ein klarer Start
                       </h2>
                       <p className="mt-2 text-sm leading-6 text-slate-500">
-                        Beginnen Sie mit einem Bereich, der sich sofort leicht
-                        anfuehlt und direkt in den Berufsalltag fuehrt.
+                        Beginnen Sie mit einem Bereich, der sich leicht anfühlt
+                        und direkt in den Berufsalltag führt.
                       </p>
-                      <div className="mt-5 rounded-[1.8rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)]">
+                      <div className="mt-5 rounded-[1.8rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(32,50,58,0.16)]">
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-500">
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#73beb2]">
                               Empfohlener Start
                             </p>
                             <h3 className="mt-2 text-xl font-semibold text-slate-900">
                               Kommunikation im Beruf
                             </h3>
                             <p className="mt-2 text-sm leading-6 text-slate-500">
-                              Ueben Sie typische Situationen, Formulierungen und
-                              kurze Reaktionen fuer den echten Arbeitsalltag.
+                              Üben Sie typische Situationen, Formulierungen und
+                              kurze Reaktionen für den echten Arbeitsalltag.
                             </p>
                           </div>
-                          <div className="rounded-2xl bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700">
+                          <div className="rounded-2xl bg-[#edf6ef] px-3 py-2 text-xs font-semibold text-[#4b8074]">
                             5-10 Min.
                           </div>
                         </div>
 
                         <Button
                           asChild
-                          className="mt-4 h-11 w-full rounded-2xl bg-slate-900 hover:bg-slate-800"
+                          className="mt-4 h-11 w-full rounded-2xl bg-[#73beb2] hover:bg-[#64aea3]"
                         >
                           <Link href="/kommunikation">
                             Jetzt beginnen
@@ -250,28 +250,28 @@ export default async function HomePage() {
                       <div className="mt-3 grid gap-3 sm:grid-cols-2">
                         <Link
                           href="/berufsfelder"
-                          className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)] transition-transform duration-200 hover:-translate-y-0.5"
+                          className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(32,50,58,0.16)] transition-transform duration-200 hover:-translate-y-0.5"
                         >
-                          <p className="text-sm font-semibold text-slate-900">Fachwoerter entdecken</p>
+                          <p className="text-sm font-semibold text-slate-900">Fachwörter entdecken</p>
                           <p className="mt-1 text-sm text-slate-500">
                             Begriffe passend zu Ihrem Berufsfeld.
                           </p>
-                          <div className="mt-3 flex items-center text-sm font-medium text-sky-600">
-                            Oeffnen
+                          <div className="mt-3 flex items-center text-sm font-medium text-[#73beb2]">
+                            Öffnen
                             <ChevronRight className="ml-1 h-4 w-4" />
                           </div>
                         </Link>
 
                         <Link
                           href="/pruefungstraining"
-                          className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)] transition-transform duration-200 hover:-translate-y-0.5"
+                          className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(32,50,58,0.16)] transition-transform duration-200 hover:-translate-y-0.5"
                         >
                           <p className="text-sm font-semibold text-slate-900">B2 gezielt trainieren</p>
                           <p className="mt-1 text-sm text-slate-500">
-                            Ruhig und fokussiert fuer Pruefungssituationen.
+                            Ruhig und fokussiert für Prüfungssituationen.
                           </p>
-                          <div className="mt-3 flex items-center text-sm font-medium text-sky-600">
-                            Oeffnen
+                          <div className="mt-3 flex items-center text-sm font-medium text-[#73beb2]">
+                            Öffnen
                             <ChevronRight className="ml-1 h-4 w-4" />
                           </div>
                         </Link>
@@ -293,7 +293,7 @@ export default async function HomePage() {
                       const Icon = area.icon;
                       return (
                         <Link key={area.title} href={area.href}>
-                          <div className="flex items-center gap-4 rounded-[1.6rem] border border-sky-50 bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)] transition-transform duration-200 hover:-translate-y-0.5">
+                          <div className="flex items-center gap-4 rounded-[1.6rem] border border-[#f1e6d9] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(32,50,58,0.16)] transition-transform duration-200 hover:-translate-y-0.5">
                             <div className={`flex h-12 w-12 items-center justify-center rounded-2xl ${area.tone}`}>
                               <Icon className="h-5 w-5" />
                             </div>
@@ -317,7 +317,7 @@ export default async function HomePage() {
       <section className="px-4 py-6 md:py-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6">
-            <p className="text-sm font-medium text-slate-500">Waehlen Sie Ihren Lernweg</p>
+            <p className="text-sm font-medium text-slate-500">Wählen Sie Ihren Lernweg</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
               Drei klare Wege ins Lernen
             </h2>
@@ -348,10 +348,10 @@ export default async function HomePage() {
               return (
                 <Card
                   key={item.title}
-                  className="rounded-[1.9rem] border border-sky-100 bg-white/88 shadow-[0_20px_50px_-34px_rgba(59,130,246,0.22)]"
+                  className="rounded-[1.9rem] border border-[#eadfce] bg-white/88 shadow-[0_20px_50px_-34px_rgba(115,190,178,0.16)]"
                 >
                   <CardContent className="p-5">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-sky-50 text-sky-600">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#eef6ef] text-[#73beb2]">
                       <Icon className="h-5 w-5" />
                     </div>
                     <h3 className="mt-4 text-xl font-semibold text-slate-900">{item.title}</h3>
@@ -359,7 +359,7 @@ export default async function HomePage() {
                     <Button
                       asChild
                       variant="ghost"
-                      className="mt-4 h-auto px-0 text-sky-600 hover:bg-transparent hover:text-sky-700"
+                      className="mt-4 h-auto px-0 text-[#73beb2] hover:bg-transparent hover:text-[#64aea3]"
                     >
                       <Link href={item.href}>
                         Öffnen <ArrowRight className="ml-2 h-4 w-4" />

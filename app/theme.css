@@ -39,39 +39,39 @@
 }
 
 :root {
-  /* Helles, frisches App-Farbsystem mit Fokus auf Ruhe und Lesbarkeit. */
-  --background: #f7fbff;
-  --foreground: #17324d;
+  /* Warm Light Mobile: hell, ruhig und weich statt technisch-kalt. */
+  --background: #fffaf4;
+  --foreground: #20323a;
   --card: #ffffff;
-  --card-foreground: #17324d;
+  --card-foreground: #20323a;
   --popover: #ffffff;
-  --popover-foreground: #17324d;
-  --primary: #4f9cf9;
+  --popover-foreground: #20323a;
+  --primary: #73beb2;
   --primary-foreground: #ffffff;
-  --secondary: #dff5ec;
-  --secondary-foreground: #1a6a57;
-  --muted: #eef6fd;
-  --muted-foreground: #60758c;
-  --accent: #6ecfd3;
-  --accent-foreground: #0f3f4c;
+  --secondary: #edf6ef;
+  --secondary-foreground: #35685c;
+  --muted: #f7f0e8;
+  --muted-foreground: #6f7e80;
+  --accent: #c7e5dc;
+  --accent-foreground: #204e4b;
   --destructive: #ef6b6b;
-  --border: #dcebf8;
-  --input: #dcebf8;
-  --ring: #7bb6ff;
-  --chart-1: #4f9cf9;
-  --chart-2: #6ecfd3;
-  --chart-3: #9ad8b4;
-  --chart-4: #f2b38f;
-  --chart-5: #b8c9e8;
+  --border: #e8ddd0;
+  --input: #e8ddd0;
+  --ring: #97d2c9;
+  --chart-1: #73beb2;
+  --chart-2: #9ccfc0;
+  --chart-3: #f0c996;
+  --chart-4: #d9b88e;
+  --chart-5: #b8d6d0;
   --radius: 1rem;
-  --sidebar: #f3f9ff;
-  --sidebar-foreground: #17324d;
-  --sidebar-primary: #4f9cf9;
+  --sidebar: #fffdf9;
+  --sidebar-foreground: #20323a;
+  --sidebar-primary: #73beb2;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #dff5ec;
-  --sidebar-accent-foreground: #1a6a57;
-  --sidebar-border: #dcebf8;
-  --sidebar-ring: #7bb6ff;
+  --sidebar-accent: #eef6ef;
+  --sidebar-accent-foreground: #35685c;
+  --sidebar-border: #e8ddd0;
+  --sidebar-ring: #97d2c9;
   /* Anki-Lernfarben */
   --anki-again: #D32F2F;
   --anki-hard: #455A64;

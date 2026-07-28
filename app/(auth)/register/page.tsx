@@ -28,18 +28,17 @@ export default async function RegisterPage({
   return (
     <div className="w-full max-w-md space-y-6">
       <div className="space-y-2 text-center">
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">Konto erstellen</h1>
+        <h1 className="text-3xl font-semibold tracking-tight text-slate-900">Konto erstellen</h1>
         <p className="text-base leading-7 text-slate-600">
-          Starten Sie kostenlos und bauen Sie Ihren Lernweg für den
-          Berufssprachkurs B2 Schritt für Schritt auf.
+          Starte kostenlos und baue deinen Lernweg für Beruf und Prüfung Schritt für Schritt auf.
         </p>
       </div>
 
-      <Card className="w-full rounded-[2rem] border border-sky-100 bg-white/88 shadow-[0_28px_70px_-42px_rgba(59,130,246,0.35)]">
+      <Card className="w-full rounded-[2rem] border border-[#eadfce] bg-white/92 shadow-[0_28px_70px_-42px_rgba(115,190,178,0.32)]">
         <CardHeader className="space-y-1 text-center">
           <CardTitle className="text-2xl text-slate-900">Registrieren</CardTitle>
           <CardDescription>
-            Persönliches Konto für Fortschritt, Favoriten und tägliche Übungen.
+            Dein persönliches Konto für Fortschritt, Favoriten und ruhiges Lernen.
           </CardDescription>
         </CardHeader>
         <form action={register}>
@@ -57,7 +56,7 @@ export default async function RegisterPage({
                 type="text"
                 placeholder="Max Mustermann"
                 required
-                className="h-12 rounded-2xl border-sky-100 bg-white"
+                className="h-12 rounded-2xl border-[#eadfce] bg-[#fffdf9]"
               />
             </div>
             <div className="space-y-2">
@@ -69,7 +68,7 @@ export default async function RegisterPage({
                 placeholder="name@beispiel.de"
                 required
                 autoComplete="email"
-                className="h-12 rounded-2xl border-sky-100 bg-white"
+                className="h-12 rounded-2xl border-[#eadfce] bg-[#fffdf9]"
               />
             </div>
             <div className="space-y-2">
@@ -81,7 +80,7 @@ export default async function RegisterPage({
                 required
                 minLength={8}
                 autoComplete="new-password"
-                className="h-12 rounded-2xl border-sky-100 bg-white"
+                className="h-12 rounded-2xl border-[#eadfce] bg-[#fffdf9]"
               />
               <p className="text-xs text-muted-foreground">
                 Mindestens 8 Zeichen.
@@ -89,7 +88,7 @@ export default async function RegisterPage({
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
-            <SubmitButton size="lg" className="h-12 w-full rounded-2xl bg-sky-500 hover:bg-sky-600">
+            <SubmitButton size="lg" className="h-12 w-full rounded-2xl bg-[#73beb2] hover:bg-[#64aea3]">
               Kostenlos registrieren
             </SubmitButton>
             <p className="text-sm text-muted-foreground">
@@ -101,6 +100,11 @@ export default async function RegisterPage({
           </CardFooter>
         </form>
       </Card>
+
+      <div className="rounded-[1.6rem] border border-[#eadfce] bg-white/70 px-5 py-4 text-sm text-slate-600 shadow-[0_20px_45px_-38px_rgba(32,50,58,0.3)]">
+        <p className="font-medium text-slate-900">Einladend und motivierend.</p>
+        <p className="mt-1">Starte jetzt deinen Weg mit kurzen, klaren Einheiten.</p>
+      </div>
     </div>
   );
 }

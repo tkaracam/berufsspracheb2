@@ -15,12 +15,12 @@ export function SearchHero() {
           type="search"
           name="q"
           placeholder="Beruf, Fachwort oder Thema suchen…"
-          className="h-12 rounded-2xl border-sky-100 bg-white/85 pl-11 text-slate-700 shadow-[0_16px_35px_-24px_rgba(15,23,42,0.3)] placeholder:text-slate-400"
+          className="h-12 rounded-2xl border-[#eadfce] bg-white/90 pl-11 text-slate-700 shadow-[0_16px_35px_-24px_rgba(32,50,58,0.18)] placeholder:text-slate-400"
         />
       </div>
       <Button
         type="submit"
-        className="h-12 rounded-2xl bg-sky-500 px-6 shadow-[0_18px_35px_-22px_rgba(59,130,246,0.8)] hover:bg-sky-600"
+        className="h-12 rounded-2xl bg-[#73beb2] px-6 shadow-[0_18px_35px_-22px_rgba(115,190,178,0.58)] hover:bg-[#64aea3]"
       >
         Suchen
       </Button>
