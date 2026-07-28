@@ -1,20 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { LucideIcon } from "lucide-react";
 import {
-  ArrowLeft,
-  Bell,
-  BookOpen,
+  ArrowRight,
+  BarChart3,
   Briefcase,
-  Flame,
-  GraduationCap,
-  Heart,
   HeartPulse,
-  Home,
-  Menu,
   MessageCircle,
-  Mic,
-  Settings2,
   UserRound,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -25,42 +16,39 @@ export const metadata = {
   title: `${APP_NAME} – Start`,
 };
 
-const homeBullets = [
-  "Gezielt Deutsch lernen.",
-  "Sicher im Beruf kommunizieren.",
-  "Selbstbewusst wachsen.",
-];
-
-const featureCaptions = [
-  {
-    title: "Home",
-    text: "Einladend und motivierend. Starte jetzt deinen Weg.",
-    icon: Home,
-    tone: "mint" as const,
-  },
-  {
-    title: "Login",
-    text: "Einfach, sicher und schnell anmelden.",
-    icon: UserRound,
-    tone: "mint" as const,
-  },
-  {
-    title: "Dashboard",
-    text: "Dein Fortschritt im Blick. Persönlich und ermutigend.",
-    icon: GraduationCap,
-    tone: "mint" as const,
-  },
+const cards = [
   {
     title: "Berufsfelder",
-    text: "Lerne gezielt für deinen Beruf. Praxisnah und relevant.",
+    text: "Lerne gezielt Sprache für Gesundheit, Büro, Technik und Alltag im Beruf.",
     icon: Briefcase,
-    tone: "gold" as const,
+    href: "/berufsfelder",
+  },
+  {
+    title: "Fortschritt",
+    text: "Übersichtliche Lernwege, klare Module und sichtbare nächste Schritte.",
+    icon: BarChart3,
+    href: "/dashboard",
   },
   {
     title: "Trainer",
-    text: "Persönliche Begleitung, die dich weiterbringt.",
-    icon: UserRound,
-    tone: "mint" as const,
+    text: "Persönliche Begleitung, ruhige Rückmeldungen und Motivation beim Lernen.",
+    icon: MessageCircle,
+    href: "/trainer",
+  },
+];
+
+const fieldHighlights = [
+  {
+    title: "Gesundheit & Pflege",
+    text: "Kommunikation mit Menschen im Fokus",
+    image: "/concept27/beruf-healthcare.png",
+    icon: HeartPulse,
+  },
+  {
+    title: "Wirtschaft & Verwaltung",
+    text: "Professionell in Organisation und Büro",
+    image: "/concept27/beruf-office.png",
+    icon: Briefcase,
   },
 ];
 
@@ -68,14 +56,11 @@ export default async function HomePage() {
   const { user } = await getSession();
 
   return (
-    <div className="relative overflow-hidden px-4 pb-16 pt-8 md:pb-24 md:pt-10">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(244,233,217,0.75),transparent_30%),radial-gradient(circle_at_top_right,rgba(235,247,242,0.72),transparent_26%),linear-gradient(180deg,#fffdf9_0%,#fff8f2_52%,#fbf7f0_100%)]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-35 [background-image:linear-gradient(rgba(220,206,186,0.13)_1px,transparent_1px),linear-gradient(90deg,rgba(220,206,186,0.13)_1px,transparent_1px)] [background-size:58px_58px]" />
+    <div className="relative overflow-hidden px-4 pb-20 pt-8 md:pb-28 md:pt-10">
+      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(244,233,217,0.78),transparent_28%),radial-gradient(circle_at_top_right,rgba(231,245,240,0.76),transparent_24%),linear-gradient(180deg,#fffdf9_0%,#fff8f2_54%,#fbf7f0_100%)]" />
+      <div className="pointer-events-none absolute inset-0 -z-10 opacity-30 [background-image:linear-gradient(rgba(220,206,186,0.13)_1px,transparent_1px),linear-gradient(90deg,rgba(220,206,186,0.13)_1px,transparent_1px)] [background-size:58px_58px]" />
 
-      <div className="pointer-events-none absolute left-0 top-0 -z-10 h-72 w-72 bg-[radial-gradient(circle,rgba(233,218,197,0.7),transparent_68%)] blur-3xl" />
-      <div className="pointer-events-none absolute right-0 top-0 -z-10 h-80 w-80 bg-[radial-gradient(circle,rgba(226,243,236,0.72),transparent_70%)] blur-3xl" />
-
-      <section className="mx-auto max-w-[1440px]">
+      <section className="mx-auto max-w-7xl">
         <div className="text-center">
           <div className="inline-flex items-center gap-4">
             <BrandBubble />
@@ -95,301 +80,255 @@ export default async function HomePage() {
           <div className="mx-auto mt-1 h-px w-40 bg-[#73beb2]/60 md:w-52" />
         </div>
 
-        <div className="mt-10 overflow-x-auto pb-6">
-          <div className="mx-auto flex w-max min-w-full items-start justify-center gap-7 px-1">
-            <PhoneShell className="w-[268px]">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2 text-slate-900">
-                  <MiniBubble />
-                  <span className="text-[0.92rem] [font-family:Georgia,serif]">{APP_NAME}</span>
-                </div>
-                <Menu className="h-4 w-4 text-slate-500" />
-              </div>
+        <div className="mx-auto mt-12 grid max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+          <div className="max-w-xl">
+            <p className="text-sm uppercase tracking-[0.32em] text-slate-500">
+              App-Gefühl statt klassische Website
+            </p>
+            <h1 className="mt-6 text-[3.6rem] leading-[0.92] text-slate-900 md:text-[5.6rem] [font-family:Georgia,serif]">
+              Sprache öffnet Türen.
+              <br />
+              <span className="text-[#73beb2]">Wir öffnen sie mit dir.</span>
+            </h1>
+            <p className="mt-6 max-w-lg text-lg leading-8 text-slate-600 md:text-xl">
+              Berufssprache B2 verbindet Fachwortschatz, Kommunikation und
+              Sicherheit im Berufsalltag in einer ruhigen Lernoberfläche, die
+              sich klar, modern und leicht anfühlt.
+            </p>
 
-              <div className="mt-7">
-                <h1 className="text-[2.3rem] leading-[0.98] text-slate-900 [font-family:Georgia,serif]">
-                  Sprache
-                  <br />
-                  öffnet Türen.
-                  <br />
-                  <span className="text-[#73beb2]">Wir öffnen sie</span>
-                  <br />
-                  <span className="text-[#73beb2]">mit dir.</span>
-                </h1>
-                <div className="mt-6 space-y-1 text-[0.93rem] leading-7 text-slate-600">
-                  {homeBullets.map((item) => (
-                    <p key={item}>{item}</p>
-                  ))}
-                </div>
-              </div>
-
-              <div className="relative mt-6 overflow-hidden rounded-[1.9rem] bg-[linear-gradient(180deg,#edf6ef_0%,#fbf4e8_100%)] p-3">
-                <div className="absolute bottom-0 left-0 h-40 w-40 rounded-full bg-[#d8ece4]" />
-                <div className="absolute bottom-4 right-4 h-24 w-24 rounded-[1.8rem] border border-[#e0cfba] bg-white/35" />
-                <Image
-                  src="/concept27/home-hero-woman.png"
-                  alt="Lernende Frau"
-                  width={920}
-                  height={1600}
-                  className="relative z-10 h-[285px] w-full object-contain object-bottom"
-                />
-              </div>
-
-              <div className="mt-5 space-y-3">
-                <Button asChild className="h-11 w-full rounded-[1rem] bg-[#73beb2] text-base text-white hover:bg-[#64aea3]">
-                  <Link href={user ? "/dashboard" : "/register"}>
-                    {user ? "Weiterlernen" : "Jetzt starten"}
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" className="h-11 w-full rounded-[1rem] border-[#eadfce] bg-white text-base hover:bg-white">
-                  <Link href="/berufsfelder">Mehr erfahren</Link>
-                </Button>
-              </div>
-            </PhoneShell>
-
-            <PhoneShell className="w-[268px]">
-              <div className="flex items-center justify-between">
-                <ArrowLeft className="h-4 w-4 text-slate-500" />
-                <MiniBubble large />
-                <span className="w-4" />
-              </div>
-
-              <div className="mt-7 text-center">
-                <p className="text-[1.8rem] text-slate-900 [font-family:Georgia,serif]">{APP_NAME}</p>
-                <p className="mt-8 text-[2.05rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                  Willkommen zurück!
-                </p>
-                <p className="mt-2 text-sm text-slate-500">Schön, dass du da bist.</p>
-              </div>
-
-              <div className="mt-8 space-y-4">
-                <FormField label="E-Mail-Adresse" placeholder="Deine E-Mail-Adresse" />
-                <FormField label="Passwort" placeholder="Dein Passwort" />
-                <div className="text-right text-xs text-[#73beb2]">Passwort vergessen?</div>
-                <div className="flex h-11 items-center justify-center rounded-[1rem] bg-[#73beb2] text-base font-medium text-white">
-                  Anmelden
-                </div>
-              </div>
-
-              <div className="mt-6 text-center text-xs text-slate-400">oder weiter mit</div>
-              <div className="mt-5 flex items-center justify-center gap-4">
-                <SocialSquare label="G" />
-                <SocialSquare label="" />
-              </div>
-              <p className="mt-8 text-center text-sm text-slate-500">
-                Noch kein Konto? <span className="text-[#73beb2]">Konto erstellen</span>
-              </p>
-            </PhoneShell>
-
-            <PhoneShell className="w-[288px]">
-              <div className="flex items-start justify-between">
-                <div>
-                  <p className="text-[2rem] leading-none text-slate-900 [font-family:Georgia,serif]">
-                    Hallo, Anna! <span className="text-base">👋</span>
-                  </p>
-                  <p className="mt-3 max-w-[180px] text-sm leading-6 text-slate-500">
-                    Weiter so! Du bist auf einem guten Weg.
-                  </p>
-                </div>
-                <Bell className="mt-1 h-4 w-4 text-slate-500" />
-              </div>
-
-              <Panel>
-                <p className="text-sm text-slate-700">Dein Fortschritt</p>
-                <div className="mt-4 flex items-center gap-4">
-                  <div className="flex h-[92px] w-[92px] items-center justify-center rounded-full border-[8px] border-[#73beb2] border-r-[#e8efea] border-t-[#e8efea]">
-                    <span className="text-[2rem] font-semibold text-slate-900">72%</span>
-                  </div>
-                  <div className="space-y-3 text-sm text-slate-600">
-                    <div>
-                      <p className="text-xs text-slate-400">Aktuelles Level</p>
-                      <p>Fortgeschritten B2</p>
-                    </div>
-                    <div>
-                      <p className="text-xs text-slate-400">Nächstes Ziel</p>
-                      <p>Komplexe Gespräche sicher führen</p>
-                    </div>
-                    <p className="text-[#73beb2]">Fortschritt ansehen</p>
-                  </div>
-                </div>
-              </Panel>
-
-              <Panel className="mt-4">
-                <p className="text-sm text-slate-600">Weiterlernen</p>
-                <p className="mt-2 text-sm font-medium text-slate-900">Modul 4 · Einheit 12</p>
-                <p className="text-sm text-slate-900">Besprechungen leiten</p>
-                <div className="mt-4 h-2 rounded-full bg-[#edf0ec]">
-                  <div className="h-2 w-[60%] rounded-full bg-[#73beb2]" />
-                </div>
-                <div className="mt-4 flex h-10 items-center justify-center rounded-[1rem] bg-[#73beb2] text-sm font-medium text-white">
-                  Weiterlernen
-                </div>
-              </Panel>
-
-              <Panel className="mt-4 flex items-center justify-between">
-                <div>
-                  <p className="text-sm text-slate-700">Tägliche Übung</p>
-                  <p className="mt-1 text-xs text-slate-500">15 Minuten üben</p>
-                  <p className="text-xs text-slate-400">5 / 15 Min.</p>
-                </div>
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#fff3e8] text-[#f19a4f]">
-                  <Flame className="h-5 w-5" />
-                </div>
-              </Panel>
-
-              <BottomTabs
-                items={[
-                  { label: "Übersicht", icon: Home, active: false },
-                  { label: "Lernen", icon: BookOpen, active: false },
-                  { label: "Berufsfelder", icon: Briefcase, active: true },
-                  { label: "Trainer", icon: MessageCircle, active: false },
-                  { label: "Profil", icon: UserRound, active: false },
-                ]}
-              />
-            </PhoneShell>
-
-            <PhoneShell className="w-[288px]">
-              <div className="flex items-center justify-between">
-                <ArrowLeft className="h-4 w-4 text-slate-500" />
-                <span className="w-4" />
-              </div>
-              <p className="mt-4 text-[2rem] text-slate-900 [font-family:Georgia,serif]">Berufsfelder</p>
-              <p className="mt-3 max-w-[220px] text-sm leading-6 text-slate-500">
-                Wähle dein Berufsfeld und lerne gezielt die Sprache, die du brauchst.
-              </p>
-
-              <div className="mt-5 space-y-3">
-                <FieldCard
-                  title="Gesundheit & Pflege"
-                  text="Kommunikation mit Menschen im Fokus"
-                  image="/concept27/beruf-healthcare.png"
-                  icon={HeartPulse}
-                />
-                <FieldCard
-                  title="Wirtschaft & Verwaltung"
-                  text="Professionell in Organisation und Büro"
-                  image="/concept27/beruf-office.png"
-                  icon={Briefcase}
-                />
-                <FieldCard
-                  title="Technik & Handwerk"
-                  text="Klare Sprache für technische Berufe"
-                  image="/concept27/beruf-technical.png"
-                  icon={Settings2}
-                />
-                <FieldCard
-                  title="Gastronomie & Hotel"
-                  text="Gastfreundlich kommunizieren"
-                  image="/concept27/beruf-hospitality.png"
-                  icon={Briefcase}
-                />
-              </div>
-
-              <BottomTabs
-                items={[
-                  { label: "Übersicht", icon: Home, active: false },
-                  { label: "Lernen", icon: BookOpen, active: false },
-                  { label: "Berufsfelder", icon: Briefcase, active: true },
-                  { label: "Trainer", icon: MessageCircle, active: false },
-                  { label: "Profil", icon: UserRound, active: false },
-                ]}
-              />
-            </PhoneShell>
-
-            <PhoneShell className="w-[288px]">
-              <div className="flex items-center justify-between">
-                <ArrowLeft className="h-4 w-4 text-slate-500" />
-                <span className="w-4" />
-              </div>
-              <p className="mt-4 text-[2rem] text-slate-900 [font-family:Georgia,serif]">Dein Trainer</p>
-              <p className="mt-3 max-w-[220px] text-sm leading-6 text-slate-500">
-                Wir begleiten dich auf deinem Lernweg.
-              </p>
-
-              <Panel className="mt-5">
-                <div className="flex items-center gap-4">
-                  <div className="relative h-20 w-20 overflow-hidden rounded-full bg-[#f6eee3]">
-                    <Image
-                      src="/concept27/trainer-lea.png"
-                      alt="Trainerin Lea Schneider"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-xs text-slate-400">Deine Trainerin</p>
-                    <p className="text-[1.45rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                      Lea Schneider
-                    </p>
-                    <p className="text-sm text-slate-500">DaF-Expertin · B2-Spezialistin</p>
-                    <p className="mt-2 text-sm text-[#f19a4f]">★ 4,9 · 128 Bewertungen</p>
-                  </div>
-                </div>
-              </Panel>
-
-              <div className="mt-4 space-y-3">
-                <TrainerCard
-                  title="Persönliche Unterstützung"
-                  text="Individuelles Feedback für deine Fortschritte."
-                  icon={MessageCircle}
-                />
-                <TrainerCard
-                  title="Lernplan anpassen"
-                  text="Wir passen deinen Plan an deine Ziele an."
-                  icon={Settings2}
-                />
-                <TrainerCard
-                  title="Motivation & Tipps"
-                  text="Wir sind für dich da – bei jedem Schritt."
-                  icon={Heart}
-                />
-              </div>
-
-              <Button asChild className="mt-5 h-11 w-full rounded-[1rem] bg-[#73beb2] text-base text-white hover:bg-[#64aea3]">
-                <Link href={user ? "/trainer" : "/register"}>
-                  Nachricht schreiben
-                  <Mic className="ml-2 h-4 w-4" />
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Button
+                asChild
+                className="h-12 rounded-[1rem] bg-[#73beb2] px-7 text-base text-white hover:bg-[#64aea3]"
+              >
+                <Link href={user ? "/dashboard" : "/register"}>
+                  {user ? "Weiterlernen" : "Jetzt starten"}
+                  <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
+              <Button
+                asChild
+                variant="outline"
+                className="h-12 rounded-[1rem] border-[#eadfce] bg-white/85 px-7 text-base hover:bg-white"
+              >
+                <Link href="/berufsfelder">Berufsfelder ansehen</Link>
+              </Button>
+            </div>
 
-              <BottomTabs
-                items={[
-                  { label: "Übersicht", icon: Home, active: false },
-                  { label: "Lernen", icon: BookOpen, active: false },
-                  { label: "Berufsfelder", icon: Briefcase, active: false },
-                  { label: "Trainer", icon: MessageCircle, active: true },
-                  { label: "Profil", icon: UserRound, active: false },
-                ]}
-              />
-            </PhoneShell>
+            <div className="mt-8 grid gap-3 sm:grid-cols-3">
+              <SoftPill text="Ruhige App-Optik" />
+              <SoftPill text="Beruflicher Fokus" />
+              <SoftPill text="Klarer Lernfluss" />
+            </div>
+          </div>
+
+          <div className="relative">
+            <div className="absolute -left-8 top-10 h-28 w-28 rounded-full bg-[#e2f1eb]" />
+            <div className="absolute -right-5 bottom-10 h-24 w-24 rounded-[2rem] border border-[#e3d4bf] bg-white/50 backdrop-blur" />
+
+            <div className="rounded-[2.5rem] border border-[#eadfce] bg-[linear-gradient(180deg,#fffdf9_0%,#fff6ee_100%)] p-4 shadow-[0_32px_70px_-34px_rgba(138,116,83,0.3)]">
+              <div className="grid gap-4 md:grid-cols-[1.02fr_0.98fr]">
+                <div className="overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,#eef6ef_0%,#fbf3e8_100%)] p-4">
+                  <div className="relative overflow-hidden rounded-[1.7rem] bg-[#fffaf4]">
+                    <div className="absolute bottom-0 left-0 h-48 w-48 rounded-full bg-[#d8ece4]" />
+                    <div className="absolute bottom-4 right-4 h-24 w-24 rounded-[1.8rem] border border-[#decdb8] bg-white/40" />
+                    <Image
+                      src="/concept27/home-hero-woman.png"
+                      alt="Lernende Frau"
+                      width={920}
+                      height={1600}
+                      className="relative z-10 mx-auto h-[25rem] w-full object-contain object-bottom"
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <GlassCard>
+                    <p className="text-[2rem] leading-none text-slate-900 [font-family:Georgia,serif]">
+                      Hallo, Anna! <span className="text-base">👋</span>
+                    </p>
+                    <p className="mt-3 text-sm leading-6 text-slate-500">
+                      Weiter so! Du bist auf einem guten Weg.
+                    </p>
+                    <div className="mt-5 flex items-center gap-4 rounded-[1.3rem] border border-[#f0e5d8] bg-[#fffdf9] p-4">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full border-[7px] border-[#73beb2] border-r-[#e8efea] border-t-[#e8efea]">
+                        <span className="text-2xl font-semibold text-slate-900">72%</span>
+                      </div>
+                      <div className="space-y-2 text-sm text-slate-600">
+                        <div>
+                          <p className="text-xs text-slate-400">Aktuelles Level</p>
+                          <p>Fortgeschritten B2</p>
+                        </div>
+                        <div>
+                          <p className="text-xs text-slate-400">Nächstes Ziel</p>
+                          <p>Komplexe Gespräche sicher führen</p>
+                        </div>
+                      </div>
+                    </div>
+                  </GlassCard>
+
+                  <GlassCard>
+                    <p className="text-sm text-slate-500">Weiterlernen</p>
+                    <p className="mt-2 text-base font-medium text-slate-900">
+                      Modul 4 · Einheit 12
+                    </p>
+                    <p className="text-base text-slate-900">
+                      Besprechungen leiten
+                    </p>
+                    <div className="mt-4 h-2 rounded-full bg-[#edf0ec]">
+                      <div className="h-2 w-[64%] rounded-full bg-[#73beb2]" />
+                    </div>
+                    <Button
+                      asChild
+                      className="mt-5 h-11 w-full rounded-[1rem] bg-[#73beb2] text-white hover:bg-[#64aea3]"
+                    >
+                      <Link href="/dashboard">Weiterlernen</Link>
+                    </Button>
+                  </GlassCard>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mx-auto mt-10 grid max-w-[1320px] gap-6 md:grid-cols-5">
-          {featureCaptions.map((item) => {
-            const Icon = item.icon;
+        <div className="mx-auto mt-14 grid max-w-6xl gap-4 md:grid-cols-3">
+          {cards.map((card) => {
+            const Icon = card.icon;
             return (
-              <div key={item.title} className="text-center">
-                <div
-                  className={`mx-auto flex h-14 w-14 items-center justify-center rounded-full ${
-                    item.tone === "gold"
-                      ? "bg-[#ecd4a8] text-[#7e6032]"
-                      : "bg-[#86c8be] text-white"
-                  }`}
-                >
-                  <Icon className="h-6 w-6" />
+              <Link
+                key={card.title}
+                href={card.href}
+                className="rounded-[1.7rem] border border-[#eadfce] bg-white/82 p-5 shadow-[0_20px_40px_-32px_rgba(138,116,83,0.28)] transition-transform hover:-translate-y-0.5"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#e6f4ef] text-[#73beb2]">
+                  <Icon className="h-5 w-5" />
                 </div>
-                <p className="mt-4 text-[2rem] text-slate-900 [font-family:Georgia,serif]">
-                  {item.title}
+                <p className="mt-4 text-[1.6rem] text-slate-900 [font-family:Georgia,serif]">
+                  {card.title}
                 </p>
-                <p className="mx-auto mt-3 max-w-[180px] text-base leading-7 text-slate-600">
-                  {item.text}
+                <p className="mt-3 text-sm leading-7 text-slate-600">
+                  {card.text}
                 </p>
-              </div>
+              </Link>
             );
           })}
         </div>
+
+        <div className="mx-auto mt-16 grid max-w-6xl gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+          <section className="rounded-[2.2rem] border border-[#eadfce] bg-white/88 p-6 shadow-[0_24px_50px_-34px_rgba(138,116,83,0.28)] md:p-7">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <p className="text-[2.25rem] text-slate-900 [font-family:Georgia,serif]">
+                  Berufsfelder
+                </p>
+                <p className="mt-2 max-w-xl text-slate-600">
+                  Lerne gezielt Sprache, die du im Berufsalltag wirklich brauchst.
+                </p>
+              </div>
+              <Link href="/berufsfelder" className="hidden text-sm text-[#73beb2] md:inline-flex">
+                Alle ansehen
+              </Link>
+            </div>
+
+            <div className="mt-6 space-y-4">
+              {fieldHighlights.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.title}
+                    href="/berufsfelder"
+                    className="group relative block overflow-hidden rounded-[1.55rem] border border-[#eadfce] bg-[#fbf4ea] shadow-sm"
+                  >
+                    <div className="absolute inset-y-0 left-0 z-10 w-[56%] bg-[linear-gradient(90deg,rgba(251,244,234,0.98),rgba(251,244,234,0.92),rgba(251,244,234,0))]" />
+                    <div className="relative z-20 flex min-h-[8.4rem] items-center gap-4 p-5">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/85 text-[#c49553] shadow-sm">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <div className="max-w-[14rem]">
+                        <p className="text-[1.35rem] leading-6 text-slate-900 [font-family:Georgia,serif]">
+                          {item.title}
+                        </p>
+                        <p className="mt-2 text-sm leading-6 text-slate-500">
+                          {item.text}
+                        </p>
+                      </div>
+                    </div>
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={1400}
+                      height={700}
+                      className="absolute inset-y-0 right-0 h-full w-[52%] object-cover object-center transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+
+          <section className="rounded-[2.2rem] border border-[#eadfce] bg-white/88 p-6 shadow-[0_24px_50px_-34px_rgba(138,116,83,0.28)] md:p-7">
+            <p className="text-[2.25rem] text-slate-900 [font-family:Georgia,serif]">
+              Dein Trainer
+            </p>
+            <p className="mt-2 text-slate-600">
+              Persönliche Begleitung, klare Rückmeldungen und Motivation für deinen Weg.
+            </p>
+
+            <div className="mt-6 rounded-[1.6rem] border border-[#f0e5d8] bg-white p-5 shadow-sm">
+              <div className="flex items-center gap-4">
+                <div className="relative h-20 w-20 overflow-hidden rounded-full bg-[#f6eee3]">
+                  <Image
+                    src="/concept27/trainer-lea.png"
+                    alt="Trainerin Lea Schneider"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-400">Deine Trainerin</p>
+                  <p className="text-[1.55rem] text-slate-900 [font-family:Georgia,serif]">
+                    Lea Schneider
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    DaF-Expertin · B2-Spezialistin
+                  </p>
+                  <p className="mt-2 text-sm text-[#f19a4f]">★ 4,9 · 128 Bewertungen</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-5 space-y-3">
+              <TrainerMiniCard
+                title="Persönliche Unterstützung"
+                text="Individuelles Feedback für deine Fortschritte."
+              />
+              <TrainerMiniCard
+                title="Lernplan anpassen"
+                text="Wir passen deinen Plan an deine Ziele an."
+              />
+              <TrainerMiniCard
+                title="Motivation & Tipps"
+                text="Wir begleiten dich Schritt für Schritt."
+              />
+            </div>
+
+            <Button
+              asChild
+              className="mt-6 h-12 w-full rounded-[1rem] bg-[#73beb2] text-white hover:bg-[#64aea3]"
+            >
+              <Link href="/trainer">Trainer öffnen</Link>
+            </Button>
+          </section>
+        </div>
       </section>
+    </div>
+  );
+}
+
+function SoftPill({ text }: { text: string }) {
+  return (
+    <div className="rounded-full border border-[#eadfce] bg-white/75 px-4 py-2 text-center text-sm text-slate-600 shadow-sm">
+      {text}
     </div>
   );
 }
@@ -404,159 +343,26 @@ function BrandBubble() {
   );
 }
 
-function MiniBubble({ large = false }: { large?: boolean }) {
-  return (
-    <div
-      className={`relative flex items-center justify-center text-[#73beb2] ${
-        large ? "h-16 w-16" : "h-7 w-7"
-      }`}
-    >
-      <div className="absolute inset-0 rounded-full border-[2px] border-current/85" />
-      <div
-        className={`absolute rotate-12 rounded-bl-md border-b-[2px] border-l-[2px] border-current/85 ${
-          large ? "bottom-[4px] left-[4px] h-3 w-3" : "bottom-[1px] left-[1px] h-1.5 w-1.5"
-        }`}
-      />
-      <span className={`relative [font-family:Georgia,serif] ${large ? "text-[1.8rem]" : "text-[0.9rem]"}`}>B2</span>
-    </div>
-  );
-}
-
-function PhoneShell({
+function GlassCard({
   children,
-  className,
 }: {
   children: React.ReactNode;
-  className?: string;
 }) {
   return (
-    <div className={`rounded-[2.65rem] border border-[#e7d9c7] bg-[linear-gradient(180deg,#fffdf9_0%,#fff8f1_100%)] p-[6px] shadow-[0_28px_64px_-36px_rgba(138,116,83,0.36)] ${className ?? ""}`}>
-      <div className="rounded-[2.3rem] border border-[#eadfce] bg-white px-5 pb-5 pt-4">
-        <div className="mx-auto mb-4 h-1.5 w-14 rounded-full bg-[#243042]" />
-        {children}
-      </div>
-    </div>
-  );
-}
-
-function Panel({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={`mt-5 rounded-[1.45rem] border border-[#f0e5d8] bg-white p-4 shadow-sm ${className ?? ""}`}>
+    <div className="rounded-[1.6rem] border border-[#eadfce] bg-white/90 p-5 shadow-sm">
       {children}
     </div>
   );
 }
 
-function FormField({
-  label,
-  placeholder,
-}: {
-  label: string;
-  placeholder: string;
-}) {
-  return (
-    <div>
-      <p className="mb-2 text-xs text-slate-500">{label}</p>
-      <div className="flex h-11 items-center rounded-[1rem] border border-[#eadfce] bg-[#fffdf9] px-4 text-sm text-slate-400">
-        {placeholder}
-      </div>
-    </div>
-  );
-}
-
-function SocialSquare({ label }: { label: string }) {
-  return (
-    <div className="flex h-11 w-11 items-center justify-center rounded-[1rem] border border-[#eadfce] bg-white text-lg shadow-sm">
-      {label}
-    </div>
-  );
-}
-
-function FieldCard({
-  title,
-  text,
-  image,
-  icon: Icon,
-}: {
-  title: string;
-  text: string;
-  image: string;
-  icon: LucideIcon;
-}) {
-  return (
-    <div className="group relative overflow-hidden rounded-[1.35rem] border border-[#eadfce] bg-[#fbf4ea] shadow-sm">
-      <div className="absolute inset-y-0 left-0 z-10 w-[58%] bg-[linear-gradient(90deg,rgba(251,244,234,0.98),rgba(251,244,234,0.92),rgba(251,244,234,0))]" />
-      <div className="relative z-20 flex min-h-[92px] items-center gap-3 p-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/85 text-[#c49553] shadow-sm">
-          <Icon className="h-4 w-4" />
-        </div>
-        <div className="max-w-[150px]">
-          <p className="text-[1rem] leading-5 text-slate-900 [font-family:Georgia,serif]">
-            {title}
-          </p>
-          <p className="mt-1 text-xs leading-5 text-slate-500">{text}</p>
-        </div>
-      </div>
-      <Image
-        src={image}
-        alt={title}
-        width={1400}
-        height={700}
-        className="absolute inset-y-0 right-0 h-full w-[58%] object-cover object-center"
-      />
-    </div>
-  );
-}
-
-function TrainerCard({
-  title,
-  text,
-  icon: Icon,
-}: {
-  title: string;
-  text: string;
-  icon: LucideIcon;
-}) {
+function TrainerMiniCard({ title, text }: { title: string; text: string }) {
   return (
     <div className="flex items-start gap-3 rounded-[1.3rem] border border-[#f0e5d8] bg-white px-4 py-4 shadow-sm">
-      <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#eef6ef] text-[#73beb2]">
-        <Icon className="h-4 w-4" />
-      </div>
+      <div className="mt-1 h-10 w-10 rounded-full bg-[#eef6ef]" />
       <div>
         <p className="text-sm font-medium text-slate-900">{title}</p>
         <p className="mt-1 text-sm leading-6 text-slate-500">{text}</p>
       </div>
-    </div>
-  );
-}
-
-function BottomTabs({
-  items,
-}: {
-  items: { label: string; icon: LucideIcon; active: boolean }[];
-}) {
-  return (
-    <div className="mt-5 flex items-center justify-between border-t border-[#f0e5d8] pt-3 text-[0.68rem] text-slate-400">
-      {items.map((item) => {
-        const Icon = item.icon;
-        return (
-          <div
-            key={item.label}
-            className={`flex flex-col items-center gap-1 ${
-              item.active ? "text-[#73beb2]" : ""
-            }`}
-          >
-            <Icon className="h-4 w-4" />
-            <span>{item.label}</span>
-          </div>
-        );
-      })}
     </div>
   );
 }
