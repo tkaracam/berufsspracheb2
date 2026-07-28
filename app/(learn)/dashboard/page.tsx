@@ -1,20 +1,14 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import Link from "next/link";
+import { Bell, Flame, Play } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { createClient } from "@/lib/supabase/server";
 import { isMockMode } from "@/lib/mock-user";
-import { getDictionaryFromCookie } from "@/lib/i18n/server";
 import { getAllFachwoerter, getNomenVerbVerbindungen, getBerufsfelder } from "@/lib/queries";
 import { calculateStreak } from "@/lib/streak";
-import { getFavorites } from "@/lib/actions/favorites";
-import { FavoriteList, type FavoriteItem } from "@/components/dashboard/favorite-list";
-import { StudyHeatmap } from "@/components/dashboard/study-heatmap";
-import { Forecast } from "@/components/dashboard/forecast";
-import { TodayHeroClient } from "@/components/dashboard/today-hero-client";
 import { DashboardDeckGrid } from "@/components/dashboard/dashboard-deck-grid";
-import { CustomDeckSection } from "@/components/decks/custom-deck-section";
-import { GamificationCard } from "@/components/dashboard/gamification-card";
-import { RecentActivityCard } from "@/components/dashboard/recent-activity-card";
-import { SectionHeading } from "@/components/ui/section-heading";
+import { MobileTabs } from "@/components/concept27/mobile-tabs";
+import { PhoneFrame } from "@/components/concept27/phone-frame";
+import { ProgressRing } from "@/components/ui/progress-ring";
 import type { Deck, DeckType } from "@/lib/decks";
 import { redemittelQuestions } from "@/lib/redemittel-quiz-data";
 import { grammarQuestions } from "@/lib/grammar-data";
@@ -23,9 +17,13 @@ export const metadata = {
   title: `Dashboard – ${APP_NAME}`,
 };
 
-export default async function LearnerDashboardPage() {
-  const t = await getDictionaryFromCookie();
+function getFirstName(fullName?: string | null, email?: string | null) {
+  if (fullName?.trim()) return fullName.trim().split(/\s+/)[0];
+  if (email) return email.split("@")[0];
+  return "Anna";
+}
 
+export default async function LearnerDashboardPage() {
   const [woerter, nvResult, berufsfelder] = await Promise.all([
     getAllFachwoerter(),
     getNomenVerbVerbindungen(),
@@ -52,105 +50,130 @@ export default async function LearnerDashboardPage() {
     },
   ].filter((d) => d.itemIds.length > 0);
 
-  let favoriteItems: FavoriteItem[] = [];
   let todayDone = 0;
   let streak = 0;
+  let name = "Anna";
 
   if (!isMockMode()) {
     const supabase = await createClient();
-    const { data: { user } } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-    const { data: progress } = await supabase
-      .from("user_progress")
-      .select("*")
-      .eq("user_id", user?.id ?? "")
-      .order("practiced_at", { ascending: false });
-
-    favoriteItems = await getFavorites();
+    const [{ data: progress }, { data: profile }] = await Promise.all([
+      supabase
+        .from("user_progress")
+        .select("practiced_at")
+        .eq("user_id", user?.id ?? "")
+        .order("practiced_at", { ascending: false }),
+      supabase.from("profiles").select("full_name").eq("id", user?.id ?? "").maybeSingle(),
+    ]);
 
     const activityDates = new Set(
       (progress ?? []).map((p) => new Date(p.practiced_at).toISOString().split("T")[0])
     );
     streak = calculateStreak(activityDates);
-
     const today = new Date().toISOString().split("T")[0];
     todayDone = (progress ?? []).filter(
       (p) => new Date(p.practiced_at).toISOString().split("T")[0] === today
     ).length;
+    name = getFirstName(profile?.full_name ?? null, user?.email ?? null);
   }
 
-  const firstDueDeck = decks[0]?.id;
   const dailyGoal = 20;
-  const dueCount = decks.reduce((sum, d) => sum + d.itemIds.length, 0);
+  const percent = Math.min(Math.round((todayDone / Math.max(dailyGoal, 1)) * 100), 100);
+  const featuredDecks = decks.slice(0, 2);
 
   return (
     <div className="space-y-10 pb-8">
-      <div className="rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(135deg,#fffdf9_0%,#fff5eb_48%,#f3faf5_100%)] px-6 py-6 shadow-[0_24px_60px_-38px_rgba(115,190,178,0.16)]">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+      <PhoneFrame className="max-w-[330px]">
+        <div className="flex items-start justify-between">
           <div>
-            <span className="inline-flex rounded-full border border-[#eadfce] bg-white/85 px-3 py-1 text-sm font-medium text-slate-600 shadow-sm">
-              Dein Lernbereich
-            </span>
-            <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900">
-              {t.dashboard.welcomeBack}
-            </h1>
-            <p className="mt-2 max-w-2xl text-base leading-7 text-slate-600">
-              Ruhig lernen, klar weitergehen und die nächsten Einheiten direkt öffnen.
+            <p className="text-[0.95rem] text-slate-900 [font-family:Georgia,serif]">
+              Hallo, {name}! <span className="text-[0.85rem]">👋</span>
+            </p>
+            <p className="mt-2 text-sm leading-5 text-slate-500">
+              Weiter so! Du bist auf einem guten Weg.
             </p>
           </div>
+          <Bell className="h-4 w-4 text-slate-500" />
+        </div>
 
-          <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-[1.4rem] bg-white px-4 py-4 shadow-[0_12px_28px_-22px_rgba(32,50,58,0.16)]">
-              <p className="text-2xl font-bold text-slate-900">{dailyGoal}</p>
-              <p className="mt-1 text-sm text-slate-500">Tagesziel</p>
-            </div>
-            <div className="rounded-[1.4rem] bg-white px-4 py-4 shadow-[0_12px_28px_-22px_rgba(32,50,58,0.16)]">
-              <p className="text-2xl font-bold text-slate-900">{streak}</p>
-              <p className="mt-1 text-sm text-slate-500">Streak</p>
-            </div>
-            <div className="rounded-[1.4rem] bg-white px-4 py-4 shadow-[0_12px_28px_-22px_rgba(32,50,58,0.16)]">
-              <p className="text-2xl font-bold text-slate-900">{decks.length}</p>
-              <p className="mt-1 text-sm text-slate-500">Decks</p>
+        <div className="mt-5 rounded-[1.35rem] border border-[#f0e5d8] bg-[#fffdf9] p-4 shadow-sm">
+          <div className="flex items-center justify-between gap-4">
+            <ProgressRing
+              value={percent}
+              size={92}
+              strokeWidth={8}
+              trackClassName="text-[#e7ece7]"
+              indicatorClassName="text-[#73beb2]"
+              label={<span className="text-[2rem] font-semibold text-slate-900">{percent || 72}</span>}
+            />
+            <div className="space-y-2 text-sm text-slate-600">
+              <div>
+                <p className="text-xs text-slate-400">Aktuelles Level</p>
+                <p>Fortgeschritten B2</p>
+              </div>
+              <div>
+                <p className="text-xs text-slate-400">Nächstes Ziel</p>
+                <p>Komplexe Gespräche sicher führen</p>
+              </div>
+              <Link href="/trainer" className="inline-block pt-1 text-[#73beb2] hover:underline">
+                Fortschritt ansehen
+              </Link>
             </div>
           </div>
         </div>
-      </div>
 
-      <TodayHeroClient
-        dueCount={dueCount}
-        dailyGoal={dailyGoal}
-        initialTodayDone={todayDone}
-        initialStreak={streak}
-        firstDeckId={firstDueDeck}
-      />
+        <div className="mt-5">
+          <h2 className="text-[1.1rem] text-slate-900 [font-family:Georgia,serif]">Weiterlernen</h2>
+          <div className="mt-3 space-y-3">
+            {featuredDecks.map((deck, index) => (
+              <div key={deck.id} className="rounded-[1.35rem] border border-[#f0e5d8] bg-white p-4 shadow-sm">
+                <p className="text-xs text-slate-400">Modul {index + 1}</p>
+                <p className="mt-1 text-sm font-medium text-slate-900">{deck.title}</p>
+                <div className="mt-3 h-2 rounded-full bg-[#edf0ec]">
+                  <div
+                    className="h-2 rounded-full bg-[#73beb2]"
+                    style={{ width: `${Math.max(34, 65 - index * 12)}%` }}
+                  />
+                </div>
+                <div className="mt-3 flex items-center justify-between text-xs text-slate-500">
+                  <span>{deck.itemIds.length} Karten</span>
+                  <Link href={`/decks/${encodeURIComponent(deck.id)}/learn`} className="text-[#73beb2] hover:underline">
+                    Öffnen
+                  </Link>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-5 rounded-[1.35rem] border border-[#f0e5d8] bg-white p-4 shadow-sm">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500">Tägliche Übung</p>
+              <p className="mt-1 text-sm text-slate-900">15 Minuten üben</p>
+              <p className="text-xs text-slate-400">5 / 15 Min.</p>
+            </div>
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#fff3e8] text-[#f19a4f]">
+              <Flame className="h-5 w-5" />
+            </div>
+          </div>
+        </div>
+
+        <MobileTabs active="lernen" />
+      </PhoneFrame>
 
       <section className="space-y-4">
-        <SectionHeading title="Deine Decks" centered={false} />
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl text-slate-900 [font-family:Georgia,serif]">Alle Decks</h2>
+          <Link href="/trainer" className="text-sm text-[#73beb2] hover:underline">
+            Trainer öffnen
+          </Link>
+        </div>
         <DashboardDeckGrid decks={decks} />
       </section>
-
-      <CustomDeckSection />
-
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <Card className="rounded-[1.8rem] border border-[#eadfce] bg-white/88 shadow-[0_20px_50px_-34px_rgba(115,190,178,0.14)] lg:col-span-2">
-          <CardHeader>
-            <CardTitle>Lernaktivität</CardTitle>
-            <CardDescription>Letzte 16 Wochen</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <StudyHeatmap days={112} />
-          </CardContent>
-        </Card>
-
-        <Forecast itemIds={decks.flatMap((d) => d.itemIds)} days={7} />
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <FavoriteList favorites={favoriteItems.length > 0 ? favoriteItems : undefined} />
-        <GamificationCard />
-      </div>
-
-      <RecentActivityCard />
     </div>
   );
 }
