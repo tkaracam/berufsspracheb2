@@ -2,6 +2,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   Briefcase,
+  ChevronRight,
   CheckCircle2,
   GraduationCap,
   MessageSquare,
@@ -105,7 +106,7 @@ export default async function HomePage() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white/90 px-3 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Berufssprache für Alltag, Kurs und Prüfung
+              Berufssprache fuer Alltag, Kurs und Pruefung
             </div>
 
             <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-6xl">
@@ -115,8 +116,9 @@ export default async function HomePage() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              {APP_NAME} bringt Fachwortschatz, Kommunikation und B2-Training
-              in eine ruhige Lernoberfläche, mit der Sie direkt anfangen können.
+              {APP_NAME} fuehrt Fachwortschatz, Kommunikation und B2-Training
+              in einer klaren Lernoberflaeche zusammen, damit Sie ohne Umwege
+              direkt anfangen koennen.
             </p>
 
             <SearchHero />
@@ -146,7 +148,7 @@ export default async function HomePage() {
               {[
                 "Kurze Lerneinheiten",
                 "Berufssprache im Kontext",
-                "Mobil angenehm nutzbar",
+                "Wie eine moderne Lern-App",
               ].map((item) => (
                 <span
                   key={item}
@@ -209,28 +211,70 @@ export default async function HomePage() {
                     <>
                       <p className="text-sm font-medium text-slate-500">Ihr schneller Einstieg</p>
                       <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-                        In wenigen Minuten startklar
+                        Eine ruhige App, ein klarer Start
                       </h2>
                       <p className="mt-2 text-sm leading-6 text-slate-500">
-                        Wählen Sie Ihren Bereich und beginnen Sie mit einer kurzen,
-                        klar geführten Einheit.
+                        Beginnen Sie mit einem Bereich, der sich sofort leicht
+                        anfuehlt und direkt in den Berufsalltag fuehrt.
                       </p>
-                      <div className="mt-5 space-y-3">
-                        {[
-                          "Berufsfeld auswählen",
-                          "Kurze Einheit starten",
-                          "Sprache direkt im Kontext anwenden",
-                        ].map((step, index) => (
-                          <div
-                            key={step}
-                            className="flex items-center gap-3 rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)]"
-                          >
-                            <div className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-50 text-sm font-semibold text-sky-600">
-                              {index + 1}
-                            </div>
-                            <p className="font-medium text-slate-800">{step}</p>
+                      <div className="mt-5 rounded-[1.8rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)]">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-sky-500">
+                              Empfohlener Start
+                            </p>
+                            <h3 className="mt-2 text-xl font-semibold text-slate-900">
+                              Kommunikation im Beruf
+                            </h3>
+                            <p className="mt-2 text-sm leading-6 text-slate-500">
+                              Ueben Sie typische Situationen, Formulierungen und
+                              kurze Reaktionen fuer den echten Arbeitsalltag.
+                            </p>
                           </div>
-                        ))}
+                          <div className="rounded-2xl bg-emerald-50 px-3 py-2 text-xs font-semibold text-emerald-700">
+                            5-10 Min.
+                          </div>
+                        </div>
+
+                        <Button
+                          asChild
+                          className="mt-4 h-11 w-full rounded-2xl bg-slate-900 hover:bg-slate-800"
+                        >
+                          <Link href="/kommunikation">
+                            Jetzt beginnen
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                        </Button>
+                      </div>
+
+                      <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                        <Link
+                          href="/berufsfelder"
+                          className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)] transition-transform duration-200 hover:-translate-y-0.5"
+                        >
+                          <p className="text-sm font-semibold text-slate-900">Fachwoerter entdecken</p>
+                          <p className="mt-1 text-sm text-slate-500">
+                            Begriffe passend zu Ihrem Berufsfeld.
+                          </p>
+                          <div className="mt-3 flex items-center text-sm font-medium text-sky-600">
+                            Oeffnen
+                            <ChevronRight className="ml-1 h-4 w-4" />
+                          </div>
+                        </Link>
+
+                        <Link
+                          href="/pruefungstraining"
+                          className="rounded-[1.5rem] bg-white px-4 py-4 shadow-[0_12px_30px_-24px_rgba(15,23,42,0.3)] transition-transform duration-200 hover:-translate-y-0.5"
+                        >
+                          <p className="text-sm font-semibold text-slate-900">B2 gezielt trainieren</p>
+                          <p className="mt-1 text-sm text-slate-500">
+                            Ruhig und fokussiert fuer Pruefungssituationen.
+                          </p>
+                          <div className="mt-3 flex items-center text-sm font-medium text-sky-600">
+                            Oeffnen
+                            <ChevronRight className="ml-1 h-4 w-4" />
+                          </div>
+                        </Link>
                       </div>
                     </>
                   )}
@@ -273,9 +317,9 @@ export default async function HomePage() {
       <section className="px-4 py-6 md:py-8">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6">
-            <p className="text-sm font-medium text-slate-500">Wählen Sie Ihren Startpunkt</p>
+            <p className="text-sm font-medium text-slate-500">Waehlen Sie Ihren Lernweg</p>
             <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
-              Drei Wege, direkt ins Lernen zu kommen
+              Drei klare Wege ins Lernen
             </h2>
           </div>
 
@@ -285,16 +329,19 @@ export default async function HomePage() {
                 title: "Fachwortschatz",
                 text: "Wichtige Begriffe passend zu Ihrem Berufsfeld lernen.",
                 icon: Briefcase,
+                href: "/berufsfelder",
               },
               {
                 title: "Kommunikation",
                 text: "Gespräche, E-Mails und typische Situationen trainieren.",
                 icon: MessageSquare,
+                href: "/kommunikation",
               },
               {
                 title: "Prüfungstraining",
                 text: "Mit B2-Aufgaben gezielt und ruhig vorbereiten.",
                 icon: Target,
+                href: "/pruefungstraining",
               },
             ].map((item) => {
               const Icon = item.icon;
@@ -314,7 +361,7 @@ export default async function HomePage() {
                       variant="ghost"
                       className="mt-4 h-auto px-0 text-sky-600 hover:bg-transparent hover:text-sky-700"
                     >
-                      <Link href="/berufsfelder">
+                      <Link href={item.href}>
                         Öffnen <ArrowRight className="ml-2 h-4 w-4" />
                       </Link>
                     </Button>
