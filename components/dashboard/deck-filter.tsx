@@ -33,17 +33,17 @@ export function DeckFilter({ decks, stats, value, onChange }: DeckFilterProps) {
           key={opt.key}
           onClick={() => onChange(opt.key)}
           className={cn(
-            "inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium transition-colors border",
+            "inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors",
             value === opt.key
-              ? "bg-primary text-primary-foreground border-primary"
-              : "bg-background hover:bg-muted border-input"
+              ? "border-sky-500 bg-sky-500 text-white shadow-[0_14px_30px_-20px_rgba(59,130,246,0.75)]"
+              : "border-sky-100 bg-white/85 text-slate-600 hover:bg-white"
           )}
         >
           {opt.label}
           <span
             className={cn(
-              "text-xs rounded-full px-1.5 py-0.5",
-              value === opt.key ? "bg-primary-foreground/20" : "bg-muted"
+              "rounded-full px-1.5 py-0.5 text-xs",
+              value === opt.key ? "bg-white/20" : "bg-sky-50 text-slate-500"
             )}
           >
             {counts[opt.key]}

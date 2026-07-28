@@ -87,7 +87,7 @@ export function RecentActivityCard() {
 
   if (!mounted) {
     return (
-      <Card>
+      <Card className="rounded-[1.8rem] border border-sky-100 bg-white/88 shadow-[0_20px_50px_-34px_rgba(59,130,246,0.2)]">
         <CardHeader>
           <CardTitle>{t.dashboard.recentActivity}</CardTitle>
         </CardHeader>
@@ -109,7 +109,7 @@ export function RecentActivityCard() {
   }
 
   return (
-    <Card>
+    <Card className="rounded-[1.8rem] border border-sky-100 bg-white/88 shadow-[0_20px_50px_-34px_rgba(59,130,246,0.2)]">
       <CardHeader>
         <CardTitle>{t.dashboard.recentActivity}</CardTitle>
       </CardHeader>
@@ -120,22 +120,22 @@ export function RecentActivityCard() {
           return (
             <div
               key={`${entry.itemId}-${idx}`}
-              className="flex items-center justify-between gap-3 rounded-lg border p-3"
+              className="flex items-center justify-between gap-3 rounded-[1.4rem] border border-sky-100 bg-white px-4 py-3 shadow-[0_12px_28px_-24px_rgba(15,23,42,0.24)]"
             >
               <div className="flex items-center gap-3 min-w-0">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-sky-50 text-sky-600">
                   <Icon className="h-4 w-4" />
                 </div>
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-medium">{resolveTitle(entry)}</p>
-                  <p className="text-xs text-muted-foreground">{meta.label}</p>
+                  <p className="truncate text-sm font-medium text-slate-900">{resolveTitle(entry)}</p>
+                  <p className="text-xs text-slate-500">{meta.label}</p>
                 </div>
               </div>
               <div className="flex shrink-0 flex-col items-end gap-1">
-                <Badge variant={entry.score >= 60 ? "default" : "secondary"}>
+                <Badge className={entry.score >= 60 ? "bg-sky-500 hover:bg-sky-500" : "bg-slate-100 text-slate-600 hover:bg-slate-100"}>
                   {entry.score}%
                 </Badge>
-                <span className="text-[10px] text-muted-foreground">
+                <span className="text-[10px] text-slate-400">
                   {relativeTime(new Date(entry.practicedAt))}
                 </span>
               </div>

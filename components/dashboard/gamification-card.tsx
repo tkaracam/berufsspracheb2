@@ -62,7 +62,7 @@ export function GamificationCard() {
   }, [mounted]);
 
   return (
-    <Card className="overflow-hidden border-t-4 border-t-amber-500">
+    <Card className="overflow-hidden rounded-[1.8rem] border border-sky-100 bg-white/88 shadow-[0_20px_50px_-34px_rgba(59,130,246,0.2)]">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Trophy className="h-5 w-5 text-amber-500" />
@@ -79,11 +79,11 @@ export function GamificationCard() {
             sublabel="Badges"
           />
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-sm font-medium">
+            <div className="flex items-center gap-2 text-sm font-medium text-slate-700">
               <Flame className="h-4 w-4 text-orange-500" />
               Heute: {today} Übung{today !== 1 ? "en" : ""}
             </div>
-            <div className="text-sm text-muted-foreground">
+            <div className="text-sm text-slate-500">
               {completed} Übungen mit ≥ 80 %
             </div>
           </div>
@@ -98,8 +98,10 @@ export function GamificationCard() {
                 key={badge.id}
                 variant={isUnlocked ? "default" : "outline"}
                 className={cn(
-                  "gap-1.5 py-1.5 transition-colors",
-                  !isUnlocked && "text-muted-foreground"
+                  "gap-1.5 rounded-full py-1.5 transition-colors",
+                  isUnlocked
+                    ? "bg-sky-500 text-white hover:bg-sky-500"
+                    : "border-sky-100 bg-white text-slate-500"
                 )}
               >
                 <Icon className="h-3.5 w-3.5" />
