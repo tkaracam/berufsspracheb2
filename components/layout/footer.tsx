@@ -37,7 +37,7 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative border-t bg-muted/40 py-14 mt-8">
+    <footer className="relative mt-8 border-t bg-muted/40 pb-28 pt-14 md:pb-14">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
