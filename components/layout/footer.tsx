@@ -37,20 +37,20 @@ export function Footer() {
   ];
 
   return (
-    <footer className="relative mt-8 border-t bg-muted/40 pb-28 pt-14 md:pb-14">
+    <footer className="relative mt-8 border-t border-[#eadfce] bg-[#f9f2e9]/70 pb-28 pt-14 md:pb-14">
       <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link href="/" className="flex items-center gap-2 font-bold text-xl mb-4">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-[#eadfce] bg-white text-primary shadow-[0_12px_24px_-20px_rgba(32,50,58,0.25)]">
                 <Briefcase className="h-5 w-5" />
               </div>
               {APP_NAME}
             </Link>
             <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
-              Professionelles Training für den Berufssprachkurs B2. Fachwortschatz,
-              Kommunikation und Prüfungsvorbereitung an einem Ort.
+              Deutsch für den Beruf in einer ruhigen, freundlichen Lernoberfläche.
+              Fachwortschatz, Kommunikation und Prüfungsvorbereitung an einem Ort.
             </p>
           </div>
 
@@ -105,7 +105,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-[#eadfce] pt-8 text-sm text-muted-foreground sm:flex-row">
           <p>
             © {new Date().getFullYear()} {APP_NAME}. Alle Rechte vorbehalten.
           </p>

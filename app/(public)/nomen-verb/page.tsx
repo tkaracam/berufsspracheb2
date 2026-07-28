@@ -15,17 +15,17 @@ export const metadata = {
 };
 
 const categoryColors: Record<string, string> = {
-  Allgemein: "bg-slate-100 text-slate-700",
-  Kommunikation: "bg-blue-100 text-blue-700",
-  Zeit: "bg-amber-100 text-amber-700",
-  Umgang: "bg-emerald-100 text-emerald-700",
-  Behörde: "bg-purple-100 text-purple-700",
-  Konflikt: "bg-rose-100 text-rose-700",
-  Bewerbung: "bg-cyan-100 text-cyan-700",
-  Produktion: "bg-orange-100 text-orange-700",
-  Bildung: "bg-indigo-100 text-indigo-700",
-  Arbeitsrecht: "bg-red-100 text-red-700",
-  Logistik: "bg-teal-100 text-teal-700",
+  Allgemein: "bg-[#f4efe8] text-[#6f7e80]",
+  Kommunikation: "bg-[#eef6ef] text-[#5a8d7d]",
+  Zeit: "bg-[#fbf0de] text-[#c49a63]",
+  Umgang: "bg-[#eef6ef] text-[#5a8d7d]",
+  Behörde: "bg-[#f5efe6] text-[#8b7964]",
+  Konflikt: "bg-[#fbe8e3] text-[#c96f63]",
+  Bewerbung: "bg-[#edf5f1] text-[#4f8c86]",
+  Produktion: "bg-[#f8eddc] text-[#c38b58]",
+  Bildung: "bg-[#edf1f5] text-[#6f8098]",
+  Arbeitsrecht: "bg-[#fbe8e3] text-[#c96f63]",
+  Logistik: "bg-[#edf5f1] text-[#4f8c86]",
 };
 
 export default async function NomenVerbPage({
@@ -47,26 +47,26 @@ export default async function NomenVerbPage({
   return (
     <div className="relative flex-1 overflow-hidden py-12">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.45),_transparent_58%)]" />
-        <div className="absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-sky-200/20 blur-3xl" />
-        <div className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-emerald-100/30 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,_rgba(237,246,239,0.82),_transparent_58%)]" />
+        <div className="absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-[#f5e7d6]/50 blur-3xl" />
+        <div className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-[#eef6ef]/60 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4">
       <div className="mx-auto mb-12 max-w-5xl">
-        <div className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#ffffff_0%,#f4faff_55%,#eef8ff_100%)] p-6 shadow-[0_24px_70px_-38px_rgba(59,130,246,0.24)] md:p-8">
+        <div className="rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(135deg,#fffdf9_0%,#fff5eb_55%,#f4fbf6_100%)] p-6 shadow-[0_24px_70px_-38px_rgba(115,190,178,0.16)] md:p-8">
           <div className="max-w-3xl">
-            <span className="inline-flex items-center rounded-full border border-sky-100 bg-white/85 px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
+            <span className="inline-flex items-center rounded-full border border-[#eadfce] bg-white/85 px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
               Berufliche Wendungen sicher anwenden
             </span>
-            <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+            <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 md:text-5xl">
               Nomen-Verb-Verbindungen
             </h1>
             <p className="mt-4 text-lg leading-7 text-slate-600">
               Feste Verbindungen für Gespräche, E-Mails und Texte im
               Berufsalltag. Mit Synonymen, Beispielsätzen und Audio.
             </p>
-            <Button asChild className="mt-6 rounded-2xl bg-sky-500 hover:bg-sky-600">
+            <Button asChild className="mt-6 rounded-2xl bg-[#73beb2] hover:bg-[#64aea3]">
               <Link href="/trainer/nomen-verb">
                 <Dumbbell className="mr-2 h-4 w-4" /> Interaktiv üben
               </Link>
@@ -82,7 +82,7 @@ export default async function NomenVerbPage({
             name="q"
             defaultValue={q}
             placeholder="Nach Verbindung oder Synonym suchen..."
-            className="h-12 rounded-2xl border-sky-100 bg-white/88 pl-11 pr-10 shadow-[0_18px_40px_-28px_rgba(15,23,42,0.25)]"
+            className="h-12 rounded-2xl border-[#eadfce] bg-white/88 pl-11 pr-10 shadow-[0_18px_40px_-28px_rgba(32,50,58,0.16)]"
           />
           {q && (
             <Button
@@ -104,7 +104,7 @@ export default async function NomenVerbPage({
           <Button
             variant={!kategorie ? "default" : "outline"}
             size="sm"
-            className={!kategorie ? "rounded-full bg-sky-500 hover:bg-sky-600" : "rounded-full border-sky-100 bg-white"}
+            className={!kategorie ? "rounded-full bg-[#73beb2] hover:bg-[#64aea3]" : "rounded-full border-[#eadfce] bg-white"}
             asChild
           >
             <Link href="/nomen-verb">Alle</Link>
@@ -114,7 +114,7 @@ export default async function NomenVerbPage({
               key={cat}
               variant={kategorie === cat ? "default" : "outline"}
               size="sm"
-              className={kategorie === cat ? "rounded-full bg-sky-500 hover:bg-sky-600" : "rounded-full border-sky-100 bg-white"}
+              className={kategorie === cat ? "rounded-full bg-[#73beb2] hover:bg-[#64aea3]" : "rounded-full border-[#eadfce] bg-white"}
               asChild
             >
               <Link href={`/nomen-verb?kategorie=${encodeURIComponent(cat)}`}>
@@ -132,7 +132,7 @@ export default async function NomenVerbPage({
         {/* Grid */}
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {data.map((entry) => (
-            <Card key={entry.id} className="group flex flex-col rounded-[1.6rem] border border-sky-100 bg-white/88 shadow-[0_18px_40px_-30px_rgba(59,130,246,0.2)]">
+            <Card key={entry.id} className="group flex flex-col rounded-[1.6rem] border border-[#eadfce] bg-white/88 shadow-[0_18px_40px_-30px_rgba(115,190,178,0.14)]">
               <CardHeader className="pb-2">
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex-1">

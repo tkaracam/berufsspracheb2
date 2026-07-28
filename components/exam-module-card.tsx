@@ -22,11 +22,11 @@ export function ExamModuleCard({ module, icon }: Props) {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <Card className="transition-all hover:shadow-md hover:border-primary/30">
+    <Card className="rounded-[1.7rem] border border-[#eadfce] bg-white/88 transition-all hover:shadow-md hover:border-[#d9c9b3]">
       <CardHeader>
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-4">
-            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[#eef6ef] text-[#73beb2]">
               {icon}
             </div>
             <div>
@@ -35,11 +35,11 @@ export function ExamModuleCard({ module, icon }: Props) {
                 {module.desc}
               </CardDescription>
               <div className="flex flex-wrap gap-2 mt-3">
-                <Badge variant="secondary" className="gap-1 font-normal">
+                <Badge variant="secondary" className="gap-1 rounded-full bg-[#eef6ef] font-normal text-[#5a8d7d]">
                   <Clock className="h-3 w-3" />
                   {module.duration}
                 </Badge>
-                <Badge variant="secondary" className="gap-1 font-normal">
+                <Badge variant="secondary" className="gap-1 rounded-full bg-[#fbf0de] font-normal text-[#c49a63]">
                   <Target className="h-3 w-3" />
                   {module.points} Punkte
                 </Badge>
@@ -66,13 +66,13 @@ export function ExamModuleCard({ module, icon }: Props) {
       </CardHeader>
 
       {expanded && (
-        <CardContent className="space-y-6 border-t pt-6">
+        <CardContent className="space-y-6 border-t border-[#f0e5d8] pt-6">
           <div>
             <h4 className="font-semibold mb-3">Strategie</h4>
             <ul className="space-y-2 text-sm">
               {module.strategy.map((tip, i) => (
                 <li key={i} className="flex items-start gap-3">
-                  <Badge variant="outline" className="shrink-0 mt-0.5 h-5 px-1.5">
+                  <Badge variant="outline" className="mt-0.5 h-5 shrink-0 border-[#eadfce] px-1.5">
                     {i + 1}
                   </Badge>
                   <span>{tip}</span>
@@ -81,7 +81,7 @@ export function ExamModuleCard({ module, icon }: Props) {
             </ul>
           </div>
 
-          <div className="rounded-lg bg-muted/50 p-4">
+          <div className="rounded-2xl bg-[#fbf5ed] p-4">
             <h4 className="font-semibold mb-2">{module.example.title}</h4>
             <p className="whitespace-pre-wrap text-sm leading-relaxed text-muted-foreground">
               {module.example.text}

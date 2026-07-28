@@ -50,7 +50,7 @@ export function KommunikationSearch({ modules }: Props) {
           placeholder="Module durchsuchen..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          className="pl-10 pr-10"
+          className="h-12 rounded-2xl border-[#eadfce] bg-white/88 pl-10 pr-10 shadow-[0_18px_40px_-28px_rgba(32,50,58,0.16)]"
         />
         {query && (
           <Button
@@ -70,7 +70,7 @@ export function KommunikationSearch({ modules }: Props) {
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {filtered.map((module) => (
-          <Card key={module.id} className="transition-all hover:shadow-md">
+          <Card key={module.id} className="rounded-[1.6rem] border border-[#eadfce] bg-white/88 transition-all hover:shadow-md">
             <CardHeader>
               <CardTitle>{highlightText(module.title, query)}</CardTitle>
               <CardDescription>{highlightText(module.desc, query)}</CardDescription>
@@ -88,7 +88,7 @@ export function KommunikationSearch({ modules }: Props) {
               </div>
               <div className="flex flex-wrap gap-2">
                 {module.tips.slice(0, 2).map((tip, i) => (
-                  <Badge key={i} variant="secondary" className="font-normal">
+                  <Badge key={i} variant="secondary" className="rounded-full bg-[#eef6ef] font-normal text-[#5a8d7d]">
                     {highlightText(tip, query)}
                   </Badge>
                 ))}

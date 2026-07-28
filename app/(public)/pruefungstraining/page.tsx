@@ -17,7 +17,6 @@ import { APP_NAME } from "@/lib/constants";
 import { examModules, examInfo } from "@/lib/exam-data";
 import { ExamModuleCard } from "@/components/exam-module-card";
 import { Card, CardContent } from "@/components/ui/card";
-import { FaqSection } from "@/components/home/faq-section";
 
 export const metadata = {
   title: `Prüfungstraining DTB B2 – ${APP_NAME}`,
@@ -50,46 +49,25 @@ const START_MODULES = [
   { title: "Sprechen", href: "/pruefungstraining/sprechen", icon: Mic },
 ];
 
-const examFaqs = [
-  {
-    question: "Wie ist der Aufbau der DTB B2-Prüfung?",
-    answer:
-      "Die Prüfung besteht aus den vier Teilen Lesen, Hören, Schreiben und Sprechen. Der schriftliche Teil wird in einem Block absolviert, der mündliche Teil meist an einem separaten Termin.",
-  },
-  {
-    question: "Wie viele Punkte brauche ich zum Bestehen?",
-    answer: `Insgesamt gibt es ${examInfo.totalPoints} Punkte. Zum Bestehen benötigen Sie mindestens ${Math.round(examInfo.totalPoints * (examInfo.passPercentage / 100))} Punkte. Außerdem müssen in mindestens 3 der 4 Fertigkeiten jeweils ${examInfo.minSkillPoints} Punkte erreicht werden.`,
-  },
-  {
-    question: "Was passiert, wenn ich in einer Fertigkeit durchfalle?",
-    answer:
-      "Eine Fertigkeit kann zwischen 45 % und 60 % liegen, wenn die anderen Fertigkeiten und die Gesamtpunktzahl ausreichend sind. Dies wird als Ausgleichsregelung bezeichnet.",
-  },
-  {
-    question: "Wie lange dauert die schriftliche Prüfung?",
-    answer: `Der schriftliche Teil dauert ${examInfo.writtenDurationMinutes} Minuten. Der mündliche Teil dauert etwa ${examInfo.oralDurationMinutes} Minuten.`,
-  },
-];
-
 export default function PruefungstrainingPage() {
   const passPoints = Math.round(examInfo.totalPoints * (examInfo.passPercentage / 100));
 
   return (
     <div className="relative flex-1 overflow-hidden py-12">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,_rgba(191,219,254,0.45),_transparent_58%)]" />
-        <div className="absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-sky-200/20 blur-3xl" />
-        <div className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-rose-100/30 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,_rgba(237,246,239,0.82),_transparent_58%)]" />
+        <div className="absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-[#f5e7d6]/50 blur-3xl" />
+        <div className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-[#eef6ef]/60 blur-3xl" />
       </div>
 
       <div className="container mx-auto px-4">
         <div className="mx-auto mb-10 max-w-5xl">
-          <div className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#ffffff_0%,#f4faff_55%,#eef8ff_100%)] p-6 shadow-[0_24px_70px_-38px_rgba(59,130,246,0.24)] md:p-8">
+          <div className="rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(135deg,#fffdf9_0%,#fff5eb_55%,#f4fbf6_100%)] p-6 shadow-[0_24px_70px_-38px_rgba(115,190,178,0.16)] md:p-8">
             <div className="max-w-3xl">
-              <span className="inline-flex items-center rounded-full border border-sky-100 bg-white/85 px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
+              <span className="inline-flex items-center rounded-full border border-[#eadfce] bg-white/85 px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
                 DTB B2 Vorbereitung
               </span>
-              <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900 md:text-5xl">
+              <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 md:text-5xl">
                 Prüfungstraining
               </h1>
               <p className="mt-4 text-lg leading-7 text-slate-600">
@@ -109,9 +87,9 @@ export default function PruefungstrainingPage() {
           ].map((stat) => {
             const Icon = stat.icon;
             return (
-              <Card key={stat.label} className="rounded-[1.6rem] border border-sky-100 bg-white/88 text-center transition-all hover:shadow-md">
+              <Card key={stat.label} className="rounded-[1.6rem] border border-[#eadfce] bg-white/88 text-center transition-all hover:shadow-md">
                 <CardContent className="p-5">
-                  <Icon className="mx-auto mb-2 h-5 w-5 text-sky-600" />
+                  <Icon className="mx-auto mb-2 h-5 w-5 text-[#73beb2]" />
                   <p className="text-2xl font-bold text-slate-900">{stat.value}</p>
                   <p className="text-xs text-slate-500">{stat.label}</p>
                 </CardContent>
@@ -120,7 +98,7 @@ export default function PruefungstrainingPage() {
           })}
         </div>
 
-        <div className="mx-auto mb-12 max-w-3xl rounded-[1.6rem] border border-sky-100 bg-white/85 p-5 text-center text-sm text-slate-500 shadow-[0_16px_35px_-26px_rgba(15,23,42,0.22)]">
+        <div className="mx-auto mb-12 max-w-3xl rounded-[1.6rem] border border-[#eadfce] bg-white/85 p-5 text-center text-sm text-slate-500 shadow-[0_16px_35px_-26px_rgba(32,50,58,0.16)]">
           In mindestens 3 der 4 Fertigkeiten müssen {examInfo.minSkillPoints} Punkte erreicht werden.
           Eine Fertigkeit kann zwischen {examInfo.compensableMinPercentage}% und 60% liegen.
         </div>
@@ -139,21 +117,21 @@ export default function PruefungstrainingPage() {
         </div>
 
         <div className="mx-auto max-w-5xl">
-          <h2 className="mb-6 text-center text-2xl font-bold">
+          <h2 className="mb-6 text-center text-2xl font-semibold">
             Schnellstart
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {START_MODULES.map((m) => (
               <Link key={m.title} href={m.href} className="group block">
-                <Card className="h-full rounded-[1.6rem] border border-sky-100 bg-white/88 transition-all hover:-translate-y-1 hover:shadow-md hover:border-sky-200">
+                <Card className="h-full rounded-[1.6rem] border border-[#eadfce] bg-white/88 transition-all hover:-translate-y-1 hover:shadow-md hover:border-[#d9c9b3]">
                   <CardContent className="flex items-center gap-4 p-5">
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-sky-50 text-sky-600 transition-colors group-hover:bg-sky-500 group-hover:text-white">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#eef6ef] text-[#73beb2] transition-colors group-hover:bg-[#73beb2] group-hover:text-white">
                       <m.icon className="h-5 w-5" />
                     </div>
                     <div className="flex-1">
                       <p className="font-medium text-slate-900">{m.title}</p>
                     </div>
-                    <Play className="h-4 w-4 text-slate-400 transition-colors group-hover:text-sky-600" />
+                    <Play className="h-4 w-4 text-slate-400 transition-colors group-hover:text-[#73beb2]" />
                   </CardContent>
                 </Card>
               </Link>
@@ -161,8 +139,6 @@ export default function PruefungstrainingPage() {
           </div>
         </div>
       </div>
-
-      <FaqSection faqs={examFaqs} title="Fragen zur Prüfung" subtitle="Wichtige Antworten zum DTB B2." />
     </div>
   );
 }
