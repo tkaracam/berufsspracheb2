@@ -5,13 +5,12 @@ import { FileText, RotateCcw, Upload, Eye } from "lucide-react";
 import {
   importFachwortschatzAction,
   importNomenVerbAction,
-  initialImportUiState,
   previewFachwortschatzAction,
   previewNomenVerbAction,
   rollbackFachwortschatzImportAction,
   rollbackNomenVerbImportAction,
-  type ImportUiState,
 } from "@/lib/actions/admin";
+import { initialImportUiState, type ImportUiState } from "@/lib/import-ui-state";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
