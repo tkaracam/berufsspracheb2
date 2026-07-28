@@ -39,40 +39,39 @@
 }
 
 :root {
-  /* Farbschema: Deutsche Flagge (Schwarz-Rot-Gold).
-     Primär = Schwarz, Akzent = Rot, Sekundär = Gold. */
-  --background: #faf9f6;
-  --foreground: #1a1a1a;
+  /* Helles, frisches App-Farbsystem mit Fokus auf Ruhe und Lesbarkeit. */
+  --background: #f7fbff;
+  --foreground: #17324d;
   --card: #ffffff;
-  --card-foreground: #1a1a1a;
+  --card-foreground: #17324d;
   --popover: #ffffff;
-  --popover-foreground: #1a1a1a;
-  --primary: #1a1a1a;
+  --popover-foreground: #17324d;
+  --primary: #4f9cf9;
   --primary-foreground: #ffffff;
-  --secondary: #ffce00;
-  --secondary-foreground: #1a1a1a;
-  --muted: #f0efea;
-  --muted-foreground: #555555;
-  --accent: #dd0000;
-  --accent-foreground: #ffffff;
-  --destructive: #dd0000;
-  --border: #e0dfda;
-  --input: #e0dfda;
-  --ring: #ffce00;
-  --chart-1: #1a1a1a;
-  --chart-2: #dd0000;
-  --chart-3: #ffce00;
-  --chart-4: #555555;
-  --chart-5: #999999;
-  --radius: 0.75rem;
-  --sidebar: #f5f4ef;
-  --sidebar-foreground: #1a1a1a;
-  --sidebar-primary: #1a1a1a;
+  --secondary: #dff5ec;
+  --secondary-foreground: #1a6a57;
+  --muted: #eef6fd;
+  --muted-foreground: #60758c;
+  --accent: #6ecfd3;
+  --accent-foreground: #0f3f4c;
+  --destructive: #ef6b6b;
+  --border: #dcebf8;
+  --input: #dcebf8;
+  --ring: #7bb6ff;
+  --chart-1: #4f9cf9;
+  --chart-2: #6ecfd3;
+  --chart-3: #9ad8b4;
+  --chart-4: #f2b38f;
+  --chart-5: #b8c9e8;
+  --radius: 1rem;
+  --sidebar: #f3f9ff;
+  --sidebar-foreground: #17324d;
+  --sidebar-primary: #4f9cf9;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #ffce00;
-  --sidebar-accent-foreground: #1a1a1a;
-  --sidebar-border: #e0dfda;
-  --sidebar-ring: #ffce00;
+  --sidebar-accent: #dff5ec;
+  --sidebar-accent-foreground: #1a6a57;
+  --sidebar-border: #dcebf8;
+  --sidebar-ring: #7bb6ff;
   /* Anki-Lernfarben */
   --anki-again: #D32F2F;
   --anki-hard: #455A64;
@@ -81,38 +80,37 @@
 }
 
 .dark {
-  /* Dunkelmodus: Schwarzer Hintergrund, Gold als Primärfarbe, Rot als Akzent. */
-  --background: #1a1a1a;
-  --foreground: #faf9f6;
-  --card: #262626;
-  --card-foreground: #faf9f6;
-  --popover: #262626;
-  --popover-foreground: #faf9f6;
-  --primary: #ffce00;
-  --primary-foreground: #1a1a1a;
-  --secondary: #333333;
-  --secondary-foreground: #faf9f6;
-  --muted: #333333;
-  --muted-foreground: #aaaaaa;
-  --accent: #dd0000;
-  --accent-foreground: #ffffff;
+  --background: #0f1722;
+  --foreground: #e9f3ff;
+  --card: #152131;
+  --card-foreground: #e9f3ff;
+  --popover: #152131;
+  --popover-foreground: #e9f3ff;
+  --primary: #8cc3ff;
+  --primary-foreground: #0f1722;
+  --secondary: #153330;
+  --secondary-foreground: #dff5ec;
+  --muted: #1d2a3a;
+  --muted-foreground: #a5bdd4;
+  --accent: #64c9cf;
+  --accent-foreground: #0f1722;
   --destructive: #ff4444;
-  --border: rgba(255, 255, 255, 0.12);
-  --input: rgba(255, 255, 255, 0.15);
-  --ring: #ffce00;
-  --chart-1: #ffce00;
-  --chart-2: #dd0000;
-  --chart-3: #ffffff;
-  --chart-4: #888888;
-  --chart-5: #555555;
-  --sidebar: #1f1f1f;
-  --sidebar-foreground: #faf9f6;
-  --sidebar-primary: #ffce00;
-  --sidebar-primary-foreground: #1a1a1a;
-  --sidebar-accent: #dd0000;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: rgba(255, 255, 255, 0.12);
-  --sidebar-ring: #ffce00;
+  --border: rgba(183, 214, 248, 0.16);
+  --input: rgba(183, 214, 248, 0.14);
+  --ring: #8cc3ff;
+  --chart-1: #8cc3ff;
+  --chart-2: #64c9cf;
+  --chart-3: #9ad8b4;
+  --chart-4: #f2b38f;
+  --chart-5: #a5bdd4;
+  --sidebar: #111c2a;
+  --sidebar-foreground: #e9f3ff;
+  --sidebar-primary: #8cc3ff;
+  --sidebar-primary-foreground: #0f1722;
+  --sidebar-accent: #153330;
+  --sidebar-accent-foreground: #dff5ec;
+  --sidebar-border: rgba(183, 214, 248, 0.16);
+  --sidebar-ring: #8cc3ff;
   /* Anki-Lernfarben (Dunkelmodus) */
   --anki-again: #FF5252;
   --anki-hard: #607D8B;
