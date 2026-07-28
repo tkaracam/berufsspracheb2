@@ -11,10 +11,10 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-[linear-gradient(180deg,#fffdf9_0%,#fff8f1_48%,#f5fbf6_100%)]">
       <StickyMobileCta />
       <PublicNavbar />
-      <main className="animate-in fade-in duration-500 flex-1">{children}</main>
+      <main className="animate-in fade-in flex-1 duration-500">{children}</main>
       <Footer />
     </div>
   );

@@ -26,15 +26,17 @@ export function StickyMobileCta() {
   return (
     <div
       className={cn(
-        "fixed bottom-0 left-0 right-0 z-40 border-t bg-background/95 p-3 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/80 transition-transform duration-300 md:hidden",
+        "fixed inset-x-0 bottom-0 z-40 px-4 pb-4 transition-transform duration-300 md:hidden",
         visible ? "translate-y-0" : "translate-y-full"
       )}
     >
-      <Button size="lg" className="w-full" asChild>
-        <Link href="/register">
-          Kostenlos starten <ArrowRight className="ml-2 h-4 w-4" />
-        </Link>
-      </Button>
+      <div className="mx-auto max-w-md rounded-[1.6rem] border border-[#eadfce] bg-[#fffdf9]/94 p-3 shadow-[0_22px_44px_-24px_rgba(138,116,83,0.35)] backdrop-blur-xl">
+        <Button size="lg" className="h-12 w-full rounded-[1rem] bg-[#73beb2] text-white hover:bg-[#64aea3]" asChild>
+          <Link href="/register">
+            Kostenlos starten <ArrowRight className="ml-2 h-4 w-4" />
+          </Link>
+        </Button>
+      </div>
     </div>
   );
 }

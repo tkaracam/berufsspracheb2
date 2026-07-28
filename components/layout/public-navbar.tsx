@@ -44,16 +44,21 @@ export function PublicNavbar() {
     pathname === href || pathname.startsWith(`${href}/`);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-[#eadfce] bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <Link href="/" className="flex items-center gap-2 font-bold text-xl">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-[#eadfce] bg-white/90 shadow-[0_12px_24px_-20px_rgba(32,50,58,0.25)]">
+    <header className="sticky top-0 z-50 px-4 pt-4">
+      <div className="mx-auto flex h-[4.5rem] w-full max-w-6xl items-center justify-between rounded-[1.8rem] border border-[#eadfce] bg-[#fffdf9]/92 px-4 shadow-[0_18px_40px_-28px_rgba(138,116,83,0.35)] backdrop-blur-xl supports-[backdrop-filter]:bg-[#fffdf9]/82">
+        <Link href="/" className="flex items-center gap-3 font-semibold text-xl text-slate-900">
+          <div className="flex h-11 w-11 items-center justify-center rounded-[1.1rem] border border-[#eadfce] bg-white shadow-[0_12px_24px_-20px_rgba(32,50,58,0.25)]">
             <Briefcase className="h-5 w-5 text-[#73beb2]" />
           </div>
-          <span className="hidden sm:inline">{APP_NAME}</span>
+          <div className="leading-none">
+            <span className="hidden text-[1.55rem] [font-family:Georgia,serif] sm:block">{APP_NAME}</span>
+            <span className="hidden pt-1 text-[0.6rem] uppercase tracking-[0.28em] text-slate-400 lg:block">
+              Sprache. Kompetenz. Zukunft.
+            </span>
+          </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1 text-sm font-medium">
+        <nav className="hidden items-center gap-1 text-sm font-medium lg:flex">
           {mainLinks.map((link) => {
             const active = isActive(link.href);
             return (
@@ -61,15 +66,15 @@ export function PublicNavbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative rounded-xl px-3 py-2 transition-colors",
+                  "relative rounded-full px-4 py-2.5 transition-colors",
                   active
-                    ? "bg-white/75 text-foreground"
-                    : "text-muted-foreground hover:text-foreground hover:bg-white/70"
+                    ? "bg-white text-slate-900 shadow-sm"
+                    : "text-slate-500 hover:bg-white/80 hover:text-slate-900"
                 )}
               >
                 {link.label}
                 {active && (
-                  <span className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-primary" />
+                  <span className="absolute bottom-[0.45rem] left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#73beb2]" />
                 )}
               </Link>
             );
@@ -78,16 +83,16 @@ export function PublicNavbar() {
           <Link
             href="/suche"
             className={cn(
-              "relative flex items-center gap-1 rounded-xl px-3 py-2 transition-colors",
+              "relative flex items-center gap-2 rounded-full px-4 py-2.5 transition-colors",
               isActive("/suche")
-                ? "bg-white/75 text-foreground"
-                : "text-muted-foreground hover:text-foreground hover:bg-white/70"
+                ? "bg-white text-slate-900 shadow-sm"
+                : "text-slate-500 hover:bg-white/80 hover:text-slate-900"
             )}
           >
             <Search className="h-4 w-4" />
             {t.nav.search}
             {isActive("/suche") && (
-              <span className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-primary" />
+              <span className="absolute bottom-[0.45rem] left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#73beb2]" />
             )}
           </Link>
 
@@ -96,17 +101,17 @@ export function PublicNavbar() {
               render={
                 <button
                   className={cn(
-                    "relative flex items-center gap-1 rounded-xl px-3 py-2 transition-colors",
+                    "relative flex items-center gap-2 rounded-full px-4 py-2.5 transition-colors",
                     learnLinks.some((l) => isActive(l.href))
-                      ? "bg-white/75 text-foreground"
-                      : "text-muted-foreground hover:text-foreground hover:bg-white/70"
+                      ? "bg-white text-slate-900 shadow-sm"
+                      : "text-slate-500 hover:bg-white/80 hover:text-slate-900"
                   )}
                 >
                   <BookOpen className="h-4 w-4" />
                   {t.nav.learn}
                   <ChevronDown className="h-3 w-3" />
                   {learnLinks.some((l) => isActive(l.href)) && (
-                    <span className="absolute bottom-0 left-1/2 h-0.5 w-5 -translate-x-1/2 rounded-full bg-primary" />
+                    <span className="absolute bottom-[0.45rem] left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-[#73beb2]" />
                   )}
                 </button>
               }
@@ -119,19 +124,19 @@ export function PublicNavbar() {
           </DropdownMenu>
         </nav>
 
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-1.5">
           <LanguageSwitcher />
-          <Button variant="ghost" size="sm" asChild className="hidden rounded-xl sm:flex">
+          <Button variant="ghost" size="sm" asChild className="hidden rounded-full px-4 text-slate-700 md:flex">
             <Link href="/login">{t.nav.login}</Link>
           </Button>
-          <Button size="sm" asChild className="hidden rounded-xl bg-[#73beb2] hover:bg-[#64aea3] sm:flex">
+          <Button size="sm" asChild className="hidden rounded-full bg-[#73beb2] px-5 text-white hover:bg-[#64aea3] md:flex">
             <Link href="/register">{t.nav.register}</Link>
           </Button>
 
           <Sheet>
             <SheetTrigger
               render={
-                <Button variant="ghost" size="icon" className="rounded-xl md:hidden">
+                <Button variant="ghost" size="icon" className="rounded-full lg:hidden">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Menü öffnen</span>
                 </Button>
