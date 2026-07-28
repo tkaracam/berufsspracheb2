@@ -41,6 +41,22 @@ function normalizeKey(value: string): string {
   return normalizeText(value).toLocaleLowerCase("de");
 }
 
+function normalizeArtikel(value: string | null | undefined): string {
+  const normalized = normalizeText(value).toLocaleLowerCase("de");
+  if (normalized === "der" || normalized === "die" || normalized === "das") {
+    return normalized;
+  }
+
+  if (normalized.includes("/")) {
+    const first = normalized.split("/", 1)[0]?.trim();
+    if (first === "der" || first === "die" || first === "das") {
+      return first;
+    }
+  }
+
+  return normalized;
+}
+
 function chunkArray<T>(items: T[], size: number): T[][] {
   const chunks: T[][] = [];
   for (let i = 0; i < items.length; i += size) {
@@ -98,7 +114,7 @@ export function parseFachwortRows(text: string): FachwortImportRow[] {
       .map((row: ImportSourceRow) => ({
         berufsfeld_id: normalizeText(asOptionalString(row.berufsfeld_id)),
         begriff: normalizeText(asOptionalString(row.begriff)),
-        artikel: normalizeText(asOptionalString(row.artikel)),
+        artikel: normalizeArtikel(asOptionalString(row.artikel)),
         synonym: normalizeText(asOptionalString(row.synonym)) || null,
         beispielsatz: normalizeText(asOptionalString(row.beispielsatz)) || null,
       }))
@@ -220,7 +236,7 @@ export async function analyzeFachwortImport(
   for (const chunk of chunkArray(uniqueRows, 150)) {
     const begriffe = [...new Set(chunk.map((row) => row.begriff))];
     const berufsfelder = [...new Set(chunk.map((row) => row.berufsfeld_id))];
-    const artikel = new Set(chunk.map((row) => normalizeKey(row.artikel)));
+    const artikel = new Set(chunk.map((row) => normalizeKey(normalizeArtikel(row.artikel))));
 
     const { data, error } = await supabase
       .from("fachwoerter")
@@ -234,7 +250,7 @@ export async function analyzeFachwortImport(
     for (const row of data ?? []) {
       const berufsfeldId = String(row.berufsfeld_id ?? "");
       const begriff = String(row.begriff ?? "");
-      const artikelValue = String(row.artikel ?? "");
+      const artikelValue = normalizeArtikel(String(row.artikel ?? ""));
       if (
         berufsfelder.includes(berufsfeldId) &&
         artikel.has(normalizeKey(artikelValue))
@@ -277,7 +293,7 @@ export function toFachwortInsertRows(rows: FachwortImportRow[]): Database["publi
     berufsfeld_id: row.berufsfeld_id,
     beruf_id: null,
     begriff: row.begriff,
-    artikel: row.artikel,
+    artikel: normalizeArtikel(row.artikel) as "der" | "die" | "das",
     synonym: row.synonym ?? null,
     beispielsatz: row.beispielsatz ?? null,
     audio_path: null,
