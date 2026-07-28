@@ -73,9 +73,9 @@ const quickFacts = [
 ];
 
 const benefits = [
-  "Kurze Lerneinheiten für den Alltag",
-  "Fachsprache mit echtem Berufsbezug",
-  "Auf Mobilgeräten besonders angenehm",
+  "10-Minuten-Einheiten",
+  "Berufssprache im Kontext",
+  "Sanftes, mobiles Lernerlebnis",
 ];
 
 export default function HomePage() {
@@ -86,24 +86,33 @@ export default function HomePage() {
 
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white/85 px-3 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white/90 px-3 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Für Berufssprachkurs B2 und echten Arbeitsalltag
+              Heute lernen, morgen sicherer sprechen
             </div>
 
             <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-6xl">
-              Deutsch für den Beruf.
+              Ihr Lernraum für
               <br />
-              <span className="text-sky-600">Klar lernen. Sicher anwenden.</span>
+              <span className="text-sky-600">Berufssprache B2.</span>
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              {APP_NAME} verbindet Fachwortschatz, Kommunikation und prüfungsnahe
-              Übungen in einer ruhigen Lernoberfläche, die Orientierung gibt und
-              sich leicht anfühlt.
+              Lernen Sie Fachwortschatz, Kommunikation und prüfungsnahe Inhalte
+              in kurzen, klar geführten Einheiten, die sich wie eine moderne
+              Lern-App anfühlen.
             </p>
 
             <SearchHero />
+
+            <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-500">
+              <span className="rounded-full bg-white/80 px-3 py-1.5 shadow-sm">
+                Heute empfohlen: Kommunikation im Beruf
+              </span>
+              <span className="rounded-full bg-white/80 px-3 py-1.5 shadow-sm">
+                Fokus: Wortschatz, Hören, Schreiben
+              </span>
+            </div>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <Button
@@ -112,7 +121,7 @@ export default function HomePage() {
                 className="h-12 rounded-2xl bg-sky-500 px-7 text-base shadow-[0_18px_40px_-22px_rgba(59,130,246,0.75)] hover:bg-sky-600"
               >
                 <Link href="/register">
-                  Jetzt kostenlos lernen <ArrowRight className="ml-2 h-4 w-4" />
+                  Lernpfad starten <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button
@@ -121,7 +130,7 @@ export default function HomePage() {
                 asChild
                 className="h-12 rounded-2xl border-sky-100 bg-white/80 px-7 text-base text-slate-700 hover:bg-white"
               >
-                <Link href="/berufsfelder">Lernbereiche entdecken</Link>
+                <Link href="/berufsfelder">Berufsfelder ansehen</Link>
               </Button>
             </div>
 
