@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,6 +11,7 @@ import { useFocusMode } from "@/components/layout/focus-mode-provider";
 export function StickyMobileCta() {
   const [visible, setVisible] = useState(false);
   const { focusMode } = useFocusMode();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,7 +23,7 @@ export function StickyMobileCta() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (focusMode) return null;
+  if (focusMode || pathname === "/") return null;
 
   return (
     <div

@@ -22,11 +22,11 @@ export default async function HomePage() {
   const { user } = await getSession();
 
   return (
-    <div className="relative overflow-hidden px-4 pb-14 pt-8 md:pb-20 md:pt-12">
+    <div className="relative overflow-hidden px-4 pb-16 pt-10 md:pb-24 md:pt-14">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(240,225,204,0.52),transparent_32%),radial-gradient(circle_at_top_right,rgba(224,243,236,0.55),transparent_28%),linear-gradient(180deg,#fffdf9_0%,#fff8f2_52%,#fbf7f1_100%)]" />
       <div className="pointer-events-none absolute inset-0 -z-10 opacity-40 [background-image:linear-gradient(rgba(217,205,186,0.22)_1px,transparent_1px),linear-gradient(90deg,rgba(217,205,186,0.22)_1px,transparent_1px)] [background-size:54px_54px]" />
 
-      <section className="mx-auto max-w-7xl">
+      <section className="mx-auto max-w-[106rem]">
         <div className="text-center">
           <div className="mx-auto flex w-fit items-center gap-4 rounded-full border border-[#d5ddd7] bg-white/72 px-5 py-3 shadow-[0_18px_30px_-24px_rgba(138,116,83,0.35)] backdrop-blur">
             <div className="relative flex h-14 w-14 items-center justify-center text-[#73beb2]">
@@ -49,9 +49,9 @@ export default async function HomePage() {
           </p>
         </div>
 
-        <div className="mt-10 overflow-x-auto pb-4">
-          <div className="mx-auto flex w-max min-w-full gap-5 px-1 lg:grid lg:w-full lg:grid-cols-5 lg:gap-6">
-            <PreviewPhone className="w-[18.5rem] lg:w-auto">
+        <div className="mt-12 overflow-x-auto pb-6">
+          <div className="mx-auto flex w-max min-w-full items-start justify-center gap-6 px-2">
+            <PreviewPhone className="w-[17.4rem] shrink-0">
               <div className="flex items-center justify-between text-slate-800">
                 <div className="flex items-center gap-2">
                   <div className="relative flex h-7 w-7 items-center justify-center text-[#73beb2]">
@@ -101,7 +101,7 @@ export default async function HomePage() {
               </div>
             </PreviewPhone>
 
-            <PreviewPhone className="w-[18.5rem] lg:w-auto">
+            <PreviewPhone className="mt-4 w-[17.4rem] shrink-0">
               <div className="flex justify-center pt-10">
                 <div className="relative flex h-16 w-16 items-center justify-center text-[#73beb2]">
                   <div className="absolute inset-0 rounded-full border-[2px] border-current/85" />
@@ -132,7 +132,7 @@ export default async function HomePage() {
               </p>
             </PreviewPhone>
 
-            <PreviewPhone className="w-[18.5rem] lg:w-auto">
+            <PreviewPhone className="w-[17.4rem] shrink-0">
               <div className="flex items-start justify-between">
                 <div>
                   <p className="text-[1.95rem] leading-none text-slate-900 [font-family:Georgia,serif]">
@@ -177,7 +177,7 @@ export default async function HomePage() {
               </div>
             </PreviewPhone>
 
-            <PreviewPhone className="w-[18.5rem] lg:w-auto">
+            <PreviewPhone className="mt-4 w-[17.4rem] shrink-0">
               <p className="text-[2rem] text-slate-900 [font-family:Georgia,serif]">Berufsfelder</p>
               <p className="mt-3 text-sm leading-6 text-slate-500">
                 Wähle dein Berufsfeld und lerne gezielt die Sprache, die du brauchst.
@@ -190,7 +190,7 @@ export default async function HomePage() {
               </div>
             </PreviewPhone>
 
-            <PreviewPhone className="w-[18.5rem] lg:w-auto">
+            <PreviewPhone className="w-[17.4rem] shrink-0">
               <p className="text-[2rem] text-slate-900 [font-family:Georgia,serif]">Dein Trainer</p>
               <p className="mt-3 text-sm leading-6 text-slate-500">
                 Wir begleiten dich auf deinem Lernweg.
@@ -220,7 +220,7 @@ export default async function HomePage() {
           </div>
         </div>
 
-        <div className="mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-5">
+        <div className="mx-auto mt-8 grid max-w-6xl gap-6 md:grid-cols-5">
           {previewLabels.map((item) => {
             const Icon = item.icon;
             return (
