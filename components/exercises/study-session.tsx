@@ -230,35 +230,32 @@ export function StudySession({
   }
 
   return (
-    <div className="max-w-2xl mx-auto space-y-6">
+    <div className="mx-auto max-w-xl space-y-5">
       <div className="flex items-center justify-between">
-        <Button variant="ghost" size="sm" onClick={onFinish}>
+        <Button variant="ghost" size="sm" onClick={onFinish} className="rounded-xl text-slate-600 hover:bg-white/70">
           <ArrowLeft className="mr-2 h-4 w-4" />
-          Beenden
+          Zurück
         </Button>
-        <div className="text-sm font-medium">{deckTitle}</div>
-        <div className="flex items-center gap-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={toggleAutoPlay}
-            title={autoPlay ? "Automatische Wiedergabe aktiv" : "Automatische Wiedergabe deaktiviert"}
-            aria-pressed={autoPlay}
-          >
-            {autoPlay ? (
-              <Volume2 className="h-4 w-4" />
-            ) : (
-              <VolumeOff className="h-4 w-4" />
-            )}
-            <span className="sr-only">Autoplay</span>
-          </Button>
-          <div className="text-sm text-muted-foreground">
-            {index + 1} / {orderedCards.length}
-          </div>
+        <div className="text-sm text-slate-500">
+          {index + 1} / {orderedCards.length}
         </div>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={toggleAutoPlay}
+          title={autoPlay ? "Automatische Wiedergabe aktiv" : "Automatische Wiedergabe deaktiviert"}
+          aria-pressed={autoPlay}
+          className="rounded-xl text-slate-600 hover:bg-white/70"
+        >
+          {autoPlay ? <Volume2 className="h-4 w-4" /> : <VolumeOff className="h-4 w-4" />}
+          <span className="sr-only">Autoplay</span>
+        </Button>
       </div>
 
-      <Progress value={progress} className="h-2" />
+      <div className="space-y-2">
+        <div className="text-center text-sm text-slate-500">{deckTitle}</div>
+        <Progress value={progress} className="h-2 bg-[#ece8e0]" />
+      </div>
 
       <div
         className="relative cursor-pointer perspective-1000 select-none"
@@ -270,19 +267,32 @@ export function StudySession({
         }}
         aria-label="Karte umdrehen"
       >
-        <Card className="min-h-[320px]">
-          <CardContent className="flex flex-col items-center justify-center min-h-[320px] p-8 text-center space-y-4">
-            <p className="text-sm text-muted-foreground uppercase tracking-wider">
-              {flipped ? "Antwort" : "Frage"}
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold">{flipped ? current.back : current.front}</h2>
-            {current.audioPath && <AudioPlayer path={current.audioPath} text={current.front} autoPlay={autoPlay && !flipped} />}
+        <Card className="min-h-[380px] rounded-[1.8rem] border-[#eadfce] bg-[linear-gradient(180deg,#fffefb_0%,#fffaf5_100%)] shadow-[0_28px_60px_-38px_rgba(101,79,50,0.22)]">
+          <CardContent className="flex min-h-[380px] flex-col justify-between p-6 text-center">
+            <div className="flex items-center justify-between text-sm text-slate-400">
+              <span>{flipped ? "Antwort" : "Begriff"}</span>
+              <span>{itemType === "fachwort" ? "Fachwort" : itemType === "nomen_verb" ? "Nomen-Verb" : "Übung"}</span>
+            </div>
+
+            <div className="space-y-5">
+              <h2 className="text-[2rem] leading-tight text-slate-900 sm:text-[2.4rem] [font-family:Georgia,serif]">
+                {flipped ? current.back : current.front}
+              </h2>
+              {current.audioPath ? (
+                <div className="flex justify-center">
+                  <AudioPlayer path={current.audioPath} text={current.front} autoPlay={autoPlay && !flipped} />
+                </div>
+              ) : null}
+            </div>
+
             {flipped && current.extra && (
-              <p className="text-muted-foreground max-w-lg">{current.extra}</p>
+              <div className="rounded-[1.2rem] border border-[#efe4d6] bg-white/80 p-4">
+                <p className="text-sm leading-7 text-slate-500">{current.extra}</p>
+              </div>
             )}
             {!flipped && (
-              <p className="text-sm text-muted-foreground">
-                Klicken oder Enter zum Aufdecken
+              <p className="text-sm text-slate-400">
+                Tippen oder Enter drücken zum Aufdecken
               </p>
             )}
           </CardContent>
@@ -298,14 +308,14 @@ export function StudySession({
             labels={{ again: "Nochmal", hard: "Schwer", good: "Gut", easy: "Einfach" }}
           />
           <div className="flex justify-center gap-2">
-            <Button variant="ghost" size="sm" onClick={() => handleSkip(current.id, "bury")}>
+            <Button variant="ghost" size="sm" className="rounded-xl text-slate-500" onClick={() => handleSkip(current.id, "bury")}>
               Morgen
             </Button>
-            <Button variant="ghost" size="sm" onClick={() => handleSkip(current.id, "suspend")}>
+            <Button variant="ghost" size="sm" className="rounded-xl text-slate-500" onClick={() => handleSkip(current.id, "suspend")}>
               1 Woche
             </Button>
           </div>
-          <div className="sm:hidden flex justify-center gap-4 text-xs text-muted-foreground">
+          <div className="sm:hidden flex justify-center gap-4 text-xs text-slate-400">
             <span>← Nochmal</span>
             <span>↑ Schwer</span>
             <span>→ Gut</span>
@@ -313,7 +323,7 @@ export function StudySession({
           </div>
         </>
       ) : (
-        <Button size="lg" className="w-full" onClick={handleFlip}>
+        <Button size="lg" className="h-12 w-full rounded-[1rem] bg-[#5c9c88] text-white hover:bg-[#538d7a]" onClick={handleFlip}>
           Antwort aufdecken
         </Button>
       )}

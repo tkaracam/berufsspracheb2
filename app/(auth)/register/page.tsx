@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Eye } from "lucide-react";
+import { ArrowLeft, Eye, LockKeyhole, Mail, UserRound } from "lucide-react";
 import { register } from "@/lib/actions/auth";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
@@ -22,19 +22,21 @@ export default async function RegisterPage({
 
   return (
     <div className="mx-auto w-full max-w-sm">
-      <PhoneFrame>
+      <PhoneFrame className="max-w-[380px]">
         <div className="flex items-center justify-between">
           <ArrowLeft className="h-4 w-4 text-slate-500" />
-          <BrandMark compact className="scale-[0.72]" />
-          <span className="w-4" />
+          <span className="text-xs text-slate-400">09:41</span>
         </div>
 
-        <div className="mt-7 text-center">
-          <p className="text-[2rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
+        <div className="mt-5 text-center">
+          <div className="flex justify-center">
+            <BrandMark compact />
+          </div>
+          <p className="mt-8 text-[2.05rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
             Konto erstellen
           </p>
-          <p className="mt-3 text-sm leading-6 text-slate-500">
-            Registrieren Sie sich kostenlos für das BSK-B2-Training.
+          <p className="mt-2 text-sm leading-6 text-slate-500">
+            Kostenlos starten und deinen Lernweg aufbauen.
           </p>
         </div>
 
@@ -45,67 +47,81 @@ export default async function RegisterPage({
             </Alert>
           ) : null}
 
-          <div>
-            <p className="mb-2 text-xs text-slate-500">Vollständiger Name</p>
+          <FieldShell icon={<UserRound className="h-4 w-4" />}>
             <Input
               name="fullName"
               type="text"
-              placeholder="Max Mustermann"
+              placeholder="Vollständiger Name"
               required
-              className="h-11 rounded-[1rem] border-[#eadfce] bg-[#fffdf9]"
+              className="h-11 border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
             />
-          </div>
+          </FieldShell>
 
-          <div>
-            <p className="mb-2 text-xs text-slate-500">E-Mail</p>
+          <FieldShell icon={<Mail className="h-4 w-4" />}>
             <Input
               name="email"
               type="email"
               placeholder="name@beispiel.de"
               required
               autoComplete="email"
-              className="h-11 rounded-[1rem] border-[#eadfce] bg-[#fffdf9]"
+              className="h-11 border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
             />
-          </div>
+          </FieldShell>
 
-          <div>
-            <p className="mb-2 text-xs text-slate-500">Passwort</p>
-            <div className="relative">
-              <Input
-                name="password"
-                type="password"
-                required
-                minLength={8}
-                autoComplete="new-password"
-                className="h-11 rounded-[1rem] border-[#eadfce] bg-[#fffdf9] pr-11"
-              />
-              <Eye className="absolute right-4 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            </div>
-            <p className="mt-2 text-xs text-slate-400">Mindestens 8 Zeichen.</p>
-          </div>
+          <FieldShell icon={<LockKeyhole className="h-4 w-4" />} trailing={<Eye className="h-4 w-4 text-slate-400" />}>
+            <Input
+              name="password"
+              type="password"
+              required
+              minLength={8}
+              autoComplete="new-password"
+              placeholder="Passwort"
+              className="h-11 border-0 bg-transparent px-0 shadow-none focus-visible:ring-0"
+            />
+          </FieldShell>
 
-          <SubmitButton className="h-11 w-full rounded-[1rem] bg-[#73beb2] text-base text-white hover:bg-[#64aea3]">
+          <p className="text-xs text-slate-400">Mindestens 8 Zeichen.</p>
+
+          <SubmitButton className="h-12 w-full rounded-[1rem] bg-[#5c9c88] text-base text-white hover:bg-[#538d7a]">
             Kostenlos registrieren
           </SubmitButton>
         </form>
 
         <p className="mt-7 text-center text-sm text-slate-500">
           Bereits ein Konto?{" "}
-          <Link href="/login" className="text-[#73beb2] hover:underline">
+          <Link href="/login" className="text-[#5c9c88] hover:underline">
             Anmelden
           </Link>
         </p>
 
-        <div className="mt-6 rounded-[1.3rem] border border-[#f0e5d8] bg-white p-4 text-sm leading-6 text-slate-500 shadow-sm">
+        <div className="mt-6 rounded-[1.3rem] border border-[#eadfce] bg-[linear-gradient(180deg,#f9fcf9_0%,#fffaf5_100%)] p-4 text-sm leading-6 text-slate-500 shadow-sm">
           <p className="font-medium text-slate-900">Ruhig. Klar. Direkt.</p>
           <p className="mt-1">
-            Lernen Sie mit kurzen Einheiten und einer Oberfläche, die wie eine
-            moderne App funktioniert.
+            Lerne mit einer Oberfläche, die sich leicht anfühlt und dich Schritt
+            für Schritt begleitet.
           </p>
         </div>
 
         <MobileTabs active="profil" />
       </PhoneFrame>
+    </div>
+  );
+}
+
+function FieldShell({
+  icon,
+  trailing,
+  children,
+}: {
+  icon: React.ReactNode;
+  trailing?: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex items-center gap-3 rounded-[1rem] border border-[#eadfce] bg-white px-4 text-slate-500 shadow-sm">
+      {icon}
+      <div className="flex-1">{children}</div>
+      {trailing}
     </div>
   );
 }
