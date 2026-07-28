@@ -8,12 +8,11 @@ import {
   GraduationCap,
   Headphones,
   MessageSquare,
-  Sparkles,
   Target,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { APP_DESCRIPTION, APP_NAME } from "@/lib/constants";
+import { APP_NAME } from "@/lib/constants";
 import { FaqSection } from "@/components/home/faq-section";
 import { HeroVisual } from "@/components/home/hero-visual";
 import { SearchHero } from "@/components/home/search-hero";
@@ -76,7 +75,7 @@ const quickFacts = [
 const benefits = [
   "Kurze Lerneinheiten für den Alltag",
   "Fachsprache mit echtem Berufsbezug",
-  "Klar, ruhig und mobil optimiert",
+  "Auf Mobilgeräten besonders angenehm",
 ];
 
 export default function HomePage() {
@@ -87,20 +86,21 @@ export default function HomePage() {
 
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border border-sky-200/80 bg-white/85 px-3 py-1 text-xs font-semibold text-sky-700 shadow-sm backdrop-blur">
-              <Sparkles className="h-3.5 w-3.5" />
-              App-Gefühl statt klassische Website
-            </span>
+            <div className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white/85 px-3 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              Für Berufssprachkurs B2 und echten Arbeitsalltag
+            </div>
 
-            <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-6xl">
-              Berufssprache B2
+            <h1 className="max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-6xl">
+              Deutsch für den Beruf.
               <br />
-              <span className="text-sky-600">klar, leicht und fokussiert.</span>
+              <span className="text-sky-600">Klar lernen. Sicher anwenden.</span>
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              {APP_DESCRIPTION} Entwickelt wie eine moderne Lern-App: leichter Einstieg,
-              ruhige Farben und klare Wege durch den Berufsalltag.
+              {APP_NAME} verbindet Fachwortschatz, Kommunikation und prüfungsnahe
+              Übungen in einer ruhigen Lernoberfläche, die Orientierung gibt und
+              sich leicht anfühlt.
             </p>
 
             <SearchHero />
@@ -112,7 +112,7 @@ export default function HomePage() {
                 className="h-12 rounded-2xl bg-sky-500 px-7 text-base shadow-[0_18px_40px_-22px_rgba(59,130,246,0.75)] hover:bg-sky-600"
               >
                 <Link href="/register">
-                  Kostenlos starten <ArrowRight className="ml-2 h-4 w-4" />
+                  Jetzt kostenlos lernen <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
               <Button
@@ -121,7 +121,7 @@ export default function HomePage() {
                 asChild
                 className="h-12 rounded-2xl border-sky-100 bg-white/80 px-7 text-base text-slate-700 hover:bg-white"
               >
-                <Link href="/berufsfelder">Module ansehen</Link>
+                <Link href="/berufsfelder">Lernbereiche entdecken</Link>
               </Button>
             </div>
 
@@ -129,7 +129,7 @@ export default function HomePage() {
               {benefits.map((benefit) => (
                 <span
                   key={benefit}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/80 bg-white/80 px-3 py-1.5 text-sm text-slate-600 shadow-sm"
+                  className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white/88 px-3 py-1.5 text-sm text-slate-600 shadow-sm"
                 >
                   <CheckCircle2 className="h-4 w-4 text-emerald-500" />
                   {benefit}
