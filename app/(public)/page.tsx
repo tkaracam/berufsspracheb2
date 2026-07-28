@@ -11,7 +11,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { APP_NAME } from "@/lib/constants";
-import { FaqSection } from "@/components/home/faq-section";
 import { HeroVisual } from "@/components/home/hero-visual";
 import { SearchHero } from "@/components/home/search-hero";
 import { createClient, getSession } from "@/lib/supabase/server";
@@ -110,15 +109,14 @@ export default async function HomePage() {
             </div>
 
             <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-6xl">
-              Klar lernen.
+              Deutsch lernen,
               <br />
-              <span className="text-sky-600">Sicher im Beruf sprechen.</span>
+              <span className="text-sky-600">im Beruf sicher handeln.</span>
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              {APP_NAME} hilft Ihnen, Fachwortschatz, Kommunikation und
-              prüfungsnahe Inhalte in einer ruhigen, klaren Lernumgebung Schritt
-              für Schritt aufzubauen.
+              {APP_NAME} bringt Fachwortschatz, Kommunikation und B2-Training
+              in eine ruhige Lernoberfläche, mit der Sie direkt anfangen können.
             </p>
 
             <SearchHero />
@@ -175,8 +173,11 @@ export default async function HomePage() {
                             Hallo, {userSummary.firstName}
                           </p>
                           <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-                            Weiterlernen
+                            Bereit für die nächste Einheit?
                           </h2>
+                          <p className="mt-2 text-sm text-slate-500">
+                            Ihr Lernbereich wartet schon auf Sie.
+                          </p>
                         </div>
                         <Button
                           asChild
@@ -206,10 +207,14 @@ export default async function HomePage() {
                     </>
                   ) : (
                     <>
-                      <p className="text-sm font-medium text-slate-500">So starten Sie</p>
+                      <p className="text-sm font-medium text-slate-500">Ihr schneller Einstieg</p>
                       <h2 className="mt-2 text-3xl font-semibold tracking-tight text-slate-900">
-                        Ein klarer Einstieg statt Überforderung
+                        In wenigen Minuten startklar
                       </h2>
+                      <p className="mt-2 text-sm leading-6 text-slate-500">
+                        Wählen Sie Ihren Bereich und beginnen Sie mit einer kurzen,
+                        klar geführten Einheit.
+                      </p>
                       <div className="mt-5 space-y-3">
                         {[
                           "Berufsfeld auswählen",
@@ -233,9 +238,9 @@ export default async function HomePage() {
 
                 <div className="px-5 py-5">
                   <div className="mb-4 flex items-center justify-between">
-                    <h3 className="text-lg font-semibold text-slate-900">Schnell starten</h3>
+                    <h3 className="text-lg font-semibold text-slate-900">Direkt loslegen</h3>
                     <Link href="/berufsfelder" className="text-sm font-medium text-sky-600">
-                      Alle Bereiche
+                      Alles ansehen
                     </Link>
                   </div>
 
@@ -267,21 +272,28 @@ export default async function HomePage() {
 
       <section className="px-4 py-6 md:py-8">
         <div className="mx-auto max-w-6xl">
+          <div className="mb-6">
+            <p className="text-sm font-medium text-slate-500">Wählen Sie Ihren Startpunkt</p>
+            <h2 className="mt-2 text-2xl font-semibold tracking-tight text-slate-900 md:text-3xl">
+              Drei Wege, direkt ins Lernen zu kommen
+            </h2>
+          </div>
+
           <div className="grid gap-4 md:grid-cols-3">
             {[
               {
                 title: "Fachwortschatz",
-                text: "Wichtige Begriffe berufsfeldbezogen und verständlich lernen.",
+                text: "Wichtige Begriffe passend zu Ihrem Berufsfeld lernen.",
                 icon: Briefcase,
               },
               {
                 title: "Kommunikation",
-                text: "Telefonate, E-Mails und Gespräche sicherer formulieren.",
+                text: "Gespräche, E-Mails und typische Situationen trainieren.",
                 icon: MessageSquare,
               },
               {
                 title: "Prüfungstraining",
-                text: "Gezielt auf B2-Aufgaben und Prüfungssituationen vorbereiten.",
+                text: "Mit B2-Aufgaben gezielt und ruhig vorbereiten.",
                 icon: Target,
               },
             ].map((item) => {
@@ -297,6 +309,15 @@ export default async function HomePage() {
                     </div>
                     <h3 className="mt-4 text-xl font-semibold text-slate-900">{item.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-slate-600">{item.text}</p>
+                    <Button
+                      asChild
+                      variant="ghost"
+                      className="mt-4 h-auto px-0 text-sky-600 hover:bg-transparent hover:text-sky-700"
+                    >
+                      <Link href="/berufsfelder">
+                        Öffnen <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
                   </CardContent>
                 </Card>
               );
@@ -304,8 +325,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <FaqSection />
     </div>
   );
 }
