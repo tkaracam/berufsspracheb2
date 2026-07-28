@@ -22,7 +22,7 @@ export function PublicNavbar() {
   const pathname = usePathname();
   const { focusMode } = useFocusMode();
 
-  if (focusMode || pathname === "/") return null;
+  if (focusMode) return null;
 
   const mainLinks = [
     { href: "/berufsfelder", label: t.nav.professions, icon: Briefcase },
