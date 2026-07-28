@@ -106,19 +106,19 @@ export default async function HomePage() {
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-sky-100 bg-white/90 px-3 py-1.5 text-sm font-medium text-slate-600 shadow-sm">
               <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Berufssprache fuer Alltag, Kurs und Pruefung
+              Für Berufssprachkurs, Prüfung und Arbeitsalltag
             </div>
 
             <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-tight tracking-tight text-slate-900 md:text-6xl">
-              Deutsch lernen,
+              Berufsdeutsch lernen,
               <br />
-              <span className="text-sky-600">im Beruf sicher handeln.</span>
+              <span className="text-sky-600">klar sprechen, sicher handeln.</span>
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600 md:text-xl">
-              {APP_NAME} fuehrt Fachwortschatz, Kommunikation und B2-Training
-              in einer klaren Lernoberflaeche zusammen, damit Sie ohne Umwege
-              direkt anfangen koennen.
+              {APP_NAME} verbindet Fachwortschatz, Kommunikation und
+              Prüfungstraining in einer ruhigen, klaren Lernoberfläche, damit
+              Sie direkt ins Üben kommen.
             </p>
 
             <SearchHero />
@@ -148,7 +148,7 @@ export default async function HomePage() {
               {[
                 "Kurze Lerneinheiten",
                 "Berufssprache im Kontext",
-                "Wie eine moderne Lern-App",
+                "Klar, mobil und fokussiert",
               ].map((item) => (
                 <span
                   key={item}
