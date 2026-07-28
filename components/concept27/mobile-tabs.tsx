@@ -30,7 +30,7 @@ export function MobileTabs({ active }: MobileTabsProps) {
   ];
 
   return (
-    <div className="mt-5 hidden items-end justify-between border-t border-[#f1e6d9] pt-3 text-[0.64rem] text-slate-400 sm:flex">
+    <div className="mt-5 flex items-end justify-between border-t border-[#f1e6d9] pt-3 text-[0.64rem] text-slate-400">
       {items.map((item) => {
         const Icon = iconMap[item.key];
         const isActive = item.key === active;
