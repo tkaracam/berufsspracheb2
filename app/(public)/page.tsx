@@ -1,34 +1,11 @@
 import Link from "next/link";
-import { ArrowRight, BookOpen, Briefcase, MessageCircle, Sparkles } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { getSession } from "@/lib/supabase/server";
-import { BrandMark } from "@/components/concept27/brand-mark";
 import { Button } from "@/components/ui/button";
 
 export const metadata = {
   title: `${APP_NAME} – Start`,
 };
-
-const supportCards = [
-  {
-    title: "Fachwortschatz",
-    text: "Praxisnah für Arbeitsalltag und Berufssprachkurs.",
-    icon: Briefcase,
-    tone: "sage",
-  },
-  {
-    title: "Kommunikation",
-    text: "Klare Redemittel für echte Gespräche im Beruf.",
-    icon: MessageCircle,
-    tone: "peach",
-  },
-  {
-    title: "Lernen mit Struktur",
-    text: "Kurze Einheiten, ruhige Führung und klare nächste Schritte.",
-    icon: BookOpen,
-    tone: "sand",
-  },
-];
 
 export default async function HomePage() {
   const { user } = await getSession();
@@ -42,134 +19,100 @@ export default async function HomePage() {
       <div className="pointer-events-none absolute left-[-6rem] top-[-2rem] -z-10 h-72 w-72 rounded-full bg-[#f4e6d6]/70 blur-3xl" />
       <div className="pointer-events-none absolute right-[-5rem] top-10 -z-10 h-80 w-80 rounded-full bg-[#dff1ea]/80 blur-3xl" />
 
-      <section className="mx-auto max-w-6xl">
+      <section className="mx-auto max-w-5xl">
         <div className="text-center">
-          <BrandMark className="justify-center" />
-          <p className="mt-6 text-[1.8rem] text-[#73beb2] [font-family:'Snell_Roundhand',cursive] md:text-[2.8rem]">
-            Deutsch für deinen beruflichen Weg.
+          <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-[linear-gradient(180deg,#eef6ef_0%,#f9efe4_100%)] shadow-[0_18px_40px_-34px_rgba(57,73,84,0.42)]">
+            <div className="relative h-7 w-7">
+              <div className="absolute left-0 top-[5px] h-4 w-2.5 rotate-[-28deg] rounded-full bg-[#6f9f88]" />
+              <div className="absolute right-0 top-[5px] h-4 w-2.5 rotate-[28deg] rounded-full bg-[#4f8b73]" />
+            </div>
+          </div>
+          <p className="mt-5 text-[2.3rem] leading-none text-slate-900 md:text-[3.4rem] [font-family:Georgia,serif]">
+            {APP_NAME}
+          </p>
+          <p className="mt-2 text-sm text-slate-500 md:text-base">
+            Deutsch für den Beruf. Sicher. Klar. Kompetent.
           </p>
         </div>
 
-        <div className="mx-auto mt-8 max-w-xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-[#eadfce] bg-white/84 px-4 py-2 text-sm text-slate-600 shadow-[0_18px_40px_-34px_rgba(57,73,84,0.42)]">
-            <Sparkles className="h-4 w-4 text-[#73beb2]" />
-            Moderne Lern-App für Berufssprache B2
-          </div>
-          <h1 className="mt-6 text-[2.65rem] leading-[0.94] text-slate-900 md:text-[4.1rem] [font-family:Georgia,serif]">
-            Sprache, die
-            <br />
-            deine Karriere
-            <br />
-            voranbringt.
-          </h1>
-          <p className="mx-auto mt-5 max-w-lg text-base leading-8 text-slate-600 md:text-lg">
-            {APP_NAME} hilft dir, im Beruf sicher zu kommunizieren, Fachsprache
-            zu beherrschen und mit ruhiger Struktur sichtbar voranzukommen.
-          </p>
-        </div>
-
-        <div className="mt-10 flex justify-center">
-          <div className="w-full max-w-[420px] rounded-[2rem] border border-[#e7dcca] bg-[linear-gradient(180deg,#fffefb_0%,#fff9f3_100%)] p-5 shadow-[0_36px_80px_-44px_rgba(118,94,63,0.34)]">
-            <div className="flex items-center gap-3">
-              <div className="scale-[0.76] origin-left">
-                <BrandMark compact />
+        <div className="mx-auto mt-8 max-w-[430px] rounded-[2.15rem] border border-[#e7dcca] bg-[linear-gradient(180deg,#fffefb_0%,#fff9f3_100%)] p-6 shadow-[0_40px_90px_-46px_rgba(118,94,63,0.34)]">
+          <div className="flex items-center gap-3 text-slate-900">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[linear-gradient(180deg,#eef6ef_0%,#f9efe4_100%)]">
+              <div className="relative h-6 w-6">
+                <div className="absolute left-0 top-[4px] h-4 w-2.5 rotate-[-28deg] rounded-full bg-[#6f9f88]" />
+                <div className="absolute right-0 top-[4px] h-4 w-2.5 rotate-[28deg] rounded-full bg-[#4f8b73]" />
               </div>
             </div>
-
-            <div className="mt-7">
-              <p className="text-[2.45rem] leading-[0.94] text-slate-900 [font-family:Georgia,serif]">
-                Sprache, die
-                <br />
-                dich im Beruf
-                <br />
-                <span className="text-[#5c9c88]">weiterbringt.</span>
+            <div>
+              <p className="text-[1.35rem] leading-none [font-family:Georgia,serif]">
+                Berufssprache B2
               </p>
-              <p className="mt-5 max-w-[15rem] text-sm leading-7 text-slate-600">
-                Für Fachkräfte, die im Beruf sicher kommunizieren und
-                weiterkommen wollen.
+              <p className="mt-1 text-xs text-slate-500">
+                Deutsch für den Beruf. Sicher. Klar. Kompetent.
               </p>
             </div>
+          </div>
 
-            <div className="relative mt-6 overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,#eff6ef_0%,#f9efe4_100%)] p-5">
-              <div className="absolute -bottom-10 -left-8 h-44 w-44 rounded-full bg-[#c7ddd1]/80" />
-              <div className="absolute right-[-1.4rem] top-4 h-40 w-40 rounded-full bg-[#f5d7bb]/55" />
-              <div className="absolute bottom-4 right-6 h-28 w-28 rounded-[1.8rem] border border-[#e7d9c7] bg-white/30" />
+          <div className="mt-9">
+            <p className="text-[2.55rem] leading-[0.94] text-slate-900 [font-family:Georgia,serif]">
+              Sprache, die
+              <br />
+              deine Karriere
+              <br />
+              <span className="text-[#5c9c88]">voranbringt.</span>
+            </p>
+            <p className="mt-5 max-w-[16rem] text-sm leading-7 text-slate-600">
+              Für Fachkräfte, die im Beruf sicher kommunizieren
+              und weiterkommen wollen.
+            </p>
+          </div>
 
-              <div className="relative z-10 flex min-h-[265px] items-end justify-between">
-                <div className="max-w-[10.5rem]">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-white/82 text-[#5c9c88] shadow-sm">
-                    <Sparkles className="h-4 w-4" />
-                  </div>
-                  <p className="mt-4 text-[1.45rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                    Klar lernen.
-                    <br />
-                    Sicher handeln.
-                  </p>
-                  <div className="mt-4 space-y-2">
-                    <div className="rounded-[1rem] bg-white/80 px-3 py-2 text-xs text-slate-600 shadow-sm">
-                      Fachwortschatz
-                    </div>
-                    <div className="rounded-[1rem] bg-white/80 px-3 py-2 text-xs text-slate-600 shadow-sm">
-                      Berufskommunikation
-                    </div>
-                  </div>
-                </div>
+          <div className="relative mt-8 overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,#f2f7f1_0%,#fbf1e6_100%)] p-5">
+            <div className="absolute -bottom-12 -left-10 h-48 w-48 rounded-full bg-[#c8ddd1]/88" />
+            <div className="absolute left-[4.8rem] top-[2.2rem] h-28 w-28 rounded-full bg-[#efbb8f]" />
+            <div className="absolute right-[-1.8rem] top-2 h-44 w-44 rounded-full bg-[#6e9d88]/88" />
+            <div className="absolute bottom-4 right-4 h-28 w-28 rounded-[1.8rem] border border-[#e7d9c7] bg-white/28" />
+            <div className="absolute left-8 bottom-[6.3rem] h-px w-20 rotate-[-28deg] bg-[#405462]/35" />
+            <div className="absolute left-14 bottom-[4.5rem] h-px w-16 rotate-[14deg] bg-[#405462]/25" />
+            <div className="absolute right-10 top-[5.2rem] h-14 w-px rotate-[24deg] bg-white/55" />
 
-                <div className="relative flex h-[178px] w-[122px] items-end justify-center">
-                  <div className="absolute bottom-0 h-[156px] w-[104px] rounded-[2rem_2rem_1.4rem_1.4rem] bg-[#f1bb78]" />
-                  <div className="absolute bottom-[104px] h-14 w-14 rounded-full bg-[#f2c99b]" />
-                  <div className="absolute bottom-[114px] left-[28px] h-8 w-8 rounded-full bg-[#5a4331]" />
-                  <div className="absolute bottom-[82px] h-16 w-16 rounded-[1rem] bg-[#f6f1e9]" />
-                </div>
-              </div>
-            </div>
+            <div className="relative z-10 min-h-[250px]">
+              <div className="absolute left-[7.4rem] bottom-[5.8rem] h-16 w-10 rounded-t-full border border-[#405462]/70 bg-transparent" />
+              <div className="absolute left-[8.3rem] bottom-[5rem] h-16 w-12 rotate-[18deg] rounded-[999px] border border-[#405462]/70 bg-transparent" />
+              <div className="absolute left-[7.7rem] bottom-[6.9rem] h-8 w-8 rounded-full border border-[#405462]/70 bg-transparent" />
+              <div className="absolute left-[9.9rem] bottom-[4.2rem] h-14 w-px rotate-[18deg] bg-[#405462]" />
+              <div className="absolute left-[8.5rem] bottom-[4.35rem] h-12 w-px rotate-[-14deg] bg-[#405462]" />
+              <div className="absolute left-[7.45rem] bottom-[5rem] h-10 w-px rotate-[8deg] bg-[#405462]" />
+              <div className="absolute left-[10.5rem] bottom-[2.9rem] h-10 w-px rotate-[-12deg] bg-[#405462]" />
+              <div className="absolute left-[9.1rem] bottom-[2.9rem] h-10 w-px rotate-[12deg] bg-[#405462]" />
+              <div className="absolute left-[10rem] bottom-[2.95rem] h-px w-12 bg-[#405462]" />
+              <div className="absolute left-[7.2rem] bottom-[2.8rem] h-px w-14 rotate-[-18deg] bg-[#405462]" />
+              <div className="absolute left-[10.7rem] bottom-[2.5rem] h-px w-10 rotate-[22deg] bg-[#405462]" />
 
-            <div className="mt-5 grid gap-3">
-              <Button asChild className="h-12 rounded-[1rem] bg-[#5c9c88] text-base text-white hover:bg-[#538d7a]">
-                <Link href={primaryHref}>
-                  {primaryLabel}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="h-12 rounded-[1rem] border-[#eadfce] bg-white text-base text-slate-700 hover:bg-white">
-                <Link href="/berufsfelder">Mehr erfahren</Link>
-              </Button>
-            </div>
-
-            <div className="mt-5 h-px bg-[#ece2d7]" />
-            <div className="mt-4 flex items-center justify-between text-xs text-slate-400">
-              <span>Berufssprache B2</span>
-              <span>Start</span>
+              <div className="absolute bottom-0 right-0 h-[6.2rem] w-[7.2rem] rounded-[2rem_2rem_1.4rem_1.4rem] bg-[#f1bb78]" />
+              <div className="absolute bottom-[5.25rem] right-[1.9rem] h-12 w-12 rounded-full bg-[#f2c99b]" />
+              <div className="absolute bottom-[6.05rem] right-[1.45rem] h-7 w-7 rounded-full bg-[#594230]" />
+              <div className="absolute bottom-[4.05rem] right-[3rem] h-14 w-14 rounded-[1rem] bg-[#f6f1e9]" />
+              <div className="absolute bottom-0 left-0 h-[5.2rem] w-[10.8rem] bg-[#d7e5dc]/55" />
+              <div className="absolute bottom-0 left-[11rem] h-[5.8rem] w-20 bg-[#f7e6d3]/55" />
+              <div className="absolute bottom-[1.05rem] left-[13.1rem] h-11 w-px bg-white/45" />
+              <div className="absolute bottom-[1.05rem] left-[14.2rem] h-11 w-px bg-white/45" />
+              <div className="absolute bottom-[3.15rem] left-[13.1rem] h-px w-14 bg-white/45" />
+              <div className="absolute bottom-[1.05rem] left-[16.55rem] h-[3.7rem] w-px bg-white/45" />
+              <div className="absolute bottom-[4.6rem] left-[2.2rem] h-12 w-10 rounded-[1rem] bg-white/28" />
+              <div className="absolute bottom-[4rem] left-[1.4rem] h-20 w-14 rounded-full border border-[#b5cbbf]/45" />
+              <div className="absolute bottom-[2.8rem] left-[4.4rem] h-24 w-12 rounded-[999px] bg-[#e7f1eb]/40" />
             </div>
           </div>
-        </div>
 
-        <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
-          {supportCards.map((item) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={item.title}
-                className="rounded-[1.6rem] border border-[#eadfce] bg-white/82 p-5 shadow-[0_24px_48px_-36px_rgba(57,73,84,0.42)]"
-              >
-                <div
-                  className={`flex h-11 w-11 items-center justify-center rounded-full ${
-                    item.tone === "peach"
-                      ? "bg-[#fff1e8] text-[#d69061]"
-                      : item.tone === "sand"
-                        ? "bg-[#faf1df] text-[#b88a4a]"
-                        : "bg-[#eef7f4] text-[#5c9c88]"
-                  }`}
-                >
-                  <Icon className="h-5 w-5" />
-                </div>
-                <p className="mt-4 text-[1.4rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                  {item.title}
-                </p>
-                <p className="mt-2 text-sm leading-7 text-slate-500">{item.text}</p>
-              </div>
-            );
-          })}
+          <div className="mt-5 grid gap-3">
+            <Button asChild className="h-12 rounded-[1rem] bg-[#5c9c88] text-base text-white hover:bg-[#538d7a]">
+              <Link href={primaryHref}>{primaryLabel}</Link>
+            </Button>
+            <Button asChild variant="ghost" className="h-11 rounded-[1rem] text-base text-slate-600 hover:bg-transparent hover:text-slate-900">
+              <Link href="/berufsfelder">Mehr erfahren</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>
