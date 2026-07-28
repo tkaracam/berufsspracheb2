@@ -2,8 +2,6 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, Briefcase, MessageCircle, Sparkles } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { getSession } from "@/lib/supabase/server";
-import { PhoneFrame } from "@/components/concept27/phone-frame";
-import { MobileTabs } from "@/components/concept27/mobile-tabs";
 import { BrandMark } from "@/components/concept27/brand-mark";
 import { Button } from "@/components/ui/button";
 
@@ -71,7 +69,7 @@ export default async function HomePage() {
         </div>
 
         <div className="mt-10 flex justify-center">
-          <PhoneFrame className="max-w-[380px]">
+          <div className="w-full max-w-[420px] rounded-[2rem] border border-[#e7dcca] bg-[linear-gradient(180deg,#fffefb_0%,#fff9f3_100%)] p-5 shadow-[0_36px_80px_-44px_rgba(118,94,63,0.34)]">
             <div className="flex items-center gap-3">
               <div className="scale-[0.76] origin-left">
                 <BrandMark compact />
@@ -138,8 +136,12 @@ export default async function HomePage() {
               </Button>
             </div>
 
-            <MobileTabs active="home" />
-          </PhoneFrame>
+            <div className="mt-5 h-px bg-[#ece2d7]" />
+            <div className="mt-4 flex items-center justify-between text-xs text-slate-400">
+              <span>Berufssprache B2</span>
+              <span>Start</span>
+            </div>
+          </div>
         </div>
 
         <div className="mx-auto mt-10 grid max-w-5xl gap-4 md:grid-cols-3">
