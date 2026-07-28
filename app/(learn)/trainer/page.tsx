@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Heart, MessageCircle, Mic, Settings2 } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
@@ -22,8 +21,8 @@ export default function TrainerPage() {
 
       <div className="mt-5 rounded-[1.45rem] border border-[#f0e5d8] bg-white p-4 shadow-sm">
         <div className="flex items-center gap-4">
-          <div className="relative h-20 w-20 overflow-hidden rounded-full bg-[#f6eee3]">
-            <Image src="/concept27/trainer-lea.png" alt="Trainerin Lea Schneider" fill className="object-cover" />
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-[linear-gradient(180deg,#eef7f4_0%,#fff2e8_100%)] text-[1.55rem] font-semibold text-[#73beb2] shadow-sm">
+            LS
           </div>
           <div className="flex-1">
             <p className="text-xs text-slate-400">Deine Trainerin</p>

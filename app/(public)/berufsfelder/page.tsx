@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Briefcase, HeartPulse, Hammer, Search, ShoppingBag } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
@@ -11,10 +10,10 @@ import { MobileTabs } from "@/components/concept27/mobile-tabs";
 export const metadata = { title: `Berufsfelder – ${APP_NAME}` };
 
 const featuredAssets = [
-  { title: "Gesundheit & Pflege", image: "/concept27/beruf-healthcare.png", icon: HeartPulse },
-  { title: "Wirtschaft & Verwaltung", image: "/concept27/beruf-office.png", icon: Briefcase },
-  { title: "Technik & Handwerk", image: "/concept27/beruf-technical.png", icon: Hammer },
-  { title: "Gastronomie & Hotel", image: "/concept27/beruf-hospitality.png", icon: ShoppingBag },
+  { title: "Gesundheit & Pflege", icon: HeartPulse, accent: "mint" as const },
+  { title: "Wirtschaft & Verwaltung", icon: Briefcase, accent: "sand" as const },
+  { title: "Technik & Handwerk", icon: Hammer, accent: "slate" as const },
+  { title: "Gastronomie & Hotel", icon: ShoppingBag, accent: "peach" as const },
 ];
 
 export default async function BerufsfelderPage() {
@@ -43,18 +42,44 @@ export default async function BerufsfelderPage() {
         {featured.map((item) => {
           const Icon = item.icon;
           return (
-            <Link key={item.title} href={item.href} className="group relative block overflow-hidden rounded-[1.35rem] border border-[#eadfce] bg-[#fbf4ea] shadow-sm">
-              <div className="absolute inset-y-0 left-0 z-10 w-[58%] bg-[linear-gradient(90deg,rgba(251,244,234,0.98),rgba(251,244,234,0.92),rgba(251,244,234,0))]" />
+            <Link
+              key={item.title}
+              href={item.href}
+              className="group relative block overflow-hidden rounded-[1.35rem] border border-[#eadfce] bg-[#fbf7f1] shadow-sm"
+            >
+              <div
+                className={`absolute inset-0 ${
+                  item.accent === "sand"
+                    ? "bg-[radial-gradient(circle_at_right,#f6e4c9,transparent_36%)]"
+                    : item.accent === "slate"
+                      ? "bg-[radial-gradient(circle_at_right,#e9edf3,transparent_36%)]"
+                      : item.accent === "peach"
+                        ? "bg-[radial-gradient(circle_at_right,#fde7d8,transparent_36%)]"
+                        : "bg-[radial-gradient(circle_at_right,#dff1ea,transparent_36%)]"
+                }`}
+              />
               <div className="relative z-20 flex min-h-[6.3rem] items-center gap-3 p-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/80 text-[#c49553] shadow-sm">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-[#c49553] shadow-sm">
                   <Icon className="h-4 w-4" />
                 </div>
-                <div className="max-w-[10rem]">
+                <div className="max-w-[11.5rem]">
                   <p className="text-[1rem] leading-5 text-slate-900 [font-family:Georgia,serif]">{item.title}</p>
                   <p className="mt-1 line-clamp-2 text-xs leading-5 text-slate-500">{item.description}</p>
                 </div>
+                <div
+                  className={`ml-auto flex h-12 w-12 items-center justify-center rounded-2xl border border-white/70 text-sm font-semibold shadow-sm ${
+                    item.accent === "sand"
+                      ? "bg-[#fff2df] text-[#b67d3a]"
+                      : item.accent === "slate"
+                        ? "bg-[#eef2f7] text-[#64748b]"
+                        : item.accent === "peach"
+                          ? "bg-[#fff0e7] text-[#d9825b]"
+                          : "bg-[#eef7f4] text-[#73beb2]"
+                  }`}
+                >
+                  B2
+                </div>
               </div>
-              <Image src={item.image} alt={item.title} width={1400} height={700} className="absolute inset-y-0 right-0 h-full w-[58%] object-cover object-center transition-transform duration-300 group-hover:scale-105" />
             </Link>
           );
         })}

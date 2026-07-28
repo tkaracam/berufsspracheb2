@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Briefcase, MessageCircle, Sparkles } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
@@ -97,16 +96,38 @@ export default async function HomePage() {
               </p>
             </div>
 
-            <div className="relative mt-6 overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,#eef6ef_0%,#fdf5ea_100%)] p-4">
-              <div className="absolute bottom-0 left-[-0.5rem] h-40 w-40 rounded-full bg-[#dceee7]" />
+            <div className="relative mt-6 overflow-hidden rounded-[2rem] bg-[linear-gradient(180deg,#eef6ef_0%,#fdf5ea_100%)] p-5">
+              <div className="absolute -left-6 bottom-0 h-40 w-40 rounded-full bg-[#dceee7]" />
+              <div className="absolute right-4 top-6 h-28 w-28 rounded-full bg-[#fff5e8]" />
               <div className="absolute bottom-4 right-4 h-24 w-24 rounded-[1.7rem] border border-[#e4d3bf] bg-white/35" />
-              <Image
-                src="/concept27/home-hero-woman.png"
-                alt="Berufssprache B2"
-                width={920}
-                height={1600}
-                className="relative z-10 h-[280px] w-full object-contain object-bottom"
-              />
+              <div className="relative z-10 flex min-h-[280px] flex-col justify-between rounded-[1.65rem] border border-white/70 bg-white/45 p-5 backdrop-blur-[1px]">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
+                      Start
+                    </p>
+                    <p className="mt-2 text-[1.55rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
+                      Ruhig lernen.
+                      <br />
+                      Sicher anwenden.
+                    </p>
+                  </div>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#73beb2] text-lg font-semibold text-white">
+                    B2
+                  </div>
+                </div>
+
+                <div className="grid gap-3">
+                  <div className="rounded-[1.2rem] bg-white/75 p-3 shadow-sm">
+                    <p className="text-sm text-slate-900">Fachwortschatz</p>
+                    <p className="mt-1 text-xs text-slate-500">Praxisnah und verständlich aufgebaut</p>
+                  </div>
+                  <div className="rounded-[1.2rem] bg-white/75 p-3 shadow-sm">
+                    <p className="text-sm text-slate-900">Kommunikation</p>
+                    <p className="mt-1 text-xs text-slate-500">Direkte Redemittel für echte Situationen</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
             <div className="mt-5 grid gap-3">
