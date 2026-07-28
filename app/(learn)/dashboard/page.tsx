@@ -85,9 +85,35 @@ export default async function LearnerDashboardPage() {
 
   return (
     <div className="space-y-10 pb-8">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">{t.dashboard.welcomeBack}</h1>
-        <p className="text-muted-foreground">{t.dashboard.subtitle}</p>
+      <div className="rounded-[2rem] border border-sky-100 bg-[linear-gradient(135deg,#ffffff_0%,#f4faff_55%,#eef8ff_100%)] px-6 py-6 shadow-[0_24px_60px_-38px_rgba(59,130,246,0.28)]">
+        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <span className="inline-flex rounded-full border border-sky-100 bg-white/85 px-3 py-1 text-sm font-medium text-slate-600 shadow-sm">
+              Dein Lernbereich
+            </span>
+            <h1 className="mt-4 text-3xl font-bold tracking-tight text-slate-900">
+              {t.dashboard.welcomeBack}
+            </h1>
+            <p className="mt-2 max-w-2xl text-base leading-7 text-slate-600">
+              {t.dashboard.subtitle}
+            </p>
+          </div>
+
+          <div className="grid grid-cols-3 gap-3">
+            <div className="rounded-[1.4rem] bg-white px-4 py-4 shadow-[0_12px_28px_-22px_rgba(15,23,42,0.28)]">
+              <p className="text-2xl font-bold text-slate-900">{dailyGoal}</p>
+              <p className="mt-1 text-sm text-slate-500">Tagesziel</p>
+            </div>
+            <div className="rounded-[1.4rem] bg-white px-4 py-4 shadow-[0_12px_28px_-22px_rgba(15,23,42,0.28)]">
+              <p className="text-2xl font-bold text-slate-900">{streak}</p>
+              <p className="mt-1 text-sm text-slate-500">Streak</p>
+            </div>
+            <div className="rounded-[1.4rem] bg-white px-4 py-4 shadow-[0_12px_28px_-22px_rgba(15,23,42,0.28)]">
+              <p className="text-2xl font-bold text-slate-900">{decks.length}</p>
+              <p className="mt-1 text-sm text-slate-500">Decks</p>
+            </div>
+          </div>
+        </div>
       </div>
 
       <TodayHeroClient
@@ -106,7 +132,7 @@ export default async function LearnerDashboardPage() {
       <CustomDeckSection />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
+        <Card className="rounded-[1.8rem] border border-sky-100 bg-white/88 shadow-[0_20px_50px_-34px_rgba(59,130,246,0.2)] lg:col-span-2">
           <CardHeader>
             <CardTitle>Lernaktivität</CardTitle>
             <CardDescription>Letzte 16 Wochen</CardDescription>

@@ -29,11 +29,19 @@ export default async function LoginPage({
 
   return (
     <div className="w-full max-w-md space-y-6">
-      <Card className="border-0 shadow-lg">
+      <div className="space-y-2 text-center">
+        <h1 className="text-3xl font-bold tracking-tight text-slate-900">Willkommen zurück</h1>
+        <p className="text-base leading-7 text-slate-600">
+          Melden Sie sich an und machen Sie dort weiter, wo Ihr Lernpfad zuletzt
+          aufgehört hat.
+        </p>
+      </div>
+
+      <Card className="rounded-[2rem] border border-sky-100 bg-white/88 shadow-[0_28px_70px_-42px_rgba(59,130,246,0.35)]">
         <CardHeader className="space-y-1 text-center">
-          <CardTitle className="text-2xl">Willkommen zurück</CardTitle>
+          <CardTitle className="text-2xl text-slate-900">Anmelden</CardTitle>
           <CardDescription>
-            Melden Sie sich an, um Ihre Lernfortschritte zu speichern.
+            Zugang zu Lernfortschritt, Favoriten und täglichen Übungen.
           </CardDescription>
         </CardHeader>
         <form action={login}>
@@ -66,6 +74,7 @@ export default async function LoginPage({
                 placeholder="name@beispiel.de"
                 required
                 autoComplete="email"
+                className="h-12 rounded-2xl border-sky-100 bg-white"
               />
             </div>
             <div className="space-y-2">
@@ -84,11 +93,12 @@ export default async function LoginPage({
                 type="password"
                 required
                 autoComplete="current-password"
+                className="h-12 rounded-2xl border-sky-100 bg-white"
               />
             </div>
           </CardContent>
           <CardFooter className="flex flex-col gap-4">
-            <SubmitButton size="lg" className="w-full">
+            <SubmitButton size="lg" className="h-12 w-full rounded-2xl bg-sky-500 hover:bg-sky-600">
               Anmelden
             </SubmitButton>
             <p className="text-sm text-muted-foreground">
@@ -102,7 +112,7 @@ export default async function LoginPage({
       </Card>
 
       {showDemo && (
-        <Card className="border-0 shadow-sm">
+        <Card className="rounded-[1.8rem] border border-sky-100 bg-white/80 shadow-[0_20px_55px_-40px_rgba(59,130,246,0.35)]">
           <CardHeader className="space-y-1 text-center pb-3">
             <CardTitle className="text-lg">Demo-Zugang</CardTitle>
             <CardDescription>
@@ -111,13 +121,13 @@ export default async function LoginPage({
           </CardHeader>
           <CardContent>
             <form action={demoLogin} className="grid grid-cols-3 gap-2">
-              <SubmitButton name="role" value="learner" variant="outline" size="sm">
+              <SubmitButton name="role" value="learner" variant="outline" size="sm" className="rounded-xl border-sky-100 bg-white">
                 Lernender
               </SubmitButton>
-              <SubmitButton name="role" value="teacher" variant="outline" size="sm">
+              <SubmitButton name="role" value="teacher" variant="outline" size="sm" className="rounded-xl border-sky-100 bg-white">
                 Lehrkraft
               </SubmitButton>
-              <SubmitButton name="role" value="admin" variant="outline" size="sm">
+              <SubmitButton name="role" value="admin" variant="outline" size="sm" className="rounded-xl border-sky-100 bg-white">
                 Admin
               </SubmitButton>
             </form>
