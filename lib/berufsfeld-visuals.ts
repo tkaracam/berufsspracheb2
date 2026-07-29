@@ -164,6 +164,49 @@ export const DEFAULT_BERUFSFELD_VISUAL = {
   eyebrow: "Berufsfeld",
 };
 
+const ROLE_VISUALS: Record<string, { image: string; eyebrow: string }> = {
+  "hotel-gastronomie::kellner / servicekraft": {
+    image: "/images/professions/roles/kellner-servicekraft.png",
+    eyebrow: "Service",
+  },
+  "hotel-gastronomie::koch": {
+    image: "/images/professions/roles/koch.png",
+    eyebrow: "Küche",
+  },
+  "hotel-gastronomie::hotelrezeptionist": {
+    image: "/images/professions/roles/hotelrezeptionist.png",
+    eyebrow: "Rezeption",
+  },
+  "hotel-gastronomie::restaurantleiter": {
+    image: "/images/professions/roles/restaurantleiter.png",
+    eyebrow: "Leitung",
+  },
+  "logistik-transport::lagerarbeiter": {
+    image: "/images/professions/roles/lagerarbeiter.png",
+    eyebrow: "Lager",
+  },
+  "logistik-transport::gabelstaplerfahrer": {
+    image: "/images/professions/roles/gabelstaplerfahrer.png",
+    eyebrow: "Stapler",
+  },
+  "logistik-transport::speditionskaufmann": {
+    image: "/images/professions/roles/speditionskaufmann.png",
+    eyebrow: "Disposition",
+  },
+  "logistik-transport::lkw-fahrer": {
+    image: "/images/professions/roles/lkw-fahrer.png",
+    eyebrow: "Transport",
+  },
+  "logistik-transport::kommissionierer": {
+    image: "/images/professions/roles/kommissionierer.png",
+    eyebrow: "Picking",
+  },
+  "logistik-transport::disponent": {
+    image: "/images/professions/roles/disponent.png",
+    eyebrow: "Planung",
+  },
+};
+
 const IMAGE_BY_KEYWORD: Array<{ match: RegExp; image: string }> = [
   { match: /pflege|arzt|patient|therapie|physio|medizin|pharma|apotheke/i, image: "/images/professions/healthcare.png" },
   { match: /koch|service|kellner|hotel|rezeption|gast|tourismus|reise/i, image: "/images/professions/hospitality.png" },
@@ -178,6 +221,12 @@ const IMAGE_BY_KEYWORD: Array<{ match: RegExp; image: string }> = [
 ];
 
 export function getBerufVisual(berufsfeldId: string, berufTitle: string) {
+  const exactKey = `${berufsfeldId}::${berufTitle.toLowerCase()}`;
+  const exactVisual = ROLE_VISUALS[exactKey];
+  if (exactVisual) {
+    return exactVisual;
+  }
+
   const normalized = `${berufsfeldId} ${berufTitle}`;
 
   const keywordMatch = IMAGE_BY_KEYWORD.find((entry) => entry.match.test(normalized));

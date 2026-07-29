@@ -19,6 +19,10 @@ export default async function LoginPage({
 }) {
   const { error, registered, reset, email } = await searchParams;
   const showDemo = isMockMode();
+  const normalizedError =
+    error === "auth-callback-failed"
+      ? "Der Bestätigungslink konnte nicht verarbeitet werden. Prüfe in Supabase unter Authentication > URL Configuration, ob die Site URL und die Redirect URL auf /api/auth/callback korrekt gesetzt sind."
+      : error;
 
   return (
     <Card className="overflow-hidden rounded-[2rem] border-[#eadfce] bg-[rgba(255,252,247,0.92)] shadow-[0_30px_90px_-44px_rgba(86,77,64,0.22)]">
@@ -33,9 +37,9 @@ export default async function LoginPage({
 
       <CardContent className="p-6 sm:p-8">
         <form action={login} className="space-y-4">
-          {error ? (
+          {normalizedError ? (
             <Alert variant="destructive">
-              <AlertDescription>{decodeURIComponent(error)}</AlertDescription>
+              <AlertDescription>{decodeURIComponent(normalizedError)}</AlertDescription>
             </Alert>
           ) : null}
           {registered ? (
