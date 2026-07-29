@@ -76,11 +76,19 @@ export default async function HomePage() {
       <section className="px-4 pb-18 pt-20 sm:pt-24 lg:pb-28 lg:pt-32">
         <Container>
           <div className="mx-auto max-w-7xl">
+            <div className="mb-8 max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#8f6d47]">
+                Klar. Hochwertig. Berufsnah.
+              </p>
+              <p className="mt-3 text-2xl font-semibold leading-tight text-foreground sm:text-3xl lg:text-4xl">
+                Sprache lernen mit Struktur, Fokus und echter Berufspraxis.
+              </p>
+            </div>
+
             <div className="editorial-shell relative overflow-hidden p-5 sm:p-6">
               <div className="pointer-events-none absolute inset-0 editorial-grid opacity-25" />
               <div className="grid gap-4">
                 <div className="relative overflow-hidden rounded-[1.7rem] border border-[#eadfce] bg-white">
-                  <div className="absolute inset-y-0 left-0 w-[42%] bg-[linear-gradient(90deg,rgba(255,252,247,0.98)_0%,rgba(255,252,247,0.76)_65%,transparent_100%)]" />
                   <Image
                     src="/images/professions/office.png"
                     alt="Beruflicher Erfolg"
@@ -88,14 +96,6 @@ export default async function HomePage() {
                     height={1000}
                     className="h-[18rem] w-full object-cover sm:h-[24rem] lg:h-[32rem]"
                   />
-                  <div className="absolute left-6 top-6 max-w-sm">
-                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#8f6d47]">
-                      Klar. Hochwertig. Berufsnah.
-                    </p>
-                    <p className="mt-3 text-2xl font-semibold leading-tight text-foreground sm:text-3xl lg:text-4xl">
-                      Sprache lernen mit Struktur, Fokus und echter Berufspraxis.
-                    </p>
-                  </div>
                 </div>
 
                 <div className="grid gap-4 sm:grid-cols-3">
