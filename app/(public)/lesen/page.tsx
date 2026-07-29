@@ -11,6 +11,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const metadata = {
   title: `Leseverstehen B2 – ${APP_NAME}`,
@@ -20,11 +22,22 @@ export default function LesenPage() {
   return (
     <div className="section-padding">
       <Container>
-        <PageHeader
-          title="Leseverstehen für BSK B2"
-          description="Trainieren Sie das Verstehen beruflicher Texte mit Beispielaufgaben."
-          className="text-center sm:text-left"
-        />
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/20 p-6 shadow-lg shadow-slate-900/5 sm:p-10">
+          <PageHeader
+            title="Leseverstehen für BSK B2"
+            description="Trainiere berufliche Texte mit klaren Aufgaben, gut gegliederten Lösungen und einer ruhigen Lernstruktur."
+            badge={
+              <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+                Lesen im Beruf
+              </span>
+            }
+            className="text-center sm:text-left"
+          >
+            <Button asChild variant="outline" className="rounded-xl">
+              <Link href="/trainer/lesen">Zum Lesetrainer</Link>
+            </Button>
+          </PageHeader>
+        </div>
 
         <div className="mt-10 space-y-8">
           {readingTexts.map((item) => (

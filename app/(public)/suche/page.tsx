@@ -150,15 +150,15 @@ function SearchPageContent() {
       <Container>
         <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/20 p-6 shadow-lg shadow-slate-900/5 sm:p-10">
           <div className="relative z-10 max-w-3xl">
-            <Badge variant="default" className="mb-4">
+            <Badge variant="secondary" className="mb-4 rounded-full">
               Inhalte schnell finden
             </Badge>
             <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               Suche
             </h1>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Durchsuchen Sie Fachwörter, Nomen-Verb-Verbindungen, Grammatik,
-              Redemittel und weitere Lerninhalte.
+              Durchsuche Fachwörter, Nomen-Verb-Verbindungen, Grammatik,
+              Redemittel und weitere Lerninhalte zentral an einer Stelle.
             </p>
           </div>
         </div>

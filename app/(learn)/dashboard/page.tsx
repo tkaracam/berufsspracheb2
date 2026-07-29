@@ -164,7 +164,7 @@ export default async function LearnerDashboardPage() {
         {featuredDeck ? (
           <Card className="bg-gradient-to-br from-primary/10 to-accent/20">
             <CardHeader className="pb-2">
-              <CardTitle className="text-sm font-medium text-primary-foreground/80">Weiterlernen</CardTitle>
+              <CardTitle className="text-sm font-medium text-foreground/70">Weiterlernen</CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-xl font-extrabold text-foreground">{featuredDeck.title}</p>

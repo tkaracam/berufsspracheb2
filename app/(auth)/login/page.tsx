@@ -16,9 +16,9 @@ export const metadata = {
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; registered?: string; reset?: string }>;
+  searchParams: Promise<{ error?: string; registered?: string; reset?: string; email?: string }>;
 }) {
-  const { error, registered, reset } = await searchParams;
+  const { error, registered, reset, email } = await searchParams;
   const showDemo = isMockMode();
 
   return (
@@ -41,7 +41,10 @@ export default async function LoginPage({
           ) : null}
           {registered ? (
             <Alert>
-              <AlertDescription>Registrierung erfolgreich. Bitte bestätigen Sie Ihre E-Mail-Adresse.</AlertDescription>
+              <AlertDescription>
+                Registrierung gespeichert. Bitte öffne jetzt dein E-Mail-Postfach
+                {email ? ` (${email})` : ""}, bestätige dein Konto und melde dich danach an.
+              </AlertDescription>
             </Alert>
           ) : null}
           {reset ? (
@@ -89,9 +92,12 @@ export default async function LoginPage({
           <div className="h-px flex-1 bg-border" />
         </div>
 
-        <Button variant="outline" className="mt-5 h-12 w-full gap-2 rounded-xl">
-          Mit Google anmelden
-        </Button>
+        <div className="mt-5 rounded-2xl border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
+          <p className="font-semibold text-foreground">Anmeldung aktuell per E-Mail</p>
+          <p className="mt-1">
+            Google-Login ist noch nicht verbunden. Bitte melde dich mit E-Mail und Passwort an.
+          </p>
+        </div>
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
           Noch kein Konto?{" "}

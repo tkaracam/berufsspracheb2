@@ -24,6 +24,24 @@ async function getSiteUrl() {
   return "http://localhost:3000";
 }
 
+function normalizeAuthError(message: string) {
+  const lower = message.toLowerCase();
+
+  if (lower.includes("invalid login credentials")) {
+    return "E-Mail oder Passwort stimmt nicht. Falls du dich gerade registriert hast, bestätige zuerst deine E-Mail und versuche es danach erneut.";
+  }
+
+  if (lower.includes("email not confirmed")) {
+    return "Bitte bestätige zuerst deine E-Mail-Adresse. Danach kannst du dich normal anmelden.";
+  }
+
+  if (lower.includes("user already registered")) {
+    return "Für diese E-Mail-Adresse existiert bereits ein Konto. Melde dich an oder setze dein Passwort zurück.";
+  }
+
+  return message;
+}
+
 export async function login(formData: FormData) {
   const supabase = await createClient();
   const email = formData.get("email") as string;
@@ -32,7 +50,7 @@ export async function login(formData: FormData) {
   const { error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
-    redirect(`/login?error=${encodeURIComponent(error.message)}`);
+    redirect(`/login?error=${encodeURIComponent(normalizeAuthError(error.message))}`);
   }
 
   revalidatePath("/", "layout");
@@ -56,10 +74,10 @@ export async function register(formData: FormData) {
   });
 
   if (error) {
-    redirect(`/register?error=${encodeURIComponent(error.message)}`);
+    redirect(`/register?error=${encodeURIComponent(normalizeAuthError(error.message))}`);
   }
 
-  redirect("/login?registered=true");
+  redirect(`/login?registered=true&email=${encodeURIComponent(email)}`);
 }
 
 export async function resetPassword(formData: FormData) {
@@ -72,7 +90,7 @@ export async function resetPassword(formData: FormData) {
   });
 
   if (error) {
-    redirect(`/reset-password?error=${encodeURIComponent(error.message)}`);
+    redirect(`/reset-password?error=${encodeURIComponent(normalizeAuthError(error.message))}`);
   }
 
   redirect("/login?reset=true");

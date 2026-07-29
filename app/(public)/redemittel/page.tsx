@@ -110,17 +110,24 @@ export default function RedemittelPage() {
   return (
     <div className="section-padding">
       <Container>
-        <PageHeader
-          title="Redemittel für BSK B2"
-          description="Feste Wendungen für Diskussionen, Präsentationen, E-Mails und Prüfungen."
-          className="text-center sm:text-left"
-        >
-          <Button asChild>
-            <Link href="/trainer/redemittel">
-              <Play className="mr-2 h-4 w-4" /> Zum Redemittel-Trainer
-            </Link>
-          </Button>
-        </PageHeader>
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/20 p-6 shadow-lg shadow-slate-900/5 sm:p-10">
+          <PageHeader
+            title="Redemittel für BSK B2"
+            description="Feste Wendungen für Diskussionen, Präsentationen, E-Mails und Prüfungen in einer klar gegliederten Übersicht."
+            badge={
+              <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+                Beruflich formulieren
+              </span>
+            }
+            className="text-center sm:text-left"
+          >
+            <Button asChild>
+              <Link href="/trainer/redemittel">
+                <Play className="mr-2 h-4 w-4" /> Zum Redemittel-Trainer
+              </Link>
+            </Button>
+          </PageHeader>
+        </div>
 
         <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
           {sections.map((section) => (

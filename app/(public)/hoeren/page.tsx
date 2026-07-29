@@ -13,6 +13,8 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
 import { AudioPlayer } from "@/components/exercises/audio-player";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const metadata = {
   title: `Hörverstehen B2 – ${APP_NAME}`,
@@ -22,11 +24,22 @@ export default function HoerenPage() {
   return (
     <div className="section-padding">
       <Container>
-        <PageHeader
-          title="Hörverstehen für BSK B2"
-          description="Üben Sie mit echten Hörtexten, Transkripten und Aufgaben."
-          className="text-center sm:text-left"
-        />
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/20 p-6 shadow-lg shadow-slate-900/5 sm:p-10">
+          <PageHeader
+            title="Hörverstehen für BSK B2"
+            description="Übe mit Hörtexten, Transkripten und verständlichen Kontrollfragen in einer ruhigen, gut lesbaren Oberfläche."
+            badge={
+              <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+                Hören im Beruf
+              </span>
+            }
+            className="text-center sm:text-left"
+          >
+            <Button asChild variant="outline" className="rounded-xl">
+              <Link href="/trainer/hoeren">Zum Hörtrainer</Link>
+            </Button>
+          </PageHeader>
+        </div>
 
         <Alert className="mt-8">
           <Headphones className="h-5 w-5" />

@@ -1,4 +1,5 @@
 import { BrandMark } from "@/components/concept27/brand-mark";
+import { CheckCircle2, Mail, ShieldCheck } from "lucide-react";
 
 export default function AuthLayout({
   children,
@@ -13,16 +14,65 @@ export default function AuthLayout({
         <div className="absolute -right-32 bottom-0 h-[500px] w-[500px] rounded-full bg-accent/30 blur-3xl" />
       </div>
 
-      <div className="mb-8 text-center">
-        <BrandMark />
-        <p className="mt-4 text-lg font-medium text-primary">
-          Klar lernen. Sicher anwenden.
-        </p>
-      </div>
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
+        <section className="hidden lg:block">
+          <div className="max-w-xl">
+            <BrandMark />
+            <p className="mt-5 text-xl font-semibold text-foreground">
+              Klar lernen. Sicher anwenden.
+            </p>
+            <p className="mt-4 text-base leading-8 text-muted-foreground">
+              Berufssprache B2 begleitet dich mit einer ruhigen Oberfläche,
+              klaren Lernwegen und einem nachvollziehbaren Einstieg in Fachsprache,
+              Kommunikation und Prüfungsvorbereitung.
+            </p>
 
-      <main className="relative w-full max-w-md">
-        {children}
-      </main>
+            <div className="mt-8 grid gap-4">
+              {[
+                {
+                  icon: CheckCircle2,
+                  title: "Einfacher Einstieg",
+                  text: "Registrieren, E-Mail bestätigen und direkt mit dem Lernen beginnen.",
+                },
+                {
+                  icon: ShieldCheck,
+                  title: "Sicheres Konto",
+                  text: "Deine Anmeldung läuft über Supabase mit bestätigter E-Mail und geschützter Session.",
+                },
+                {
+                  icon: Mail,
+                  title: "Klare Rückmeldung",
+                  text: "Bei Registrierung, Login und Passwort-Reset erhältst du jetzt deutlichere Hinweise.",
+                },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="rounded-2xl border border-border bg-white/80 p-5 shadow-sm backdrop-blur"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <p className="mt-4 text-lg font-bold text-foreground">{item.title}</p>
+                    <p className="mt-2 text-sm leading-7 text-muted-foreground">{item.text}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        <main className="relative w-full max-w-lg justify-self-center lg:w-full">
+          <div className="mb-8 text-center lg:hidden">
+            <BrandMark />
+            <p className="mt-4 text-lg font-medium text-foreground">
+              Klar lernen. Sicher anwenden.
+            </p>
+          </div>
+          {children}
+        </main>
+      </div>
     </div>
   );
 }

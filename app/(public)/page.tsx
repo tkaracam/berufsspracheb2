@@ -13,8 +13,11 @@ import {
 } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { getSession } from "@/lib/supabase/server";
+import { getBerufsfelder } from "@/lib/queries";
 import { Button } from "@/components/ui/button";
 import { Container } from "@/components/ui/container";
+import { communicationModules } from "@/lib/communication-data";
+import { examModules } from "@/lib/exam-data";
 
 export const metadata = {
   title: `${APP_NAME} – Start`,
@@ -59,17 +62,16 @@ const pathways = [
   },
 ];
 
-const stats = [
-  { value: "1.200+", label: "Lerninhalte", icon: BookOpen },
-  { value: "6", label: "Berufsfelder", icon: Briefcase },
-  { value: "4", label: "Fertigkeiten", icon: Target },
-  { value: "100%", label: "Responsiv", icon: Users },
-];
-
 export default async function HomePage() {
-  const { user } = await getSession();
+  const [{ user }, berufsfelder] = await Promise.all([getSession(), getBerufsfelder()]);
   const primaryHref = user ? "/dashboard" : "/register";
   const primaryLabel = user ? "Zum Dashboard" : "Jetzt kostenlos starten";
+  const stats = [
+    { value: `${berufsfelder.length}`, label: "Berufsfelder", icon: Briefcase },
+    { value: `${communicationModules.length}`, label: "Kommunikationsmodule", icon: MessageCircle },
+    { value: `${examModules.length}`, label: "Prüfungsmodule", icon: Trophy },
+    { value: "Desktop + Mobil", label: "Responsives Lernen", icon: Users },
+  ];
 
   return (
     <div className="relative overflow-hidden">
@@ -114,7 +116,7 @@ export default async function HomePage() {
                   </div>
                 </div>
                 <div className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-foreground" />
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
                     <p className="text-sm font-semibold text-foreground">Beruflich relevant</p>
                     <p className="mt-1 text-sm leading-6 text-muted-foreground">Inhalte für reale Situationen im Beruf und im Kurs.</p>

@@ -43,6 +43,12 @@ export default async function ResetPasswordPage({
             </Alert>
           )}
 
+          <Alert>
+            <AlertDescription>
+              Verwende dieselbe E-Mail-Adresse wie bei deiner Registrierung. Der Link wird an dieses Postfach gesendet.
+            </AlertDescription>
+          </Alert>
+
           <div className="flex items-center gap-3 rounded-xl border border-border bg-muted/50 px-4 text-muted-foreground transition-colors focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
             <Mail className="h-4 w-4" />
             <Input

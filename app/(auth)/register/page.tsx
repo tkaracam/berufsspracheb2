@@ -38,6 +38,12 @@ export default async function RegisterPage({
             </Alert>
           ) : null}
 
+          <Alert>
+            <AlertDescription>
+              Nach der Registrierung erhältst du eine Bestätigungs-E-Mail. Erst danach ist die Anmeldung möglich.
+            </AlertDescription>
+          </Alert>
+
           <FieldShell icon={<UserRound className="h-4 w-4" />}>
             <Input
               name="fullName"
@@ -84,9 +90,12 @@ export default async function RegisterPage({
           <div className="h-px flex-1 bg-border" />
         </div>
 
-        <Button variant="outline" className="mt-5 h-12 w-full gap-2 rounded-xl">
-          Mit Google registrieren
-        </Button>
+        <div className="mt-5 rounded-2xl border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
+          <p className="font-semibold text-foreground">Registrierung aktuell per E-Mail</p>
+          <p className="mt-1">
+            Google-Registrierung ist noch nicht aktiv. Bitte verwende vorerst E-Mail und Passwort.
+          </p>
+        </div>
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
           Bereits ein Konto?{" "}
