@@ -7,6 +7,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 
 export const metadata = {
   title: `Grammatik B2 – ${APP_NAME}`,
@@ -83,7 +85,7 @@ const topics = [
     title: "Modalpartikeln",
     desc: "Gespräche natürlicher und höflicher klingen lassen.",
     explanation:
-      "Modalpartikeln wie „ja“, „doch“, „halt“, „eben“, „wohl“ verleihen gesprochener Sprache den passenden Ton.",
+      'Modalpartikeln wie "ja", "doch", "halt", "eben", "wohl" verleihen gesprochener Sprache den passenden Ton.',
     examples: [
       "Das ist ja eine gute Idee.",
       "Das Problem ist halt komplexer als gedacht.",
@@ -94,41 +96,39 @@ const topics = [
 
 export default function GrammatikPage() {
   return (
-    <div className="flex-1 py-12 container mx-auto px-4">
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Grammatik für BSK B2
-        </h1>
-        <p className="text-muted-foreground text-lg">
-          Die wichtigsten Strukturen für den Berufssprachkurs und den
-          Deutsch-Test für den Beruf B2.
-        </p>
-      </div>
+    <div className="section-padding">
+      <Container>
+        <PageHeader
+          title="Grammatik für BSK B2"
+          description="Die wichtigsten Strukturen für den Berufssprachkurs und den Deutsch-Test für den Beruf B2."
+          className="text-center sm:text-left"
+        />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        {topics.map((topic) => (
-          <Card key={topic.title} className="hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="w-fit rounded-xl bg-primary/10 p-3 text-primary mb-3">
-                <BookOpen className="h-6 w-6" />
-              </div>
-              <CardTitle>{topic.title}</CardTitle>
-              <CardDescription>{topic.desc}</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-sm">{topic.explanation}</p>
-              <ul className="space-y-2 text-sm">
-                {topic.examples.map((example, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                    <span className="italic">„{example}“</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {topics.map((topic) => (
+            <Card key={topic.title} className="transition-all hover:-translate-y-0.5 hover:shadow-md">
+              <CardHeader>
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <BookOpen className="h-5 w-5" />
+                </div>
+                <CardTitle>{topic.title}</CardTitle>
+                <CardDescription>{topic.desc}</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <p className="text-sm text-muted-foreground">{topic.explanation}</p>
+                <ul className="space-y-2 text-sm">
+                  {topic.examples.map((example, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="italic text-muted-foreground">„{example}"</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Container>
     </div>
   );
 }
