@@ -163,3 +163,34 @@ export const DEFAULT_BERUFSFELD_VISUAL = {
   image: "/images/professions/office.png",
   eyebrow: "Berufsfeld",
 };
+
+const IMAGE_BY_KEYWORD: Array<{ match: RegExp; image: string }> = [
+  { match: /pflege|arzt|patient|therapie|physio|medizin|pharma|apotheke/i, image: "/images/professions/healthcare.png" },
+  { match: /koch|service|kellner|hotel|rezeption|gast|tourismus|reise/i, image: "/images/professions/hospitality.png" },
+  { match: /verk[aä]ufer|kasse|filial|kundenberater|mode|textil/i, image: "/images/professions/retail.png" },
+  { match: /logistik|lager|transport|fahrer|spedition|kommission|zusteller/i, image: "/images/professions/logistics.png" },
+  { match: /it|software|system|digital|support|medien|marketing|content|design|druck|musik/i, image: "/images/professions/technology.png" },
+  { match: /elektr|mechanik|mechatronik|bauer|schwei|cnc|installateur|tischler|schreiner|lackierer|kfz|straßen|tiefbau|möbel|küchen/i, image: "/images/professions/craft.png" },
+  { match: /garten|landwirt|tier|umwelt|solar|wind|recycling|energie/i, image: "/images/professions/green-tech.png" },
+  { match: /büro|verwaltung|buchhalter|empfang|sekret|amt|bank|versicherung|finanz/i, image: "/images/professions/office.png" },
+  { match: /friseur|kosmetik|hauswirtschaft|reinigung|security|alltag|familie/i, image: "/images/professions/service.png" },
+  { match: /kunst|kultur|theater|restaurator|juwelier|goldschmied|uhr|grafik/i, image: "/images/professions/creative.png" },
+];
+
+export function getBerufVisual(berufsfeldId: string, berufTitle: string) {
+  const normalized = `${berufsfeldId} ${berufTitle}`;
+
+  const keywordMatch = IMAGE_BY_KEYWORD.find((entry) => entry.match.test(normalized));
+  if (keywordMatch) {
+    return {
+      image: keywordMatch.image,
+      eyebrow: berufTitle,
+    };
+  }
+
+  const fieldVisual = BERUFSFELD_VISUALS[berufsfeldId] ?? DEFAULT_BERUFSFELD_VISUAL;
+  return {
+    image: fieldVisual.image,
+    eyebrow: fieldVisual.eyebrow,
+  };
+}
