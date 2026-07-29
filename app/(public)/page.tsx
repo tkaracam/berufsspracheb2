@@ -132,7 +132,7 @@ export default async function HomePage() {
               </div>
             </div>
 
-            <div className="relative hidden lg:block">
+            <div className="relative">
               <div className="editorial-shell relative overflow-hidden p-5">
                 <div className="pointer-events-none absolute inset-0 editorial-grid opacity-25" />
                 <div className="grid gap-4">
@@ -143,13 +143,13 @@ export default async function HomePage() {
                       alt="Beruflicher Erfolg"
                       width={1600}
                       height={1000}
-                      className="h-[28rem] w-full object-cover"
+                      className="h-[18rem] w-full object-cover sm:h-[22rem] lg:h-[28rem]"
                     />
                     <div className="absolute left-6 top-6 max-w-xs">
                       <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#8f6d47]">
                         Editorial Einstieg
                       </p>
-                      <p className="mt-3 text-3xl font-semibold leading-tight text-foreground">
+                      <p className="mt-3 max-w-[13rem] text-2xl font-semibold leading-tight text-foreground sm:max-w-xs sm:text-3xl">
                         Lernen mit Struktur und beruflicher Relevanz.
                       </p>
                     </div>
@@ -183,7 +183,7 @@ export default async function HomePage() {
                           alt={item.title}
                           width={1200}
                           height={900}
-                          className="h-40 w-full object-cover"
+                          className="h-36 w-full object-cover sm:h-40"
                         />
                         <div className="p-4">
                           <p className="text-base font-semibold text-foreground">{item.title}</p>

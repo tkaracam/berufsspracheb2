@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Briefcase,
@@ -20,10 +21,30 @@ import type { IconName } from "@/components/home/berufsfelder-search";
 export const metadata = { title: `Berufsfelder – ${APP_NAME}` };
 
 const featuredAssets = [
-  { title: "Pflege", icon: HeartPulse, accent: "mint" as const },
-  { title: "Verwaltung", icon: Briefcase, accent: "sand" as const },
-  { title: "Technik", icon: Hammer, accent: "slate" as const },
-  { title: "Gastronomie", icon: ShoppingBag, accent: "peach" as const },
+  {
+    title: "Pflege",
+    icon: HeartPulse,
+    accent: "mint" as const,
+    image: "/images/professions/healthcare.png",
+  },
+  {
+    title: "Verwaltung",
+    icon: Briefcase,
+    accent: "sand" as const,
+    image: "/images/professions/office.png",
+  },
+  {
+    title: "Technik",
+    icon: Hammer,
+    accent: "slate" as const,
+    image: "/images/professions/technology.png",
+  },
+  {
+    title: "Gastronomie",
+    icon: ShoppingBag,
+    accent: "peach" as const,
+    image: "/images/professions/hospitality.png",
+  },
 ];
 
 const highlights = [
@@ -151,19 +172,33 @@ export default async function BerufsfelderPage() {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className={`group relative overflow-hidden rounded-3xl border border-[#eadfce] p-5 shadow-[0_20px_54px_-38px_rgba(86,77,64,0.18)] transition-all hover:-translate-y-1 hover:shadow-md sm:p-6 ${styles.card}`}
+                  className={`group relative overflow-hidden rounded-3xl border border-[#eadfce] p-0 shadow-[0_20px_54px_-38px_rgba(86,77,64,0.18)] transition-all hover:-translate-y-1 hover:shadow-md ${styles.card}`}
                 >
-                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${styles.icon} shadow-sm`}>
-                    <Icon className="h-5 w-5" />
+                  <div className="relative">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      width={1200}
+                      height={900}
+                      className="h-44 w-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-950/50 via-slate-950/8 to-transparent" />
+                    <div className="absolute left-4 top-4">
+                      <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${styles.icon} shadow-sm`}>
+                        <Icon className="h-5 w-5" />
+                      </div>
+                    </div>
                   </div>
-                  <p className="mt-6 text-lg font-bold text-foreground">
-                    {item.title}
-                  </p>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    {item.lessons} Begriffe direkt im beruflichen Kontext.
-                  </p>
-                  <div className="mt-4 flex items-center text-sm font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
-                    Bereich öffnen <ArrowRight className="ml-1 h-4 w-4" />
+                  <div className="p-5 sm:p-6">
+                    <p className="text-lg font-bold text-foreground">
+                      {item.title}
+                    </p>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                      {item.lessons} Begriffe direkt im beruflichen Kontext.
+                    </p>
+                    <div className="mt-4 flex items-center text-sm font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                      Bereich öffnen <ArrowRight className="ml-1 h-4 w-4" />
+                    </div>
                   </div>
                 </Link>
               );
