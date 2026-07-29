@@ -52,12 +52,17 @@
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans antialiased;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    background: linear-gradient(180deg, #fbf6ef 0%, #f8f4ec 100%);
+  }
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 14% 14%, rgba(115, 190, 178, 0.12), transparent 24%),
+      radial-gradient(circle at 84% 10%, rgba(223, 195, 156, 0.14), transparent 22%),
+      linear-gradient(180deg, rgba(255,255,255,0.74) 0%, rgba(249,244,236,0.96) 100%);
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-heading tracking-tight;
@@ -77,5 +82,34 @@
   }
   .section-padding {
     @apply py-12 sm:py-16 lg:py-20;
+  }
+  .glass-panel {
+    @apply border border-[#efe2d3] bg-white/82 backdrop-blur-2xl shadow-[0_28px_80px_-42px_rgba(86,77,64,0.18)];
+  }
+  .futuristic-grid {
+    background-image:
+      linear-gradient(to right, rgba(212, 196, 173, 0.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(212, 196, 173, 0.18) 1px, transparent 1px);
+    background-size: 38px 38px;
+  }
+  .soft-ring {
+    box-shadow:
+      0 0 0 1px rgba(255, 248, 240, 0.92),
+      0 24px 80px -42px rgba(86, 77, 64, 0.18);
+  }
+  .editorial-shell {
+    @apply rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(135deg,rgba(255,253,249,0.96)_0%,rgba(255,248,240,0.98)_58%,rgba(245,252,249,0.96)_100%)] shadow-[0_30px_90px_-44px_rgba(86,77,64,0.22)];
+  }
+  .editorial-card {
+    @apply rounded-[1.6rem] border border-[#eadfce] bg-white/88 shadow-[0_20px_54px_-38px_rgba(86,77,64,0.18)];
+  }
+  .editorial-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-[#e7d8c5] bg-white/88 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#8f6d47] shadow-sm;
+  }
+  .editorial-grid {
+    background-image:
+      linear-gradient(to right, rgba(222, 209, 189, 0.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(222, 209, 189, 0.18) 1px, transparent 1px);
+    background-size: 40px 40px;
   }
 }

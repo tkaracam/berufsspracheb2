@@ -20,12 +20,12 @@ export default function KommunikationPage() {
   return (
     <div className="section-padding">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/20 p-6 shadow-lg shadow-slate-900/5 sm:p-10 lg:p-12">
+        <div className="editorial-shell relative overflow-hidden p-6 sm:p-10 lg:p-12">
           <div className="relative z-10 max-w-3xl">
-            <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+            <span className="editorial-badge">
               Kommunikation im Arbeitsalltag
             </span>
-            <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            <h1 className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               Kommunikation im Beruf
             </h1>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -41,7 +41,7 @@ export default function KommunikationPage() {
             return (
               <div
                 key={item.title}
-                className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+                className="editorial-card p-5"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                   <Icon className="h-5 w-5" />

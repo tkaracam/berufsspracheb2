@@ -57,12 +57,12 @@ export default function PruefungstrainingPage() {
   return (
     <div className="section-padding">
       <Container>
-        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-accent/30 via-background to-primary/10 p-6 shadow-lg shadow-slate-900/5 sm:p-10 lg:p-12">
+        <div className="editorial-shell relative overflow-hidden p-6 sm:p-10 lg:p-12">
           <div className="relative z-10 max-w-3xl">
-            <Badge variant="accent" className="mb-4">
+            <Badge variant="accent" className="mb-4 rounded-full border border-[#dcebe3] bg-[#eef6ef] text-[#5a8d7d]">
               DTB B2 Vorbereitung
             </Badge>
-            <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
               Prüfungstraining
             </h1>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
@@ -81,7 +81,7 @@ export default function PruefungstrainingPage() {
           ].map((stat) => {
             const Icon = stat.icon;
             return (
-              <Card key={stat.label} className="text-center transition-all hover:-translate-y-0.5 hover:shadow-md">
+              <Card key={stat.label} className="editorial-card text-center transition-all hover:-translate-y-0.5 hover:shadow-md">
                 <CardContent className="p-5">
                   <Icon className="mx-auto mb-2 h-5 w-5 text-primary" />
                   <p className="text-2xl font-extrabold text-foreground">{stat.value}</p>
@@ -92,7 +92,7 @@ export default function PruefungstrainingPage() {
           })}
         </div>
 
-        <div className="mt-6 rounded-2xl border border-border bg-card p-5 text-center text-sm text-muted-foreground shadow-sm">
+        <div className="mt-6 rounded-2xl border border-[#eadfce] bg-[rgba(255,252,247,0.88)] p-5 text-center text-sm text-muted-foreground shadow-sm">
           In mindestens 3 der 4 Fertigkeiten müssen {examInfo.minSkillPoints} Punkte erreicht werden.
           Eine Fertigkeit kann zwischen {examInfo.compensableMinPercentage}% und 60% liegen.
         </div>
@@ -117,7 +117,7 @@ export default function PruefungstrainingPage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {START_MODULES.map((m) => (
               <Link key={m.title} href={m.href} className="group block">
-                <Card className="h-full transition-all hover:-translate-y-1 hover:shadow-md">
+                <Card className="editorial-card h-full transition-all hover:-translate-y-1 hover:shadow-md">
                   <CardContent className="flex items-center gap-4 p-5">
                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
                       <m.icon className="h-5 w-5" />

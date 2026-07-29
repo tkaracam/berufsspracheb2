@@ -9,9 +9,10 @@ export default function AuthLayout({
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 py-12">
       <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,#f0fdfa_0%,transparent_50%),radial-gradient(ellipse_at_bottom_left,#fffbeb_0%,transparent_50%),linear-gradient(180deg,#f8fafc_0%,#ffffff_100%)]" />
-        <div className="absolute -left-32 top-0 h-[500px] w-[500px] rounded-full bg-primary/5 blur-3xl" />
-        <div className="absolute -right-32 bottom-0 h-[500px] w-[500px] rounded-full bg-accent/30 blur-3xl" />
+        <div className="editorial-grid absolute inset-0 opacity-35" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(223,195,156,0.18)_0%,transparent_46%),radial-gradient(ellipse_at_bottom_left,rgba(115,190,178,0.14)_0%,transparent_42%),linear-gradient(180deg,#fbf6ef_0%,#f8f3eb_100%)]" />
+        <div className="animate-aurora-float absolute -left-32 top-0 h-[500px] w-[500px] rounded-full bg-primary/10 blur-3xl" />
+        <div className="animate-aurora-float absolute -right-32 bottom-0 h-[500px] w-[500px] rounded-full bg-accent/40 blur-3xl" />
       </div>
 
       <div className="mx-auto grid w-full max-w-6xl items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
@@ -47,10 +48,7 @@ export default function AuthLayout({
               ].map((item) => {
                 const Icon = item.icon;
                 return (
-                  <div
-                    key={item.title}
-                    className="rounded-2xl border border-border bg-white/80 p-5 shadow-sm backdrop-blur"
-                  >
+                  <div key={item.title} className="editorial-card p-5">
                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="h-5 w-5" />
                     </div>
@@ -63,7 +61,7 @@ export default function AuthLayout({
           </div>
         </section>
 
-        <main className="relative w-full max-w-lg justify-self-center lg:w-full">
+        <main className="relative w-full max-w-xl justify-self-center lg:w-full">
           <div className="mb-8 text-center lg:hidden">
             <BrandMark />
             <p className="mt-4 text-lg font-medium text-foreground">

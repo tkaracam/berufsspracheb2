@@ -91,7 +91,7 @@ export default async function BerufsfelderPage() {
                 title="Berufsfelder für klares, praxisnahes Lernen"
                 description="Wähle das Arbeitsumfeld, das zu deinem Alltag passt, und lerne gezielt Fachwortschatz, typische Kommunikation und berufsnahe Situationen."
                 badge={
-                  <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary shadow-sm">
+                  <div className="editorial-badge">
                     <Sparkles className="h-4 w-4" />
                     Berufssprache nach echten Arbeitsbereichen
                   </div>
@@ -99,29 +99,29 @@ export default async function BerufsfelderPage() {
               />
 
               <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
+                <div className="editorial-card p-4">
                   <p className="text-2xl font-extrabold text-foreground">{modules.length}</p>
                   <p className="mt-1 text-sm text-muted-foreground">Berufsfelder</p>
                 </div>
-                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
+                <div className="editorial-card p-4">
                   <p className="text-2xl font-extrabold text-foreground">{totalWords}</p>
                   <p className="mt-1 text-sm text-muted-foreground">Begriffe insgesamt</p>
                 </div>
-                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
+                <div className="editorial-card p-4">
                   <p className="text-2xl font-extrabold text-foreground">{totalJobs}</p>
                   <p className="mt-1 text-sm text-muted-foreground">berufsnahe Rollen</p>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-3xl border border-border bg-card p-6 shadow-xl shadow-slate-900/5">
+            <div className="editorial-shell p-6">
               <div className="grid gap-4">
                 {highlights.map((highlight) => {
                   const Icon = highlight.icon;
                   return (
                     <div
                       key={highlight.title}
-                      className="rounded-2xl border border-border bg-background p-5 shadow-sm"
+                      className="editorial-card bg-[rgba(255,252,247,0.82)] p-5"
                     >
                       <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                         <Icon className="h-5 w-5" />
@@ -151,7 +151,7 @@ export default async function BerufsfelderPage() {
                 <Link
                   key={item.title}
                   href={item.href}
-                  className={`group relative overflow-hidden rounded-3xl border border-border p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md sm:p-6 ${styles.card}`}
+                  className={`group relative overflow-hidden rounded-3xl border border-[#eadfce] p-5 shadow-[0_20px_54px_-38px_rgba(86,77,64,0.18)] transition-all hover:-translate-y-1 hover:shadow-md sm:p-6 ${styles.card}`}
                 >
                   <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${styles.icon} shadow-sm`}>
                     <Icon className="h-5 w-5" />

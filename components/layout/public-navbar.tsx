@@ -45,15 +45,15 @@ export function PublicNavbar() {
 
   return (
     <header className="sticky top-0 z-50 px-4 pt-3 sm:pt-4">
-      <div className="mx-auto flex h-16 w-full max-w-7xl items-center justify-between rounded-2xl border border-border/80 bg-white/90 px-3 shadow-lg shadow-slate-900/5 backdrop-blur-xl sm:px-5">
+      <div className="soft-ring mx-auto flex h-[4.5rem] w-full max-w-7xl items-center justify-between rounded-[1.8rem] border border-[#eadfce] bg-[rgba(255,252,247,0.9)] px-3 sm:px-5 backdrop-blur-2xl">
         <Link href="/" className="flex items-center gap-2.5 font-bold text-foreground">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-md shadow-primary/20">
+          <div className="flex h-10 w-10 items-center justify-center rounded-[1rem] bg-[linear-gradient(135deg,#0f4f55_0%,#2f7c78_46%,#73beb2_100%)] text-primary-foreground shadow-[0_18px_44px_-22px_rgba(15,79,85,0.46)]">
             <Briefcase className="h-5 w-5" />
           </div>
           <div className="leading-none">
             <span className="hidden text-lg font-extrabold tracking-tight sm:block">{APP_NAME}</span>
-            <span className="hidden pt-1 text-[0.6rem] font-semibold uppercase tracking-[0.2em] text-muted-foreground lg:block">
-              Berufssprache B2
+            <span className="hidden pt-1 text-[0.6rem] font-semibold uppercase tracking-[0.22em] text-[#8f6d47] lg:block">
+              Deutsch für Ihren beruflichen Erfolg
             </span>
           </div>
         </Link>
@@ -66,10 +66,10 @@ export function PublicNavbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  "relative rounded-full px-4 py-2.5 transition-colors",
+                  "relative rounded-full px-4 py-2.5 transition-all duration-200",
                   active
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                  ? "bg-[linear-gradient(135deg,rgba(22,119,200,0.16),rgba(45,212,191,0.10))] text-foreground shadow-sm"
+                    : "text-muted-foreground hover:bg-[#fffaf4] hover:text-foreground"
                 )}
               >
                 {link.label}
@@ -83,10 +83,10 @@ export function PublicNavbar() {
           <Link
             href="/suche"
             className={cn(
-              "relative flex items-center gap-2 rounded-full px-4 py-2.5 transition-colors",
+              "relative flex items-center gap-2 rounded-full px-4 py-2.5 transition-all duration-200",
               isActive("/suche")
-                ? "bg-primary/10 text-primary"
-                : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                ? "bg-[linear-gradient(135deg,rgba(15,79,85,0.12),rgba(115,190,178,0.12))] text-foreground shadow-sm"
+                : "text-muted-foreground hover:bg-[#fffaf4] hover:text-foreground"
             )}
           >
             <Search className="h-4 w-4" />
@@ -101,10 +101,10 @@ export function PublicNavbar() {
               render={
                 <button
                   className={cn(
-                    "relative flex items-center gap-2 rounded-full px-4 py-2.5 transition-colors",
+                    "relative flex items-center gap-2 rounded-full px-4 py-2.5 transition-all duration-200",
                     learnLinks.some((l) => isActive(l.href))
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                      ? "bg-[linear-gradient(135deg,rgba(15,79,85,0.12),rgba(115,190,178,0.12))] text-foreground shadow-sm"
+                      : "text-muted-foreground hover:bg-[#fffaf4] hover:text-foreground"
                   )}
                 >
                   <BookOpen className="h-4 w-4" />
@@ -116,7 +116,7 @@ export function PublicNavbar() {
                 </button>
               }
             />
-            <DropdownMenuContent align="end" className="w-52 rounded-xl">
+            <DropdownMenuContent align="end" className="w-56 rounded-2xl border-[#eadfce] bg-[rgba(255,252,247,0.96)] backdrop-blur-2xl">
               {learnLinks.map((link) => (
                 <DropdownMenuItem key={link.href} render={<Link href={link.href}>{link.label}</Link>} />
               ))}
@@ -126,27 +126,27 @@ export function PublicNavbar() {
 
         <div className="flex items-center gap-1 sm:gap-2">
           <LanguageSwitcher />
-          <Button variant="ghost" size="sm" asChild className="hidden rounded-lg px-4 text-foreground md:flex">
+          <Button variant="ghost" size="sm" asChild className="hidden rounded-full px-4 text-foreground md:flex">
             <Link href="/login">{t.nav.login}</Link>
           </Button>
-          <Button size="sm" asChild className="hidden rounded-lg px-5 md:flex">
+          <Button size="sm" asChild className="hidden rounded-full bg-[#0f4f55] px-5 hover:bg-[#0c4348] md:flex">
             <Link href="/register">{t.nav.register}</Link>
           </Button>
 
           <Sheet>
             <SheetTrigger
               render={
-                <Button variant="ghost" size="icon" className="rounded-lg lg:hidden">
+                <Button variant="ghost" size="icon" className="rounded-full lg:hidden">
                   <Menu className="h-5 w-5" />
                   <span className="sr-only">Menü öffnen</span>
                 </Button>
               }
             />
-            <SheetContent side="right" className="w-80 border-l border-border bg-background p-0">
+            <SheetContent side="right" className="w-80 border-l border-[#eadfce] bg-[rgba(255,252,247,0.94)] p-0 backdrop-blur-2xl">
               <div className="flex h-full flex-col">
                 <SheetHeader className="border-b border-border p-5">
                   <Link href="/" className="flex items-center gap-3 text-xl font-bold">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-md shadow-primary/20">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-[1rem] bg-[linear-gradient(135deg,#0f4f55_0%,#2f7c78_46%,#73beb2_100%)] text-primary-foreground shadow-[0_18px_44px_-22px_rgba(15,79,85,0.46)]">
                       <Briefcase className="h-5 w-5" />
                     </div>
                     {APP_NAME}
@@ -169,8 +169,8 @@ export function PublicNavbar() {
                               className={cn(
                                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors",
                                 active
-                                  ? "bg-primary text-primary-foreground shadow-sm shadow-primary/20"
-                                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                  ? "bg-[linear-gradient(135deg,#0f4f55,#2f7c78)] text-primary-foreground shadow-sm shadow-primary/20"
+                                  : "text-muted-foreground hover:bg-white/70 hover:text-foreground"
                               )}
                             >
                               <Icon className="h-4 w-4 shrink-0" />
@@ -185,8 +185,8 @@ export function PublicNavbar() {
                           className={cn(
                             "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors",
                             isActive("/suche")
-                              ? "bg-primary text-primary-foreground shadow-sm shadow-primary/20"
-                              : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                              ? "bg-[linear-gradient(135deg,#0f4f55,#2f7c78)] text-primary-foreground shadow-sm shadow-primary/20"
+                              : "text-muted-foreground hover:bg-white/70 hover:text-foreground"
                           )}
                         >
                           <Search className="h-4 w-4 shrink-0" />
@@ -211,8 +211,8 @@ export function PublicNavbar() {
                               className={cn(
                                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-semibold transition-colors",
                                 active
-                                  ? "bg-primary text-primary-foreground shadow-sm shadow-primary/20"
-                                  : "text-muted-foreground hover:bg-muted hover:text-foreground"
+                                  ? "bg-[linear-gradient(135deg,#0f4f55,#2f7c78)] text-primary-foreground shadow-sm shadow-primary/20"
+                                  : "text-muted-foreground hover:bg-white/70 hover:text-foreground"
                               )}
                             >
                               <Icon className="h-4 w-4 shrink-0" />
@@ -226,13 +226,13 @@ export function PublicNavbar() {
                 </nav>
 
                 <div className="border-t border-border p-4 space-y-2">
-                  <Button asChild variant="outline" className="w-full justify-start rounded-xl">
+                  <Button asChild variant="outline" className="w-full justify-start rounded-2xl">
                     <Link href="/login">
                       <User className="mr-2 h-4 w-4" />
                       {t.nav.login}
                     </Link>
                   </Button>
-                  <Button asChild className="w-full rounded-lg">
+                  <Button asChild className="w-full rounded-2xl">
                     <Link href="/register">{t.nav.register}</Link>
                   </Button>
                 </div>

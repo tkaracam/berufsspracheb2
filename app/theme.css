@@ -48,39 +48,39 @@
 }
 
 :root {
-  /* Canlı Teal — modern, ferah, profesyonel */
-  --background: #f8fafc;
-  --foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --popover: #ffffff;
-  --popover-foreground: #0f172a;
-  --primary: #0d9488;
+  /* Editorial Calm */
+  --background: #fbf6ef;
+  --foreground: #142638;
+  --card: rgba(255, 255, 255, 0.88);
+  --card-foreground: #102033;
+  --popover: rgba(255, 252, 247, 0.98);
+  --popover-foreground: #142638;
+  --primary: #0f4f55;
   --primary-foreground: #ffffff;
-  --secondary: #ccfbf1;
-  --secondary-foreground: #115e59;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #fef3c7;
-  --accent-foreground: #92400e;
+  --secondary: #f4ebe0;
+  --secondary-foreground: #6a5440;
+  --muted: #f5ede4;
+  --muted-foreground: #6c7684;
+  --accent: #e6f4ef;
+  --accent-foreground: #215c55;
   --destructive: #ef4444;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #14b8a6;
-  --chart-1: #0d9488;
-  --chart-2: #14b8a6;
-  --chart-3: #f59e0b;
-  --chart-4: #6366f1;
-  --chart-5: #8b5cf6;
-  --radius: 1rem;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #0f172a;
-  --sidebar-primary: #0d9488;
+  --border: #eadfce;
+  --input: #eadfce;
+  --ring: #73beb2;
+  --chart-1: #0f4f55;
+  --chart-2: #73beb2;
+  --chart-3: #d9b07d;
+  --chart-4: #8aa3b9;
+  --chart-5: #c7d5e3;
+  --radius: 1.15rem;
+  --sidebar: rgba(255, 255, 255, 0.9);
+  --sidebar-foreground: #142638;
+  --sidebar-primary: #0f4f55;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f0fdfa;
-  --sidebar-accent-foreground: #115e59;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #14b8a6;
+  --sidebar-accent: #f4ebe0;
+  --sidebar-accent-foreground: #6a5440;
+  --sidebar-border: #eadfce;
+  --sidebar-ring: #73beb2;
   /* Anki-Lernfarben */
   --anki-again: #ef4444;
   --anki-hard: #64748b;
@@ -158,4 +158,20 @@
 
 .animate-fade-in-up {
   animation: fade-in-up 0.5s ease-out forwards;
+}
+
+@keyframes aurora-float {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(2%, -2%, 0) scale(1.05);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+.animate-aurora-float {
+  animation: aurora-float 14s ease-in-out infinite;
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Eye, LockKeyhole, Mail } from "lucide-react";
+import { Eye, LockKeyhole, Mail } from "lucide-react";
 import { login, demoLogin } from "@/lib/actions/auth";
 import { SubmitButton } from "@/components/submit-button";
 import { Input } from "@/components/ui/input";
@@ -7,7 +7,6 @@ import { Alert, AlertDescription } from "@/components/ui/alert";
 import { APP_NAME } from "@/lib/constants";
 import { isMockMode } from "@/lib/mock-user";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 
 export const metadata = {
   title: `Login – ${APP_NAME}`,
@@ -22,13 +21,13 @@ export default async function LoginPage({
   const showDemo = isMockMode();
 
   return (
-    <Card className="overflow-hidden rounded-3xl border-border shadow-xl shadow-slate-900/5">
-      <CardHeader className="space-y-1 bg-gradient-to-br from-primary/10 to-accent/20 p-6 text-center sm:p-8">
+    <Card className="overflow-hidden rounded-[2rem] border-[#eadfce] bg-[rgba(255,252,247,0.92)] shadow-[0_30px_90px_-44px_rgba(86,77,64,0.22)]">
+      <CardHeader className="space-y-2 bg-[linear-gradient(135deg,rgba(255,250,244,0.96)_0%,rgba(244,251,247,0.92)_100%)] p-6 text-center sm:p-8">
         <CardTitle className="text-2xl font-extrabold tracking-tight text-foreground">
           Willkommen zurück
         </CardTitle>
         <CardDescription className="text-sm text-muted-foreground">
-          Schön, dass du weiterlernst.
+          Melde dich an und arbeite konzentriert weiter.
         </CardDescription>
       </CardHeader>
 
@@ -81,7 +80,7 @@ export default async function LoginPage({
             </Link>
           </div>
 
-          <SubmitButton className="h-12 w-full text-base">
+          <SubmitButton className="h-12 w-full rounded-2xl bg-[#0f4f55] text-base hover:bg-[#0c4348]">
             Anmelden
           </SubmitButton>
         </form>
@@ -92,7 +91,7 @@ export default async function LoginPage({
           <div className="h-px flex-1 bg-border" />
         </div>
 
-        <div className="mt-5 rounded-2xl border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
+        <div className="mt-5 rounded-2xl border border-[#eadfce] bg-[#fffaf4] p-4 text-sm text-muted-foreground">
           <p className="font-semibold text-foreground">Anmeldung aktuell per E-Mail</p>
           <p className="mt-1">
             Google-Login ist noch nicht verbunden. Bitte melde dich mit E-Mail und Passwort an.
@@ -108,13 +107,13 @@ export default async function LoginPage({
 
         {showDemo ? (
           <form action={demoLogin} className="mt-6 grid grid-cols-3 gap-2">
-            <SubmitButton name="role" value="learner" variant="outline" className="rounded-xl">
+            <SubmitButton name="role" value="learner" variant="outline" className="rounded-xl border-[#eadfce]">
               Lernender
             </SubmitButton>
-            <SubmitButton name="role" value="teacher" variant="outline" className="rounded-xl">
+            <SubmitButton name="role" value="teacher" variant="outline" className="rounded-xl border-[#eadfce]">
               Lehrkraft
             </SubmitButton>
-            <SubmitButton name="role" value="admin" variant="outline" className="rounded-xl">
+            <SubmitButton name="role" value="admin" variant="outline" className="rounded-xl border-[#eadfce]">
               Admin
             </SubmitButton>
           </form>
@@ -134,7 +133,7 @@ function FieldShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-border bg-muted/50 px-4 text-muted-foreground transition-colors focus-within:border-primary focus-within:ring-4 focus-within:ring-primary/10">
+    <div className="flex items-center gap-3 rounded-xl border border-[#eadfce] bg-[#fffaf4] px-4 text-muted-foreground transition-colors focus-within:border-[#73beb2] focus-within:ring-4 focus-within:ring-[#73beb2]/10">
       {icon}
       <div className="flex-1">{children}</div>
       {trailing}

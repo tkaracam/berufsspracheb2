@@ -18,17 +18,17 @@ export function PageHeader({
   return (
     <div
       className={cn(
-        "flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between",
+        "editorial-shell flex flex-col gap-5 p-6 sm:flex-row sm:items-end sm:justify-between sm:p-8 lg:p-10",
         className
       )}
     >
-      <div className="space-y-2">
+      <div className="space-y-3">
         {badge ? <div>{badge}</div> : null}
-        <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl lg:text-4xl">
+        <h1 className="text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
           {title}
         </h1>
         {description ? (
-          <p className="max-w-2xl text-sm text-muted-foreground sm:text-base">
+          <p className="max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg">
             {description}
           </p>
         ) : null}
