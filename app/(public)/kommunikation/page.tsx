@@ -1,42 +1,62 @@
 import { APP_NAME } from "@/lib/constants";
 import { communicationModules } from "@/lib/communication-data";
 import { KommunikationSearch } from "@/components/home/kommunikation-search";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
+import { MessageCircle, Users, Briefcase, Headphones } from "lucide-react";
 
 export const metadata = {
   title: `Kommunikation im Beruf – ${APP_NAME}`,
 };
 
+const highlights = [
+  { icon: MessageCircle, title: "Redemittel", text: "Typische Wendungen für Gespräche im Beruf." },
+  { icon: Users, title: "Teamgespräche", text: "Sicher kommunizieren mit Kolleg:innen." },
+  { icon: Briefcase, title: "Kundengespräche", text: "Höflich und professionell im Kundenkontakt." },
+  { icon: Headphones, title: "Telefon & E-Mail", text: "Schriftlich und mündlich souverän." },
+];
+
 export default function KommunikationPage() {
   return (
-    <div className="relative flex-1 overflow-hidden py-12">
-      <div className="pointer-events-none absolute inset-0 -z-10">
-        <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,_rgba(237,246,239,0.82),_transparent_58%)]" />
-        <div className="absolute -right-20 -top-20 h-[400px] w-[400px] rounded-full bg-[#f5e7d6]/50 blur-3xl" />
-        <div className="absolute -left-20 bottom-0 h-[300px] w-[300px] rounded-full bg-[#eef6ef]/60 blur-3xl" />
-      </div>
-
-      <div className="container mx-auto px-4">
-        <div className="mx-auto mb-10 max-w-5xl">
-          <div className="rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(135deg,#fffdf9_0%,#fff5eb_55%,#f4fbf6_100%)] p-6 shadow-[0_24px_70px_-38px_rgba(115,190,178,0.16)] md:p-8">
-            <div className="max-w-3xl">
-              <span className="inline-flex items-center rounded-full border border-[#eadfce] bg-white/85 px-3 py-1 text-xs font-semibold text-slate-600 shadow-sm">
-                Kommunikation im Arbeitsalltag
-              </span>
-              <h1 className="mt-4 text-3xl font-semibold tracking-tight text-slate-900 md:text-5xl">
-                Kommunikation im Beruf
-              </h1>
-              <p className="mt-4 text-lg leading-7 text-slate-600">
-                Trainieren Sie berufliche Gesprächssituationen gezielt und in
-                einer ruhigen, appartigen Lernoberfläche.
-              </p>
-            </div>
+    <div className="section-padding">
+      <Container>
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/20 p-6 shadow-lg shadow-slate-900/5 sm:p-10 lg:p-12">
+          <div className="relative z-10 max-w-3xl">
+            <span className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-primary">
+              Kommunikation im Arbeitsalltag
+            </span>
+            <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              Kommunikation im Beruf
+            </h1>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Trainieren Sie berufliche Gesprächssituationen gezielt und in
+              einer ruhigen, modernen Lernoberfläche.
+            </p>
           </div>
         </div>
 
-        <div className="mx-auto max-w-6xl">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {highlights.map((item) => {
+            const Icon = item.icon;
+            return (
+              <div
+                key={item.title}
+                className="rounded-2xl border border-border bg-card p-5 shadow-sm"
+              >
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <p className="mt-4 font-bold text-foreground">{item.title}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{item.text}</p>
+              </div>
+            );
+          })}
+        </div>
+
+        <div className="mt-12">
           <KommunikationSearch modules={communicationModules} />
         </div>
-      </div>
+      </Container>
     </div>
   );
 }

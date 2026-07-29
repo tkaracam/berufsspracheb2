@@ -5,6 +5,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 import { getSRSSettings, saveSRSSettings, type SRSSettings } from "@/lib/srs-settings";
 
 function useSRSSettingsState(): [SRSSettings, (value: SRSSettings | ((prev: SRSSettings) => SRSSettings)) => void] {
@@ -46,13 +48,13 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold">Lerneinstellungen</h1>
-        <p className="text-muted-foreground">Passe dein Lernverhalten an.</p>
-      </div>
+    <Container size="small">
+      <PageHeader
+        title="Lerneinstellungen"
+        description="Passe dein Lernverhalten an."
+      />
 
-      <form onSubmit={handleSubmit} className="space-y-6">
+      <form onSubmit={handleSubmit} className="mt-8 space-y-6">
         <Card>
           <CardHeader>
             <CardTitle>Session</CardTitle>
@@ -80,7 +82,7 @@ export default function SettingsPage() {
             <CardTitle>Tageslimits</CardTitle>
             <CardDescription>Maximale Anzahl neuer und wiederholender Karten pro Tag.</CardDescription>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="newCardsPerDay">Neue Karten pro Tag</Label>
               <Input
@@ -109,7 +111,7 @@ export default function SettingsPage() {
             <CardTitle>SRS-Algorithmus</CardTitle>
             <CardDescription>Fortgeschrittene Einstellungen für den Wiederholungsalgorithmus.</CardDescription>
           </CardHeader>
-          <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div className="space-y-2">
               <Label htmlFor="startingEase">Starte Leichtigkeit</Label>
               <Input
@@ -137,9 +139,9 @@ export default function SettingsPage() {
 
         <div className="flex items-center gap-4">
           <Button type="submit">Speichern</Button>
-          {saved && <span className="text-sm text-green-600">Gespeichert.</span>}
+          {saved && <span className="text-sm font-semibold text-green-600">Gespeichert.</span>}
         </div>
       </form>
-    </div>
+    </Container>
   );
 }

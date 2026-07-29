@@ -7,6 +7,8 @@ import { SkeletonList } from "@/components/ui/content-skeletons";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 import { useMounted } from "@/lib/hooks/use-mounted";
 import { isMockMode } from "@/lib/is-mock-mode";
 import {
@@ -62,23 +64,21 @@ export default function FavoritenPage() {
 
   if (!mounted) {
     return (
-      <div className="space-y-6">
-        <h1 className="text-3xl font-bold">Meine Favoriten</h1>
+      <Container size="large">
+        <PageHeader title="Meine Favoriten" />
         <SkeletonList rows={4} />
-      </div>
+      </Container>
     );
   }
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Meine Favoriten</h1>
-        <p className="text-muted-foreground">
-          Ihre gespeicherten Fachbegriffe und Nomen-Verb-Verbindungen.
-        </p>
-      </div>
+    <Container size="large">
+      <PageHeader
+        title="Meine Favoriten"
+        description="Ihre gespeicherten Fachbegriffe und Nomen-Verb-Verbindungen."
+      />
 
-      <div className="grid gap-4">
+      <div className="mt-8 grid gap-4">
         {favorites.map((fav) => {
           const type = mock
             ? (fav as DemoFavorite).itemType
@@ -91,10 +91,10 @@ export default function FavoritenPage() {
           return (
             <Card key={`${type}-${id}`}>
               <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-lg">
-                  <Heart className="h-5 w-5 text-red-500 fill-red-500" />
+                <CardTitle className="flex flex-wrap items-center gap-2 text-lg">
+                  <Heart className="h-5 w-5 fill-red-500 text-red-500" />
                   {title}
-                  <Badge variant="secondary">
+                  <Badge variant="secondary" className="rounded-full">
                     {TYPE_LABELS[type] ?? type}
                   </Badge>
                 </CardTitle>
@@ -105,6 +105,7 @@ export default function FavoritenPage() {
                   size="sm"
                   onClick={() => remove(type, id)}
                   disabled={isPending}
+                  className="rounded-xl"
                 >
                   <Trash2 className="mr-2 h-4 w-4" />
                   Entfernen
@@ -114,22 +115,22 @@ export default function FavoritenPage() {
           );
         })}
         {favorites.length === 0 && (
-          <Card className="text-center py-12 border-t-4 border-t-slate-300">
+          <Card className="py-12 text-center">
             <CardContent className="space-y-4">
               <BookmarkX className="mx-auto h-12 w-12 text-muted-foreground" />
               <div>
                 <h2 className="text-xl font-bold">Noch keine Favoriten</h2>
-                <p className="text-sm text-muted-foreground mt-1">
+                <p className="mt-1 text-sm text-muted-foreground">
                   Speichern Sie Fachwörter und Nomen-Verb-Verbindungen, um sie hier schnell wiederzufinden.
                 </p>
               </div>
-              <Button variant="outline" asChild>
+              <Button variant="outline" asChild className="rounded-xl">
                 <Link href="/trainer/fachwortschatz">Fachwortschatz entdecken</Link>
               </Button>
             </CardContent>
           </Card>
         )}
       </div>
-    </div>
+    </Container>
   );
 }

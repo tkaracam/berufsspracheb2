@@ -1,5 +1,8 @@
-import { Users, BookOpen, GraduationCap, Layers } from "lucide-react";
+import { Users, BookOpen, GraduationCap, Layers, BarChart3, Activity } from "lucide-react";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
+import { StatCard } from "@/components/ui/stat-card";
 import { APP_NAME } from "@/lib/constants";
 import { createClient } from "@/lib/supabase/server";
 import { isMockMode } from "@/lib/queries";
@@ -10,51 +13,26 @@ export const metadata = {
 };
 
 export default async function AdminDashboardPage() {
+  let userCount = 0;
+  let nvCount = mockNomenVerbVerbindungen.length;
+  let fwCount = mockFachwoerter.length;
+  let classCount = mockBerufsfelder.length;
+
   if (isMockMode()) {
     return (
-      <div className="space-y-10">
-        <div>
-          <h1 className="text-3xl font-bold">Admin-Dashboard</h1>
-          <p className="text-muted-foreground">
-            Übersicht über Nutzer, Inhalte und Klassen. (Demo-Modus)
-          </p>
-        </div>
+      <Container size="large">
+        <PageHeader
+          title="Admin-Dashboard"
+          description="Übersicht über Nutzer, Inhalte und Klassen. (Demo-Modus)"
+        />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Nutzer</CardDescription>
-              <CardTitle className="text-3xl flex items-center gap-2">
-                <Users className="h-6 w-6 text-primary" /> —
-              </CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Nomen-Verb-Verbindungen</CardDescription>
-              <CardTitle className="text-3xl flex items-center gap-2">
-                <BookOpen className="h-6 w-6 text-primary" /> {mockNomenVerbVerbindungen.length}
-              </CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Fachwörter</CardDescription>
-              <CardTitle className="text-3xl flex items-center gap-2">
-                <GraduationCap className="h-6 w-6 text-primary" /> {mockFachwoerter.length}
-              </CardTitle>
-            </CardHeader>
-          </Card>
-          <Card>
-            <CardHeader className="pb-2">
-              <CardDescription>Klassen</CardDescription>
-              <CardTitle className="text-3xl flex items-center gap-2">
-                <Layers className="h-6 w-6 text-primary" /> {mockBerufsfelder.length}
-              </CardTitle>
-            </CardHeader>
-          </Card>
+        <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <StatCard label="Nutzer" value="—" icon={<Users className="h-5 w-5" />} />
+          <StatCard label="Nomen-Verb-Verbindungen" value={nvCount} icon={<BookOpen className="h-5 w-5" />} />
+          <StatCard label="Fachwörter" value={fwCount} icon={<GraduationCap className="h-5 w-5" />} />
+          <StatCard label="Berufsfelder" value={classCount} icon={<Layers className="h-5 w-5" />} />
         </div>
-      </div>
+      </Container>
     );
   }
 
@@ -64,11 +42,11 @@ export default async function AdminDashboardPage() {
     .from("profiles")
     .select("*", { count: "exact", head: true });
 
-  const { count: nvCount } = await supabase
+  const { count: nvCountReal } = await supabase
     .from("nomen_verb_verbindungen")
     .select("*", { count: "exact", head: true });
 
-  const { count: fwCount } = await supabase
+  const { count: fwCountReal } = await supabase
     .from("fachwoerter")
     .select("*", { count: "exact", head: true });
 
@@ -76,49 +54,50 @@ export default async function AdminDashboardPage() {
     .from("classes")
     .select("*", { count: "exact", head: true });
 
+  userCount = userCountReal ?? 0;
+  nvCount = nvCountReal ?? 0;
+  fwCount = fwCountReal ?? 0;
+  classCount = classCountReal ?? 0;
+
   return (
-    <div className="space-y-8">
-      <div>
-        <h1 className="text-3xl font-bold">Admin-Dashboard</h1>
-        <p className="text-muted-foreground">
-          Übersicht über Nutzer, Inhalte und Klassen.
-        </p>
+    <Container size="large">
+      <PageHeader
+        title="Admin-Dashboard"
+        description="Übersicht über Nutzer, Inhalte und Klassen."
+      />
+
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <StatCard label="Nutzer" value={userCount} icon={<Users className="h-5 w-5" />} />
+        <StatCard label="Nomen-Verb-Verbindungen" value={nvCount} icon={<BookOpen className="h-5 w-5" />} />
+        <StatCard label="Fachwörter" value={fwCount} icon={<GraduationCap className="h-5 w-5" />} />
+        <StatCard label="Klassen" value={classCount} icon={<Layers className="h-5 w-5" />} />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Nutzer</CardDescription>
-            <CardTitle className="text-3xl flex items-center gap-2">
-              <Users className="h-6 w-6 text-primary" /> {userCountReal ?? 0}
-            </CardTitle>
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <Activity className="h-5 w-5 text-primary" />
+              <CardTitle>Plattform-Status</CardTitle>
+            </div>
+            <CardDescription>
+              Alle Systeme laufen normal. Letzte Aktualisierung: {new Date().toLocaleDateString("de-DE")}
+            </CardDescription>
           </CardHeader>
         </Card>
+
         <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Nomen-Verb-Verbindungen</CardDescription>
-            <CardTitle className="text-3xl flex items-center gap-2">
-              <BookOpen className="h-6 w-6 text-primary" /> {nvCount ?? 0}
-            </CardTitle>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Fachwörter</CardDescription>
-            <CardTitle className="text-3xl flex items-center gap-2">
-              <GraduationCap className="h-6 w-6 text-primary" /> {fwCount ?? 0}
-            </CardTitle>
-          </CardHeader>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2">
-            <CardDescription>Klassen</CardDescription>
-            <CardTitle className="text-3xl flex items-center gap-2">
-              <Layers className="h-6 w-6 text-primary" /> {classCountReal ?? 0}
-            </CardTitle>
+          <CardHeader>
+            <div className="flex items-center gap-2">
+              <BarChart3 className="h-5 w-5 text-primary" />
+              <CardTitle>Inhaltsübersicht</CardTitle>
+            </div>
+            <CardDescription>
+              {fwCount} Fachwörter und {nvCount} Nomen-Verb-Verbindungen verfügbar.
+            </CardDescription>
           </CardHeader>
         </Card>
       </div>
-    </div>
+    </Container>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Briefcase, ArrowUpRight } from "lucide-react";
+import { Briefcase, ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { useTranslation } from "@/components/layout/language-provider";
 import { useFocusMode } from "./focus-mode-provider";
@@ -12,58 +12,116 @@ export function Footer() {
 
   if (focusMode) return null;
 
+  const learnLinks = [
+    { href: "/berufsfelder", label: t.nav.professions },
+    { href: "/kommunikation", label: t.nav.communication },
+    { href: "/pruefungstraining", label: t.nav.examTraining },
+    { href: "/redemittel", label: t.nav.redemittel },
+  ];
+
   const legalLinks = [
     { href: "/impressum", label: "Impressum" },
     { href: "/datenschutz", label: "Datenschutz" },
   ];
 
   return (
-    <footer className="pb-28 pt-8 md:pb-10">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="rounded-[2rem] border border-[#eadfce] bg-[#fffdf9]/88 p-6 shadow-[0_24px_50px_-34px_rgba(138,116,83,0.22)] md:p-8">
-          <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-            <div className="max-w-xl">
-              <Link href="/" className="mb-4 flex items-center gap-3 font-semibold text-xl text-slate-900">
-                <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-[#eadfce] bg-white text-primary shadow-[0_12px_24px_-20px_rgba(32,50,58,0.25)]">
+    <footer className="pb-28 pt-12 sm:pb-12">
+      <div className="page-container">
+        <div className="rounded-3xl border border-border bg-card p-6 shadow-lg shadow-slate-900/5 sm:p-10">
+          <div className="grid gap-10 lg:grid-cols-[1.5fr_1fr_1fr_1fr]">
+            <div className="space-y-5">
+              <Link href="/" className="flex items-center gap-3 font-bold text-foreground">
+                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-md shadow-primary/20">
                   <Briefcase className="h-5 w-5" />
                 </div>
-                <span className="[font-family:Georgia,serif]">{APP_NAME}</span>
+                <span className="text-xl font-extrabold tracking-tight">{APP_NAME}</span>
               </Link>
-              <p className="text-sm leading-7 text-slate-600 md:text-base">
-                Deutsch für den Beruf in einer klaren, ruhigen Lernoberfläche.
+              <p className="max-w-sm text-sm leading-7 text-muted-foreground">
+                Deutsch für den Beruf in einer klaren, modernen Lernoberfläche.
                 Wortschatz, Kommunikation und B2-Training an einem Ort.
               </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/berufsfelder"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:border-primary hover:text-primary"
+                >
+                  {t.nav.professions}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+                <Link
+                  href="/register"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/20 transition-all hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/25"
+                >
+                  {t.nav.register}
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
             </div>
 
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/berufsfelder"
-                className="inline-flex items-center gap-2 rounded-full border border-[#eadfce] bg-white px-4 py-2.5 text-sm text-slate-700 transition-colors hover:text-slate-900"
-              >
-                {t.nav.professions}
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
-              <Link
-                href="/register"
-                className="inline-flex items-center gap-2 rounded-full bg-[#73beb2] px-5 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#64aea3]"
-              >
-                {t.nav.register}
-                <ArrowUpRight className="h-3.5 w-3.5" />
-              </Link>
+            <div>
+              <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                Lernen
+              </h3>
+              <ul className="space-y-3">
+                {learnLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                Rechtliches
+              </h3>
+              <ul className="space-y-3">
+                {legalLinks.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="mb-4 text-sm font-bold uppercase tracking-wider text-muted-foreground">
+                Kontakt
+              </h3>
+              <ul className="space-y-3 text-sm text-muted-foreground">
+                <li className="flex items-center gap-2">
+                  <Mail className="h-4 w-4 text-primary" />
+                  hallo@bsk-b2.de
+                </li>
+                <li className="flex items-center gap-2">
+                  <Phone className="h-4 w-4 text-primary" />
+                  +49 30 12345678
+                </li>
+                <li className="flex items-start gap-2">
+                  <MapPin className="h-4 w-4 shrink-0 text-primary" />
+                  Musterstraße 1, 10115 Berlin
+                </li>
+              </ul>
             </div>
           </div>
 
-          <div className="mt-8 flex flex-col gap-4 border-t border-[#eadfce] pt-5 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
-            <p>
-              © {new Date().getFullYear()} {APP_NAME}
+          <div className="mt-10 flex flex-col gap-4 border-t border-border pt-6 text-sm text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <p className="font-medium">
+              © {new Date().getFullYear()} {APP_NAME}. Alle Rechte vorbehalten.
             </p>
-            <div className="flex flex-wrap gap-5">
-              {legalLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="transition-colors hover:text-slate-900">
-                  {link.label}
-                </Link>
-              ))}
-            </div>
+            <p className="text-xs">
+              Mit ❤️ für berufliche Deutschlerner entwickelt.
+            </p>
           </div>
         </div>
       </div>

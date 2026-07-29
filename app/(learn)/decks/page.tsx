@@ -9,6 +9,8 @@ import { redemittelQuestions } from "@/lib/redemittel-quiz-data";
 import { grammarQuestions } from "@/lib/grammar-data";
 import type { Deck, DeckType } from "@/lib/decks";
 import { CustomDeckSection } from "@/components/decks/custom-deck-section";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 
 export const metadata = {
   title: `Decks – ${APP_NAME}`,
@@ -68,28 +70,28 @@ export default async function DecksPage() {
   ].filter((d) => d.itemIds.length > 0);
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold">Decks</h1>
-        <p className="text-muted-foreground">
-          Wähle ein Deck, um zu lernen oder den Fortschritt zu sehen.
-        </p>
-      </div>
+    <Container size="large">
+      <PageHeader
+        title="Decks"
+        description="Wähle ein Deck, um zu lernen oder den Fortschritt zu sehen."
+      />
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {decks.map((deck) => (
-          <Card key={deck.id} className="flex flex-col">
+          <Card key={deck.id} className="flex flex-col transition-all hover:-translate-y-0.5 hover:shadow-md">
             <CardHeader>
               <div className="flex items-start justify-between gap-2">
                 <CardTitle className="flex items-center gap-2 text-base">
-                  <Layers className="h-4 w-4" />
+                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <Layers className="h-4 w-4" />
+                  </div>
                   <span className="line-clamp-2">{deck.title}</span>
                 </CardTitle>
-                <Badge variant="secondary">{deck.itemIds.length}</Badge>
+                <Badge variant="secondary" className="shrink-0 rounded-full">{deck.itemIds.length}</Badge>
               </div>
             </CardHeader>
             <CardContent className="mt-auto">
-              <Button className="w-full gap-2" asChild>
+              <Button className="w-full gap-2 rounded-xl" asChild>
                 <Link href={`/decks/${deck.id}/learn`}>
                   <Play className="h-4 w-4" />
                   Lernen
@@ -101,6 +103,6 @@ export default async function DecksPage() {
       </div>
 
       <CustomDeckSection />
-    </div>
+    </Container>
   );
 }

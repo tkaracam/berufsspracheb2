@@ -36,86 +36,95 @@
   --color-anki-hard: var(--anki-hard);
   --color-anki-good: var(--anki-good);
   --color-anki-easy: var(--anki-easy);
+
+  /* Custom shadow scales */
+  --shadow-xs: 0 1px 2px 0 rgb(15 23 42 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(15 23 42 / 0.08), 0 1px 2px -1px rgb(15 23 42 / 0.08);
+  --shadow-md: 0 4px 6px -1px rgb(15 23 42 / 0.08), 0 2px 4px -2px rgb(15 23 42 / 0.08);
+  --shadow-lg: 0 10px 15px -3px rgb(15 23 42 / 0.08), 0 4px 6px -4px rgb(15 23 42 / 0.08);
+  --shadow-xl: 0 20px 25px -5px rgb(15 23 42 / 0.08), 0 8px 10px -6px rgb(15 23 42 / 0.08);
+  --shadow-2xl: 0 25px 50px -12px rgb(15 23 42 / 0.18);
+  --shadow-glow: 0 0 24px -4px rgb(13 148 136 / 0.22);
 }
 
 :root {
-  /* Warm Light Mobile: hell, ruhig und weich statt technisch-kalt. */
-  --background: #fffaf4;
-  --foreground: #20323a;
+  /* Canlı Teal — modern, ferah, profesyonel */
+  --background: #f8fafc;
+  --foreground: #0f172a;
   --card: #ffffff;
-  --card-foreground: #20323a;
+  --card-foreground: #0f172a;
   --popover: #ffffff;
-  --popover-foreground: #20323a;
-  --primary: #73beb2;
+  --popover-foreground: #0f172a;
+  --primary: #0d9488;
   --primary-foreground: #ffffff;
-  --secondary: #edf6ef;
-  --secondary-foreground: #35685c;
-  --muted: #f7f0e8;
-  --muted-foreground: #6f7e80;
-  --accent: #c7e5dc;
-  --accent-foreground: #204e4b;
-  --destructive: #ef6b6b;
-  --border: #e8ddd0;
-  --input: #e8ddd0;
-  --ring: #97d2c9;
-  --chart-1: #73beb2;
-  --chart-2: #9ccfc0;
-  --chart-3: #f0c996;
-  --chart-4: #d9b88e;
-  --chart-5: #b8d6d0;
+  --secondary: #ccfbf1;
+  --secondary-foreground: #115e59;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #fef3c7;
+  --accent-foreground: #92400e;
+  --destructive: #ef4444;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #14b8a6;
+  --chart-1: #0d9488;
+  --chart-2: #14b8a6;
+  --chart-3: #f59e0b;
+  --chart-4: #6366f1;
+  --chart-5: #8b5cf6;
   --radius: 1rem;
-  --sidebar: #fffdf9;
-  --sidebar-foreground: #20323a;
-  --sidebar-primary: #73beb2;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #0f172a;
+  --sidebar-primary: #0d9488;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eef6ef;
-  --sidebar-accent-foreground: #35685c;
-  --sidebar-border: #e8ddd0;
-  --sidebar-ring: #97d2c9;
+  --sidebar-accent: #f0fdfa;
+  --sidebar-accent-foreground: #115e59;
+  --sidebar-border: #e2e8f0;
+  --sidebar-ring: #14b8a6;
   /* Anki-Lernfarben */
-  --anki-again: #D32F2F;
-  --anki-hard: #455A64;
-  --anki-good: #4CAF50;
-  --anki-easy: #03A9F4;
+  --anki-again: #ef4444;
+  --anki-hard: #64748b;
+  --anki-good: #22c55e;
+  --anki-easy: #0ea5e9;
 }
 
 .dark {
-  --background: #0f1722;
-  --foreground: #e9f3ff;
-  --card: #152131;
-  --card-foreground: #e9f3ff;
-  --popover: #152131;
-  --popover-foreground: #e9f3ff;
-  --primary: #8cc3ff;
-  --primary-foreground: #0f1722;
-  --secondary: #153330;
-  --secondary-foreground: #dff5ec;
-  --muted: #1d2a3a;
-  --muted-foreground: #a5bdd4;
-  --accent: #64c9cf;
-  --accent-foreground: #0f1722;
-  --destructive: #ff4444;
-  --border: rgba(183, 214, 248, 0.16);
-  --input: rgba(183, 214, 248, 0.14);
-  --ring: #8cc3ff;
-  --chart-1: #8cc3ff;
-  --chart-2: #64c9cf;
-  --chart-3: #9ad8b4;
-  --chart-4: #f2b38f;
-  --chart-5: #a5bdd4;
-  --sidebar: #111c2a;
-  --sidebar-foreground: #e9f3ff;
-  --sidebar-primary: #8cc3ff;
-  --sidebar-primary-foreground: #0f1722;
-  --sidebar-accent: #153330;
-  --sidebar-accent-foreground: #dff5ec;
-  --sidebar-border: rgba(183, 214, 248, 0.16);
-  --sidebar-ring: #8cc3ff;
+  --background: #0f172a;
+  --foreground: #f8fafc;
+  --card: #1e293b;
+  --card-foreground: #f8fafc;
+  --popover: #1e293b;
+  --popover-foreground: #f8fafc;
+  --primary: #14b8a6;
+  --primary-foreground: #ffffff;
+  --secondary: #134e4a;
+  --secondary-foreground: #ccfbf1;
+  --muted: #1e293b;
+  --muted-foreground: #94a3b8;
+  --accent: #78350f;
+  --accent-foreground: #fef3c7;
+  --destructive: #f87171;
+  --border: rgba(148, 163, 184, 0.16);
+  --input: rgba(148, 163, 184, 0.14);
+  --ring: #14b8a6;
+  --chart-1: #14b8a6;
+  --chart-2: #2dd4bf;
+  --chart-3: #fbbf24;
+  --chart-4: #818cf8;
+  --chart-5: #a78bfa;
+  --sidebar: #0f172a;
+  --sidebar-foreground: #f8fafc;
+  --sidebar-primary: #14b8a6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #134e4a;
+  --sidebar-accent-foreground: #ccfbf1;
+  --sidebar-border: rgba(148, 163, 184, 0.16);
+  --sidebar-ring: #14b8a6;
   /* Anki-Lernfarben (Dunkelmodus) */
-  --anki-again: #FF5252;
-  --anki-hard: #607D8B;
-  --anki-good: #66BB6A;
-  --anki-easy: #29B6F6;
+  --anki-again: #f87171;
+  --anki-hard: #94a3b8;
+  --anki-good: #4ade80;
+  --anki-easy: #38bdf8;
 }
 
 @keyframes confetti-fall {
@@ -133,4 +142,20 @@
   animation-name: confetti-fall;
   animation-timing-function: linear;
   animation-fill-mode: forwards;
+}
+
+/* Smooth page transitions */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
 }

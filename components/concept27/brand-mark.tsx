@@ -9,17 +9,29 @@ export function BrandMark({ className, compact = false }: BrandMarkProps) {
   return (
     <div className={cn("flex items-center gap-3", className)}>
       <div className="relative flex h-14 w-14 items-center justify-center md:h-16 md:w-16">
-        <div className="absolute inset-0 rounded-full bg-[linear-gradient(180deg,#eef6ef_0%,#f9efe4_100%)]" />
-        <div className="absolute left-[8px] top-[11px] h-7 w-4 rounded-[999px_999px_999px_999px] bg-[#6f9f88] rotate-[-28deg] md:left-[10px] md:top-[13px]" />
-        <div className="absolute right-[8px] top-[11px] h-7 w-4 rounded-[999px_999px_999px_999px] bg-[#4f8b73] rotate-[28deg] md:right-[10px] md:top-[13px]" />
-        <div className="absolute inset-[6px] rounded-full border border-[#dbe6db]/80" />
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary to-primary/70 shadow-lg shadow-primary/20" />
+        <div className="absolute inset-1 rounded-xl bg-white/20" />
+        <div className="relative text-primary-foreground">
+          <svg
+            width="28"
+            height="28"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20" />
+          </svg>
+        </div>
       </div>
       {!compact ? (
         <div>
-          <p className="text-[2.15rem] leading-none text-slate-900 md:text-[2.55rem] [font-family:Georgia,serif]">
+          <p className="text-[1.8rem] leading-none text-foreground md:text-[2.1rem] font-heading font-extrabold tracking-tight">
             Berufssprache B2
           </p>
-          <p className="mt-1.5 text-[0.72rem] text-slate-500 md:text-[0.92rem]">
+          <p className="mt-1.5 text-[0.75rem] font-medium text-muted-foreground md:text-[0.85rem]">
             Deutsch für den Beruf. Sicher. Klar. Kompetent.
           </p>
         </div>

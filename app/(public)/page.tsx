@@ -7,10 +7,14 @@ import {
   GraduationCap,
   MessageCircle,
   Sparkles,
+  Users,
+  Trophy,
+  Target,
 } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { getSession } from "@/lib/supabase/server";
 import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
 
 export const metadata = {
   title: `${APP_NAME} – Start`,
@@ -39,17 +43,27 @@ const pathways = [
     title: "Berufsfelder",
     text: "Pflege, Verwaltung, Technik, Gastronomie und weitere Bereiche.",
     href: "/berufsfelder",
+    icon: Briefcase,
   },
   {
     title: "Lernbereiche",
     text: "Grammatik, Redemittel, Lesen, Schreiben, Hören und Sprechen.",
     href: "/kommunikation",
+    icon: BookOpen,
   },
   {
     title: "Prüfungstraining",
     text: "Übe gezielt für berufssprachliche Aufgaben und B2-nahe Formate.",
     href: "/pruefungstraining",
+    icon: Trophy,
   },
+];
+
+const stats = [
+  { value: "1.200+", label: "Lerninhalte", icon: BookOpen },
+  { value: "6", label: "Berufsfelder", icon: Briefcase },
+  { value: "4", label: "Fertigkeiten", icon: Target },
+  { value: "100%", label: "Responsiv", icon: Users },
 ];
 
 export default async function HomePage() {
@@ -59,176 +73,232 @@ export default async function HomePage() {
 
   return (
     <div className="relative overflow-hidden">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(244,233,217,0.82),transparent_28%),radial-gradient(circle_at_top_right,rgba(229,244,239,0.76),transparent_24%),linear-gradient(180deg,#fffdf9_0%,#fff9f3_52%,#f8fbf8_100%)]" />
-      <div className="pointer-events-none absolute inset-0 -z-10 opacity-20 [background-image:linear-gradient(rgba(220,206,186,0.12)_1px,transparent_1px),linear-gradient(90deg,rgba(220,206,186,0.12)_1px,transparent_1px)] [background-size:58px_58px]" />
-
-      <section className="px-4 pb-16 pt-28 md:px-6 md:pb-24 md:pt-32">
-        <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.08fr_0.92fr]">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-[#eadfce] bg-white/88 px-4 py-2 text-sm text-slate-600 shadow-[0_18px_40px_-34px_rgba(57,73,84,0.42)]">
-              <Sparkles className="h-4 w-4 text-[#5c9c88]" />
-              Deutsch für den Beruf. Sicher. Klar. Kompetent.
-            </div>
-
-            <h1 className="mt-6 text-[3rem] leading-[0.92] text-slate-900 md:text-[4.6rem] [font-family:Georgia,serif]">
-              Sprache für
-              <br />
-              Beruf, Kurs
-              <br />
-              und Zukunft.
-            </h1>
-
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
-              {APP_NAME} ist eine moderne Lernplattform für Berufssprache B2.
-              Trainiere Fachwortschatz, Kommunikation und prüfungsnahe Inhalte
-              in einer klaren, ruhigen und vollständig responsiven Weboberfläche.
-            </p>
-
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Button asChild className="h-12 rounded-[1rem] bg-[#5c9c88] px-6 text-base text-white hover:bg-[#538d7a]">
-                <Link href={primaryHref}>
-                  {primaryLabel}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="h-12 rounded-[1rem] border-[#eadfce] bg-white/90 px-6 text-base text-slate-700 hover:bg-white">
-                <Link href="/berufsfelder">Berufsfelder entdecken</Link>
-              </Button>
-            </div>
-
-            <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <div className="flex items-start gap-3 rounded-[1.3rem] border border-[#eadfce] bg-white/82 px-4 py-4 shadow-[0_20px_40px_-34px_rgba(57,73,84,0.38)]">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#5c9c88]" />
-                <div>
-                  <p className="text-sm font-medium text-slate-900">Kurze Lerneinheiten</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-500">Direkt startbar und leicht in den Alltag integrierbar.</p>
-                </div>
+      <section className="px-4 pb-16 pt-20 sm:pt-24 lg:pb-24 lg:pt-32">
+        <Container>
+          <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="animate-fade-in-up">
+              <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary shadow-sm">
+                <Sparkles className="h-4 w-4" />
+                Deutsch für den Beruf. Sicher. Klar. Kompetent.
               </div>
-              <div className="flex items-start gap-3 rounded-[1.3rem] border border-[#eadfce] bg-white/82 px-4 py-4 shadow-[0_20px_40px_-34px_rgba(57,73,84,0.38)]">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 text-[#d69061]" />
-                <div>
-                  <p className="text-sm font-medium text-slate-900">Beruflich relevant</p>
-                  <p className="mt-1 text-sm leading-6 text-slate-500">Inhalte für reale Situationen im Beruf und im Kurs.</p>
+
+              <h1 className="mt-6 text-4xl font-extrabold tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+                Sprache für{" "}
+                <span className="text-primary">Beruf, Kurs</span> und Zukunft.
+              </h1>
+
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+                {APP_NAME} ist eine moderne Lernplattform für Berufssprache B2.
+                Trainiere Fachwortschatz, Kommunikation und prüfungsnahe Inhalte
+                in einer klaren, ruhigen und vollständig responsiven Weboberfläche.
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                <Button asChild size="lg" className="h-12 px-6 text-base">
+                  <Link href={primaryHref}>
+                    {primaryLabel}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                <Button asChild variant="outline" size="lg" className="h-12 px-6 text-base">
+                  <Link href="/berufsfelder">Berufsfelder entdecken</Link>
+                </Button>
+              </div>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                <div className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">Kurze Lerneinheiten</p>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">Direkt startbar und leicht in den Alltag integrierbar.</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 rounded-2xl border border-border bg-card p-4 shadow-sm">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent-foreground" />
+                  <div>
+                    <p className="text-sm font-semibold text-foreground">Beruflich relevant</p>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">Inhalte für reale Situationen im Beruf und im Kurs.</p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="relative">
-            <div className="rounded-[2rem] border border-[#eadfce] bg-white/84 p-5 shadow-[0_36px_80px_-44px_rgba(118,94,63,0.3)] backdrop-blur-sm">
-              <div className="grid gap-4">
-                <div className="rounded-[1.6rem] bg-[linear-gradient(180deg,#f3f8f2_0%,#fbf1e6_100%)] p-6">
-                  <p className="text-xs uppercase tracking-[0.24em] text-slate-400">
-                    Berufssprache B2
-                  </p>
-                  <p className="mt-3 text-[2rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                    Klar lernen.
-                    <br />
-                    Sicher kommunizieren.
-                  </p>
-                  <p className="mt-3 max-w-sm text-sm leading-7 text-slate-600">
-                    Eine ruhige Lernumgebung mit klaren Wegen durch Fachwortschatz,
-                    Berufsfelder und B2-Training.
-                  </p>
-                </div>
-
-                <div className="grid gap-4 sm:grid-cols-2">
-                  <div className="rounded-[1.5rem] border border-[#eadfce] bg-white p-5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#eef7f4] text-[#5c9c88]">
-                      <Briefcase className="h-5 w-5" />
-                    </div>
-                    <p className="mt-4 text-[1.35rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                      Fachwortschatz
+            <div className="relative hidden lg:block">
+              <div className="rounded-3xl border border-border bg-card p-6 shadow-xl shadow-slate-900/5">
+                <div className="grid gap-4">
+                  <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-accent/20 p-6">
+                    <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
+                      Berufssprache B2
                     </p>
-                    <p className="mt-2 text-sm leading-6 text-slate-500">
-                      Begriffe, die du im beruflichen Alltag wirklich brauchst.
+                    <p className="mt-3 text-3xl font-extrabold tracking-tight text-foreground">
+                      Klar lernen.
+                      <br />
+                      Sicher kommunizieren.
+                    </p>
+                    <p className="mt-3 max-w-sm text-sm leading-7 text-muted-foreground">
+                      Eine ruhige Lernumgebung mit klaren Wegen durch Fachwortschatz,
+                      Berufsfelder und B2-Training.
                     </p>
                   </div>
 
-                  <div className="rounded-[1.5rem] border border-[#eadfce] bg-white p-5">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#fff1e8] text-[#d69061]">
-                      <BookOpen className="h-5 w-5" />
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="rounded-2xl border border-border bg-background p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <Briefcase className="h-5 w-5" />
+                      </div>
+                      <p className="mt-4 text-lg font-bold text-foreground">
+                        Fachwortschatz
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                        Begriffe, die du im beruflichen Alltag wirklich brauchst.
+                      </p>
                     </div>
-                    <p className="mt-4 text-[1.35rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                      Lernwege
-                    </p>
-                    <p className="mt-2 text-sm leading-6 text-slate-500">
-                      Strukturierte Inhalte für Kurs, Prüfung und Beruf.
-                    </p>
+
+                    <div className="rounded-2xl border border-border bg-background p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent text-accent-foreground">
+                        <BookOpen className="h-5 w-5" />
+                      </div>
+                      <p className="mt-4 text-lg font-bold text-foreground">
+                        Lernwege
+                      </p>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                        Strukturierte Inhalte für Kurs, Prüfung und Beruf.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </section>
 
-      <section className="px-4 py-16 md:px-6 md:py-20">
-        <div className="mx-auto max-w-6xl">
-          <div className="max-w-2xl">
-            <p className="text-sm uppercase tracking-[0.24em] text-[#5c9c88]">Warum diese Plattform</p>
-            <h2 className="mt-4 text-[2.3rem] leading-tight text-slate-900 md:text-[3.2rem] [font-family:Georgia,serif]">
+      <section className="section-padding">
+        <Container>
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Warum diese Plattform</p>
+            <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
               Eine responsive Website, die sich auf jedem Gerät gut anfühlt.
             </h2>
-            <p className="mt-4 text-base leading-8 text-slate-600">
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
               Keine App-Mockups, keine künstliche Handy-Ansicht. Stattdessen eine
               echte Webplattform, die auf Desktop, Tablet und Mobil sauber,
               lesbar und ruhig funktioniert.
             </p>
           </div>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-3">
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => {
               const Icon = feature.icon;
               return (
                 <div
                   key={feature.title}
-                  className="rounded-[1.8rem] border border-[#eadfce] bg-white/82 p-6 shadow-[0_24px_48px_-36px_rgba(57,73,84,0.42)]"
+                  className="rounded-3xl border border-border bg-card p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#eef7f4] text-[#5c9c88]">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                     <Icon className="h-5 w-5" />
                   </div>
-                  <p className="mt-5 text-[1.45rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
+                  <p className="mt-5 text-lg font-bold text-foreground">
                     {feature.title}
                   </p>
-                  <p className="mt-3 text-sm leading-7 text-slate-500">{feature.text}</p>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">{feature.text}</p>
                 </div>
               );
             })}
           </div>
-        </div>
+        </Container>
       </section>
 
-      <section className="px-4 pb-16 md:px-6 md:pb-24">
-        <div className="mx-auto max-w-6xl rounded-[2rem] border border-[#eadfce] bg-white/80 p-6 shadow-[0_28px_54px_-38px_rgba(57,73,84,0.24)] md:p-8">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+      <section className="section-padding bg-primary/[0.03]">
+        <Container>
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div>
-              <p className="text-sm uppercase tracking-[0.24em] text-[#5c9c88]">Schneller Einstieg</p>
-              <h2 className="mt-4 text-[2.2rem] leading-tight text-slate-900 md:text-[3rem] [font-family:Georgia,serif]">
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Schneller Einstieg</p>
+              <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
                 Finde deinen passenden Lernweg.
               </h2>
-              <p className="mt-4 text-base leading-8 text-slate-600">
+              <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
                 Starte über Berufsfelder, gehe direkt in Lernbereiche oder trainiere
                 gezielt für berufssprachliche Prüfungsformate.
               </p>
+              <div className="mt-8 hidden lg:block">
+                <Button asChild size="lg">
+                  <Link href="/register">
+                    Kostenlos registrieren
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+              </div>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
-              {pathways.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="rounded-[1.5rem] border border-[#eadfce] bg-[#fffdf9] p-5 transition-transform hover:-translate-y-0.5"
-                >
-                  <p className="text-[1.35rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                    {item.title}
-                  </p>
-                  <p className="mt-3 text-sm leading-7 text-slate-500">{item.text}</p>
-                </Link>
-              ))}
+            <div className="grid gap-4 sm:grid-cols-3">
+              {pathways.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="group rounded-2xl border border-border bg-card p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md"
+                  >
+                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <p className="mt-5 text-lg font-bold text-foreground">
+                      {item.title}
+                    </p>
+                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{item.text}</p>
+                  </Link>
+                );
+              })}
             </div>
           </div>
-        </div>
+        </Container>
+      </section>
+
+      <section className="section-padding">
+        <Container>
+          <div className="rounded-3xl border border-border bg-card p-6 shadow-lg shadow-slate-900/5 sm:p-10">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {stats.map((stat) => {
+                const Icon = stat.icon;
+                return (
+                  <div key={stat.label} className="flex items-center gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-extrabold text-foreground">{stat.value}</p>
+                      <p className="text-sm font-medium text-muted-foreground">{stat.label}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-padding">
+        <Container>
+          <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-primary to-primary/90 p-8 text-primary-foreground shadow-xl shadow-primary/20 sm:p-12 lg:p-16">
+            <div className="relative z-10 mx-auto max-w-3xl text-center">
+              <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                Bereit für den nächsten Schritt?
+              </h2>
+              <p className="mt-4 text-base opacity-90 sm:text-lg">
+                Starte jetzt kostenlos und entdecke, wie schnell du dich im Berufsalltag sicherer fühlst.
+              </p>
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+                <Button asChild size="lg" variant="secondary" className="h-12 px-8 text-base">
+                  <Link href={primaryHref}>{primaryLabel}</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="h-12 px-8 text-base border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
+                  <Link href="/berufsfelder">Berufsfelder entdecken</Link>
+                </Button>
+              </div>
+            </div>
+          </div>
+        </Container>
       </section>
     </div>
   );

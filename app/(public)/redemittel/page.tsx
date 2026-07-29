@@ -9,6 +9,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 
 export const metadata = {
   title: `Redemittel B2 – ${APP_NAME}`,
@@ -106,47 +108,44 @@ const sections = [
 
 export default function RedemittelPage() {
   return (
-    <div className="flex-1 py-12 container mx-auto px-4">
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Redemittel für BSK B2
-        </h1>
-        <p className="text-muted-foreground text-lg">
-          Feste Wendungen für Diskussionen, Präsentationen, E-Mails und
-          Prüfungen.
-        </p>
-        <div className="mt-6 flex justify-center">
+    <div className="section-padding">
+      <Container>
+        <PageHeader
+          title="Redemittel für BSK B2"
+          description="Feste Wendungen für Diskussionen, Präsentationen, E-Mails und Prüfungen."
+          className="text-center sm:text-left"
+        >
           <Button asChild>
             <Link href="/trainer/redemittel">
               <Play className="mr-2 h-4 w-4" /> Zum Redemittel-Trainer
             </Link>
           </Button>
-        </div>
-      </div>
+        </PageHeader>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-        {sections.map((section) => (
-          <Card key={section.title} className="hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="w-fit rounded-xl bg-primary/10 p-3 text-primary mb-3">
-                <MessageCircle className="h-6 w-6" />
-              </div>
-              <CardTitle>{section.title}</CardTitle>
-              <CardDescription>{section.desc}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <ul className="space-y-2 text-sm">
-                {section.phrases.map((phrase, i) => (
-                  <li key={i} className="flex items-start gap-2">
-                    <CheckCircle className="h-4 w-4 text-primary mt-0.5 shrink-0" />
-                    <span className="italic">{phrase}</span>
-                  </li>
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {sections.map((section) => (
+            <Card key={section.title} className="transition-all hover:-translate-y-0.5 hover:shadow-md">
+              <CardHeader>
+                <div className="mb-3 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <MessageCircle className="h-5 w-5" />
+                </div>
+                <CardTitle>{section.title}</CardTitle>
+                <CardDescription>{section.desc}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2 text-sm">
+                  {section.phrases.map((phrase, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <CheckCircle className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                      <span className="italic text-muted-foreground">{phrase}</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Container>
     </div>
   );
 }

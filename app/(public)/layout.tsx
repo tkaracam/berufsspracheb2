@@ -10,9 +10,9 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[linear-gradient(180deg,#fffdf9_0%,#fff8f1_48%,#f5fbf6_100%)]">
+    <div className="min-h-screen flex flex-col">
       <PublicNavbar />
-      <main className="animate-in fade-in flex-1 duration-500">{children}</main>
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
   );

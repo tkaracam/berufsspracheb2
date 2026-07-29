@@ -24,7 +24,7 @@ export function MobileBottomNav({ role }: MobileBottomNavProps) {
 
   return (
     <nav
-      className="lg:hidden fixed bottom-0 inset-x-0 z-50 rounded-t-2xl border-t border-border/40 bg-background/95 shadow-[0_-4px_20px_rgba(0,0,0,0.05)] backdrop-blur-xl supports-[backdrop-filter]:bg-background/80"
+      className="lg:hidden fixed bottom-0 inset-x-0 z-50 rounded-t-2xl border-t border-border/60 bg-card/95 shadow-[0_-4px_24px_rgba(15,23,42,0.08)] backdrop-blur-xl supports-[backdrop-filter]:bg-card/90"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <ul className="grid" style={{ gridTemplateColumns: `repeat(${items.length}, minmax(0, 1fr))` }}>
@@ -37,18 +37,18 @@ export function MobileBottomNav({ role }: MobileBottomNavProps) {
               <Link
                 href={item.href}
                 className={cn(
-                  "relative flex flex-col items-center justify-center gap-1 py-2.5 min-h-[3.75rem] text-xs font-medium transition-colors active:scale-95",
+                  "relative flex flex-col items-center justify-center gap-1 py-2.5 min-h-[4rem] text-[0.7rem] font-semibold transition-colors active:scale-95",
                   isActive
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground"
                 )}
               >
                 {isActive && (
-                  <span className="absolute top-1.5 h-1 w-5 rounded-full bg-primary" />
+                  <span className="absolute top-1.5 h-1 w-6 rounded-full bg-primary" />
                 )}
                 <div
                   className={cn(
-                    "flex h-9 w-9 items-center justify-center rounded-xl transition-colors",
+                    "flex h-10 w-10 items-center justify-center rounded-xl transition-colors",
                     isActive ? "bg-primary/10" : "bg-transparent"
                   )}
                 >

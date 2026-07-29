@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Bell, Flame } from "lucide-react";
+import { Bell, Flame, Play, Target, TrendingUp, CalendarDays } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { createClient } from "@/lib/supabase/server";
 import { isMockMode } from "@/lib/mock-user";
@@ -8,10 +8,13 @@ import { calculateStreak } from "@/lib/streak";
 import { DashboardDeckGrid } from "@/components/dashboard/dashboard-deck-grid";
 import { ProgressRing } from "@/components/ui/progress-ring";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
+import { Badge } from "@/components/ui/badge";
 import type { Deck, DeckType } from "@/lib/decks";
 import { redemittelQuestions } from "@/lib/redemittel-quiz-data";
 import { grammarQuestions } from "@/lib/grammar-data";
-import { MobileTabs } from "@/components/concept27/mobile-tabs";
 
 export const metadata = { title: `Dashboard – ${APP_NAME}` };
 
@@ -77,120 +80,113 @@ export default async function LearnerDashboardPage() {
   const weekdayLabels = ["M", "D", "M", "D", "F", "S", "S"];
 
   return (
-    <div className="mx-auto w-full max-w-[380px] rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(180deg,#fffefb_0%,#fffaf5_100%)] px-5 pb-5 pt-4 shadow-[0_28px_60px_-38px_rgba(101,79,50,0.22)]">
-      <div className="flex items-start justify-between">
-        <div>
-          <p className="text-[2rem] leading-none text-slate-900 [font-family:Georgia,serif]">
-            Hallo, {name}! 👋
-          </p>
-          <p className="mt-3 text-sm leading-6 text-slate-500">
-            Weiterlernen. Weiterkommen.
-          </p>
-        </div>
-        <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-[#eadfce] bg-white shadow-sm">
-          <Bell className="h-4 w-4 text-slate-500" />
-        </div>
-      </div>
+    <Container size="large">
+      <PageHeader
+        title={`Hallo, ${name}! 👋`}
+        description="Weiterlernen. Weiterkommen."
+      >
+        <Button variant="outline" size="icon" className="rounded-xl">
+          <Bell className="h-4 w-4" />
+        </Button>
+      </PageHeader>
 
-      <div className="mt-5 rounded-[1.5rem] border border-[#f0e5d8] bg-white p-4 shadow-sm">
-        <div className="flex items-start justify-between">
-          <p className="text-sm text-slate-700">Dein Fortschritt</p>
-          <p className="text-xs text-slate-400">Diese Woche</p>
-        </div>
-
-        <div className="mt-4 flex items-center gap-4">
-          <ProgressRing
-            value={percent || 72}
-            size={92}
-            strokeWidth={8}
-            trackClassName="text-[#e8ece6]"
-            indicatorClassName="text-[#5c9c88]"
-            label={<span className="text-[1.95rem] font-semibold text-slate-900">{percent || 72}%</span>}
-          />
-          <div className="space-y-2 text-sm text-slate-600">
-            <div>
-              <p className="text-[1.75rem] leading-none text-slate-900 [font-family:Georgia,serif]">
-                {dailyDone}
-              </p>
-              <p className="mt-1 text-sm text-slate-600">Minuten gelernt</p>
-            </div>
-            <p className="text-xs text-slate-400">
-              {weeklyActiveDays} von 7 Tagen aktiv
-            </p>
-          </div>
-        </div>
-
-        <div className="mt-4 flex items-center justify-between">
-          {weekdayLabels.map((label, index) => {
-            const active = index < Math.max(weeklyActiveDays, 1);
-            return (
-              <div key={`${label}-${index}`} className="flex flex-col items-center gap-1">
-                <div
-                  className={`flex h-5 w-5 items-center justify-center rounded-full text-[0.6rem] ${
-                    active ? "bg-[#5c9c88] text-white" : "bg-[#f4f1eb] text-slate-400"
-                  }`}
-                >
-                  {label}
-                </div>
+      <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        {/* Progress Card */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Dein Fortschritt</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center gap-5">
+              <ProgressRing
+                value={percent || 72}
+                size={96}
+                strokeWidth={8}
+                indicatorClassName="text-primary"
+                trackClassName="text-muted"
+                label={<span className="text-2xl font-extrabold text-foreground">{percent || 72}%</span>}
+              />
+              <div className="space-y-1">
+                <p className="text-2xl font-extrabold text-foreground">{dailyDone}</p>
+                <p className="text-sm text-muted-foreground">Minuten gelernt</p>
+                <p className="text-xs text-muted-foreground">{weeklyActiveDays} von 7 Tagen aktiv</p>
               </div>
-            );
-          })}
-        </div>
-      </div>
+            </div>
+            <div className="mt-5 flex items-center justify-between">
+              {weekdayLabels.map((label, index) => {
+                const active = index < Math.max(weeklyActiveDays, 1);
+                return (
+                  <div key={`${label}-${index}`} className="flex flex-col items-center gap-1">
+                    <div
+                      className={`flex h-6 w-6 items-center justify-center rounded-full text-[0.65rem] font-bold ${
+                        active ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                      }`}
+                    >
+                      {label}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </CardContent>
+        </Card>
 
-      <div className="mt-4 rounded-[1.5rem] border border-[#f0e5d8] bg-white p-4 shadow-sm">
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm text-slate-700">Tagesziel</p>
-            <p className="mt-1 text-[1.2rem] text-slate-900 [font-family:Georgia,serif]">
-              {dailyGoal} Minuten lernen
-            </p>
-          </div>
-          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#fff1e8] text-[#d69061]">
-            <Flame className="h-5 w-5" />
-          </div>
-        </div>
-        <div className="mt-4 h-2 rounded-full bg-[#eceee9]">
-          <div
-            className="h-2 rounded-full bg-[#5c9c88]"
-            style={{ width: `${Math.max(10, Math.min((dailyDone / dailyGoal) * 100, 100))}%` }}
-          />
-        </div>
-        <p className="mt-2 text-right text-xs text-slate-400">
-          {dailyDone} / {dailyGoal} Min.
-        </p>
-      </div>
+        {/* Daily Goal Card */}
+        <Card>
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm font-medium text-muted-foreground">Tagesziel</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-2xl font-extrabold text-foreground">{dailyGoal} Minuten</p>
+                <p className="text-sm text-muted-foreground">Heute lernen</p>
+              </div>
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent text-accent-foreground shadow-sm">
+                <Flame className="h-6 w-6" />
+              </div>
+            </div>
+            <div className="mt-5 space-y-2">
+              <div className="h-2.5 overflow-hidden rounded-full bg-muted">
+                <div
+                  className="h-full rounded-full bg-primary transition-all"
+                  style={{ width: `${Math.max(10, Math.min((dailyDone / dailyGoal) * 100, 100))}%` }}
+                />
+              </div>
+              <p className="text-right text-xs font-semibold text-muted-foreground">
+                {dailyDone} / {dailyGoal} Min.
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
-      {featuredDeck ? (
-        <div className="mt-4 rounded-[1.5rem] border border-[#f0e5d8] bg-white p-4 shadow-sm">
-          <p className="text-[1.45rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-            Weiterlernen
-          </p>
-          <div className="mt-4 flex items-center gap-3">
-            <div className="h-20 w-20 rounded-[1.2rem] bg-[linear-gradient(180deg,#edf5ef_0%,#fbf0e4_100%)]" />
-            <div className="min-w-0 flex-1">
-              <p className="text-base leading-6 text-slate-900 [font-family:Georgia,serif]">
-                {featuredDeck.title}
-              </p>
-              <p className="mt-1 text-sm text-slate-500">
-                {featuredDeck.itemIds.length} Karten
-              </p>
-              <Button asChild className="mt-3 h-9 rounded-[0.9rem] bg-[#5c9c88] px-4 text-sm text-white hover:bg-[#538d7a]">
+        {/* Featured Deck Card */}
+        {featuredDeck ? (
+          <Card className="bg-gradient-to-br from-primary/10 to-accent/20">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm font-medium text-primary-foreground/80">Weiterlernen</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-xl font-extrabold text-foreground">{featuredDeck.title}</p>
+              <p className="text-sm text-muted-foreground">{featuredDeck.itemIds.length} Karten</p>
+              <Button asChild className="mt-5 w-full gap-2 rounded-xl">
                 <Link href={`/decks/${encodeURIComponent(featuredDeck.id)}/learn`}>
-                  Fortsetzen
+                  <Play className="h-4 w-4" /> Fortsetzen
                 </Link>
               </Button>
-            </div>
-          </div>
-        </div>
-      ) : null}
-
-      <div className="mt-5">
-        <DashboardDeckGrid decks={decks} />
+            </CardContent>
+          </Card>
+        ) : null}
       </div>
 
-      <MobileTabs active="lernen" />
-    </div>
+      <div className="mt-10">
+        <div className="mb-4 flex items-center justify-between">
+          <h2 className="text-xl font-bold text-foreground">Deine Decks</h2>
+          <Badge variant="secondary" className="rounded-full">{decks.length} Decks</Badge>
+        </div>
+        <DashboardDeckGrid decks={decks} />
+      </div>
+    </Container>
   );
 }
 

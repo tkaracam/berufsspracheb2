@@ -8,6 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 
 export const metadata = {
   title: `Schreiben B2 – ${APP_NAME}`,
@@ -163,55 +165,54 @@ Lösung: Ab nächstem Monat wird im Unternehmen eine neue Software eingeführt. 
 
 export default function SchreibenPage() {
   return (
-    <div className="flex-1 py-12 container mx-auto px-4">
-      <div className="max-w-3xl mx-auto text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">
-          Schreiben für BSK B2
-        </h1>
-        <p className="text-muted-foreground text-lg">
-          Templates und Musterlösungen für E-Mails, Briefe und Prüfungstexte.
-        </p>
-      </div>
+    <div className="section-padding">
+      <Container>
+        <PageHeader
+          title="Schreiben für BSK B2"
+          description="Templates und Musterlösungen für E-Mails, Briefe und Prüfungstexte."
+          className="text-center sm:text-left"
+        />
 
-      <div className="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
-        {templates.map((t) => (
-          <Card key={t.title} className="hover:shadow-md transition-shadow">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-fit rounded-xl bg-primary/10 p-3 text-primary shrink-0">
-                    <PenTool className="h-6 w-6" />
+        <div className="mt-10 grid grid-cols-1 gap-6">
+          {templates.map((t) => (
+            <Card key={t.title} className="transition-all hover:-translate-y-0.5 hover:shadow-md">
+              <CardHeader>
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <PenTool className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <CardTitle>{t.title}</CardTitle>
+                      <CardDescription>{t.situation}</CardDescription>
+                    </div>
                   </div>
-                  <div>
-                    <CardTitle>{t.title}</CardTitle>
-                    <CardDescription>{t.situation}</CardDescription>
-                  </div>
+                  <Badge variant="outline" className="w-fit">
+                    <FileText className="mr-1 h-3 w-3" />
+                    {t.type}
+                  </Badge>
                 </div>
-                <Badge variant="outline">
-                  <FileText className="h-3 w-3 mr-1" />
-                  {t.type}
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <h4 className="font-semibold mb-2">Aufbau</h4>
-                <ol className="list-decimal list-inside space-y-1 text-sm">
-                  {t.structure.map((step, i) => (
-                    <li key={i}>{step}</li>
-                  ))}
-                </ol>
-              </div>
-              <div className="rounded-lg bg-muted/60 p-4">
-                <h4 className="font-semibold mb-2">Musterlösung</h4>
-                <pre className="whitespace-pre-wrap text-sm font-sans leading-relaxed">
-                  {t.example}
-                </pre>
-              </div>
-            </CardContent>
-          </Card>
-        ))}
-      </div>
+              </CardHeader>
+              <CardContent className="space-y-6">
+                <div>
+                  <h4 className="mb-2 font-bold text-foreground">Aufbau</h4>
+                  <ol className="list-decimal list-inside space-y-1 text-sm text-muted-foreground">
+                    {t.structure.map((step, i) => (
+                      <li key={i}>{step}</li>
+                    ))}
+                  </ol>
+                </div>
+                <div className="rounded-xl bg-muted p-4">
+                  <h4 className="mb-2 font-bold text-foreground">Musterlösung</h4>
+                  <pre className="whitespace-pre-wrap font-sans text-sm leading-relaxed text-muted-foreground">
+                    {t.example}
+                  </pre>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </Container>
     </div>
   );
 }

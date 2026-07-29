@@ -1,10 +1,21 @@
 import Link from "next/link";
-import { Briefcase, HeartPulse, Hammer, Search, ShoppingBag } from "lucide-react";
+import {
+  ArrowRight,
+  Briefcase,
+  HeartPulse,
+  Hammer,
+  Search,
+  ShoppingBag,
+  Sparkles,
+  Target,
+  Users,
+} from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { getBerufsfelder, getAllFachwoerter, getBerufeByFeld } from "@/lib/queries";
 import { BerufsfelderSearch } from "@/components/home/berufsfelder-search";
+import { Container } from "@/components/ui/container";
+import { PageHeader } from "@/components/ui/page-header";
 import type { IconName } from "@/components/home/berufsfelder-search";
-import { MobileTabs } from "@/components/concept27/mobile-tabs";
 
 export const metadata = { title: `Berufsfelder – ${APP_NAME}` };
 
@@ -14,6 +25,31 @@ const featuredAssets = [
   { title: "Technik", icon: Hammer, accent: "slate" as const },
   { title: "Gastronomie", icon: ShoppingBag, accent: "peach" as const },
 ];
+
+const highlights = [
+  {
+    title: "Passende Themen schneller finden",
+    text: "Berufsfelder, Begriffe und typische Situationen sind direkt nach Praxisbereichen gegliedert.",
+    icon: Search,
+  },
+  {
+    title: "Zielgerichtet lernen",
+    text: "Du arbeitest nicht allgemein, sondern genau in dem Umfeld, das für Kurs und Beruf relevant ist.",
+    icon: Target,
+  },
+  {
+    title: "Nah an echten Berufen",
+    text: "Jedes Feld verbindet Fachwortschatz mit konkreten Rollen, Aufgaben und Kommunikationssituationen.",
+    icon: Users,
+  },
+];
+
+const accentStyles: Record<string, { card: string; icon: string }> = {
+  mint: { card: "bg-emerald-50/80 hover:bg-emerald-100/60", icon: "bg-emerald-100 text-emerald-700" },
+  sand: { card: "bg-amber-50/80 hover:bg-amber-100/60", icon: "bg-amber-100 text-amber-700" },
+  slate: { card: "bg-slate-100/80 hover:bg-slate-200/60", icon: "bg-slate-200 text-slate-700" },
+  peach: { card: "bg-orange-50/80 hover:bg-orange-100/60", icon: "bg-orange-100 text-orange-700" },
+};
 
 export default async function BerufsfelderPage() {
   const felder = await getBerufsfelder();
@@ -42,67 +78,119 @@ export default async function BerufsfelderPage() {
     href: modules[index]?.href ?? "/berufsfelder",
     lessons: modules[index]?.words ?? 0,
   }));
+  const totalWords = modules.reduce((sum, module) => sum + module.words, 0);
+  const totalJobs = modules.reduce((sum, module) => sum + module.jobs, 0);
 
   return (
-    <div className="mx-auto w-full max-w-[380px] rounded-[2rem] border border-[#eadfce] bg-[linear-gradient(180deg,#fffefb_0%,#fffaf5_100%)] px-5 pb-5 pt-4 shadow-[0_28px_60px_-38px_rgba(101,79,50,0.22)]">
-      <div className="flex items-center justify-between">
-        <p className="text-[2rem] text-slate-900 [font-family:Georgia,serif]">Berufsfelder</p>
-        <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-[#eadfce] bg-white shadow-sm">
-          <Search className="h-4 w-4 text-slate-500" />
-        </div>
-      </div>
-      <p className="mt-3 text-sm leading-6 text-slate-500">
-        Wähle dein Arbeitsumfeld und lerne zielgerichtet.
-      </p>
+    <div className="relative overflow-hidden">
+      <section className="px-4 pb-14 pt-20 sm:pt-24 lg:pb-20 lg:pt-28">
+        <Container size="large">
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div>
+              <PageHeader
+                title="Berufsfelder für klares, praxisnahes Lernen"
+                description="Wähle das Arbeitsumfeld, das zu deinem Alltag passt, und lerne gezielt Fachwortschatz, typische Kommunikation und berufsnahe Situationen."
+                badge={
+                  <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary shadow-sm">
+                    <Sparkles className="h-4 w-4" />
+                    Berufssprache nach echten Arbeitsbereichen
+                  </div>
+                }
+              />
 
-      <div className="mt-5 grid grid-cols-2 gap-3">
-        {featured.map((item) => {
-          const Icon = item.icon;
-          return (
-            <Link
-              key={item.title}
-              href={item.href}
-              className={`rounded-[1.45rem] border border-[#eadfce] p-4 shadow-sm transition-transform hover:-translate-y-0.5 ${
-                item.accent === "sand"
-                  ? "bg-[linear-gradient(180deg,#fbf4e8_0%,#fffaf3_100%)]"
-                  : item.accent === "slate"
-                    ? "bg-[linear-gradient(180deg,#eef3f3_0%,#f8fbfb_100%)]"
-                    : item.accent === "peach"
-                      ? "bg-[linear-gradient(180deg,#fff0e8_0%,#fff8f4_100%)]"
-                      : "bg-[linear-gradient(180deg,#eef7f4_0%,#f9fcfa_100%)]"
-              }`}
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/88 shadow-sm">
-                <Icon
-                  className={`h-5 w-5 ${
-                    item.accent === "sand"
-                      ? "text-[#b88a4a]"
-                      : item.accent === "slate"
-                        ? "text-[#64748b]"
-                        : item.accent === "peach"
-                          ? "text-[#d69061]"
-                          : "text-[#5c9c88]"
-                  }`}
-                />
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
+                  <p className="text-2xl font-extrabold text-foreground">{modules.length}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Berufsfelder</p>
+                </div>
+                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
+                  <p className="text-2xl font-extrabold text-foreground">{totalWords}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">Begriffe insgesamt</p>
+                </div>
+                <div className="rounded-2xl border border-border bg-card p-4 shadow-sm">
+                  <p className="text-2xl font-extrabold text-foreground">{totalJobs}</p>
+                  <p className="mt-1 text-sm text-muted-foreground">berufsnahe Rollen</p>
+                </div>
               </div>
-              <p className="mt-6 text-[1.45rem] leading-tight text-slate-900 [font-family:Georgia,serif]">
-                {item.title}
+            </div>
+
+            <div className="rounded-3xl border border-border bg-card p-6 shadow-xl shadow-slate-900/5">
+              <div className="grid gap-4">
+                {highlights.map((highlight) => {
+                  const Icon = highlight.icon;
+                  return (
+                    <div
+                      key={highlight.title}
+                      className="rounded-2xl border border-border bg-background p-5 shadow-sm"
+                    >
+                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <p className="mt-4 text-lg font-bold text-foreground">
+                        {highlight.title}
+                      </p>
+                      <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                        {highlight.text}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-padding pt-0">
+        <Container size="large">
+          <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+            {featured.map((item) => {
+              const Icon = item.icon;
+              const styles = accentStyles[item.accent];
+              return (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className={`group relative overflow-hidden rounded-3xl border border-border p-5 shadow-sm transition-all hover:-translate-y-1 hover:shadow-md sm:p-6 ${styles.card}`}
+                >
+                  <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${styles.icon} shadow-sm`}>
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <p className="mt-6 text-lg font-bold text-foreground">
+                    {item.title}
+                  </p>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                    {item.lessons} Begriffe direkt im beruflichen Kontext.
+                  </p>
+                  <div className="mt-4 flex items-center text-sm font-semibold text-primary opacity-0 transition-opacity group-hover:opacity-100">
+                    Bereich öffnen <ArrowRight className="ml-1 h-4 w-4" />
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </Container>
+      </section>
+
+      <section className="section-padding pt-0">
+        <Container size="large">
+          <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">
+                Alle Bereiche
               </p>
-              <p className="mt-2 text-sm text-slate-500">{item.lessons} Lektionen</p>
-            </Link>
-          );
-        })}
-      </div>
+              <h2 className="mt-2 text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl">
+                Finde das passende Modul für deinen Berufsweg
+              </h2>
+            </div>
+            <span className="inline-flex w-fit rounded-full bg-muted px-3 py-1 text-xs font-semibold text-muted-foreground">
+              {modules.length} Felder verfügbar
+            </span>
+          </div>
 
-      <div className="mt-5 space-y-4">
-        <div className="flex items-center justify-between">
-          <h2 className="text-base text-slate-900 [font-family:Georgia,serif]">Alle Bereiche</h2>
-          <span className="text-xs text-slate-500">{modules.length} Felder</span>
-        </div>
-        <BerufsfelderSearch modules={modules} />
-      </div>
-
-      <MobileTabs active="berufsfelder" />
+          <BerufsfelderSearch modules={modules} />
+        </Container>
+      </section>
     </div>
   );
 }
