@@ -2,6 +2,7 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import {
   Search,
   X,
@@ -101,6 +102,8 @@ interface Module {
   icon: IconName;
   words: number;
   jobs: number;
+  image: string;
+  eyebrow: string;
 }
 
 interface Props {
@@ -193,13 +196,27 @@ export function BerufsfelderSearch({ modules }: Props) {
         {featuredModule ? (
           <Link href={featuredModule.href} className="group block">
             <div className="h-full rounded-[1.75rem] border border-[#e8ddd0] bg-[linear-gradient(135deg,#f8eee1_0%,#eef7ef_48%,#dceee8_100%)] p-[1px] shadow-[0_24px_70px_-38px_rgba(115,190,178,0.28)]">
-              <div className="flex h-full flex-col justify-between rounded-[1.65rem] bg-[linear-gradient(180deg,#fffdf8_0%,#fff9f3_100%)] p-5 text-slate-900">
-                <div>
-                  <span className="inline-flex items-center gap-2 rounded-full bg-[#eef6ef] px-3 py-1 text-xs font-semibold text-[#4b8074]">
+              <div className="flex h-full flex-col justify-between overflow-hidden rounded-[1.65rem] bg-[linear-gradient(180deg,#fffdf8_0%,#fff9f3_100%)] text-slate-900">
+                <div className="relative">
+                  <Image
+                    src={featuredModule.image}
+                    alt={featuredModule.title}
+                    width={1200}
+                    height={900}
+                    className="h-36 w-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/45 via-slate-950/10 to-transparent" />
+                  <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-white/86 px-3 py-1 text-xs font-semibold text-[#4b8074] backdrop-blur">
                     <Sparkles className="h-3.5 w-3.5" />
                     Empfehlung
                   </span>
-                  <h3 className="mt-4 text-xl font-semibold">{featuredModule.title}</h3>
+                </div>
+                <div className="flex h-full flex-col justify-between p-5">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8c6d4e]">
+                    {featuredModule.eyebrow}
+                  </p>
+                  <h3 className="mt-3 text-xl font-semibold">{featuredModule.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-slate-600">
                     {featuredModule.description}
                   </p>
@@ -215,6 +232,7 @@ export function BerufsfelderSearch({ modules }: Props) {
                   </div>
                   <ArrowRight className="h-4 w-4 text-[#73beb2] transition-transform group-hover:translate-x-1" />
                 </div>
+                </div>
               </div>
             </div>
           </Link>
@@ -227,15 +245,25 @@ export function BerufsfelderSearch({ modules }: Props) {
           return (
             <Link key={feld.id} href={feld.href} className="group block">
               <Card className="h-full overflow-hidden rounded-[1.75rem] border border-[#eadfce] bg-white/88 transition-all duration-300 hover:-translate-y-1.5 hover:border-[#d9c9b3] hover:shadow-[0_24px_50px_-30px_rgba(32,50,58,0.2)]">
-                <CardHeader className="pb-4">
-                  <div className="mb-4 flex items-start justify-between gap-3">
-                    <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#8bcabd_0%,#cfe6d8_100%)] text-white shadow-md transition-transform duration-300 group-hover:scale-110">
-                      <Icon className="h-6 w-6" />
+                <div className="relative overflow-hidden">
+                  <Image
+                    src={feld.image}
+                    alt={feld.title}
+                    width={1200}
+                    height={900}
+                    className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/55 via-slate-950/8 to-transparent" />
+                  <div className="absolute left-4 top-4 flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[linear-gradient(135deg,#8bcabd_0%,#cfe6d8_100%)] text-white shadow-md transition-transform duration-300 group-hover:scale-110">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <Badge variant="outline" className="rounded-full border-[#d9e8da] bg-[#f2f8f3] text-[#5a8d7d]">
-                      B2
+                    <Badge variant="outline" className="rounded-full border-white/60 bg-white/82 text-[#5a8d7d] backdrop-blur">
+                      {feld.eyebrow}
                     </Badge>
                   </div>
+                </div>
+                <CardHeader className="pb-4">
                   <CardTitle className="text-lg leading-6">{feld.title}</CardTitle>
                   <CardDescription className="line-clamp-3 text-sm leading-6">
                     {feld.description}

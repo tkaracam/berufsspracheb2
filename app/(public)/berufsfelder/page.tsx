@@ -17,6 +17,7 @@ import { BerufsfelderSearch } from "@/components/home/berufsfelder-search";
 import { Container } from "@/components/ui/container";
 import { PageHeader } from "@/components/ui/page-header";
 import type { IconName } from "@/components/home/berufsfelder-search";
+import { BERUFSFELD_VISUALS, DEFAULT_BERUFSFELD_VISUAL } from "@/lib/berufsfeld-visuals";
 
 export const metadata = { title: `Berufsfelder – ${APP_NAME}` };
 
@@ -84,6 +85,7 @@ export default async function BerufsfelderPage() {
   );
   const modules = felder.map((feld) => {
     const { words, jobs } = stats.get(feld.id) ?? { words: 0, jobs: 0 };
+    const visual = BERUFSFELD_VISUALS[feld.id] ?? DEFAULT_BERUFSFELD_VISUAL;
     return {
       id: feld.id,
       href: `/berufsfelder/${feld.id}`,
@@ -92,6 +94,8 @@ export default async function BerufsfelderPage() {
       icon: (feld.icon ?? "Briefcase") as IconName,
       words,
       jobs,
+      image: visual.image,
+      eyebrow: visual.eyebrow,
     };
   });
   const featured = featuredAssets.map((asset, index) => ({
