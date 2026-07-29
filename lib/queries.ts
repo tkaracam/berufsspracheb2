@@ -20,33 +20,39 @@ export async function getBerufsfelder() {
   if (isMockMode()) return mockBerufsfelder;
   const supabase = await createClient();
   const { data } = await supabase.from("berufsfelder").select("*").order("sort_order");
-  return data ?? [];
+  return data && data.length > 0 ? data : mockBerufsfelder;
 }
 
 export async function getBerufsfeldById(id: string) {
   if (isMockMode()) return mockBerufsfelder.find((f) => f.id === id) ?? null;
   const supabase = await createClient();
   const { data } = await supabase.from("berufsfelder").select("*").eq("id", id).single();
-  return data;
+  return data ?? mockBerufsfelder.find((f) => f.id === id) ?? null;
 }
 
 export async function getBerufeByFeld(id: string) {
   if (isMockMode()) return mockBerufe.filter((b) => b.berufsfeld_id === id);
   const supabase = await createClient();
   const { data } = await supabase.from("berufe").select("*").eq("berufsfeld_id", id).order("title");
-  return data ?? [];
+  return data && data.length > 0 ? data : mockBerufe.filter((b) => b.berufsfeld_id === id);
 }
 
 export async function getFachwoerterByFeld(id: string, limit?: number) {
   let data = isMockMode()
     ? mockFachwoerter.filter((w) => w.berufsfeld_id === id)
     : (await (await createClient()).from("fachwoerter").select("*").eq("berufsfeld_id", id)).data ?? [];
+  if (data.length === 0) {
+    data = mockFachwoerter.filter((w) => w.berufsfeld_id === id);
+  }
   if (limit) data = data.slice(0, limit);
   return data;
 }
 
 export async function getAllFachwoerter(limit?: number) {
   let data = isMockMode() ? mockFachwoerter : (await (await createClient()).from("fachwoerter").select("*")).data ?? [];
+  if (data.length === 0) {
+    data = mockFachwoerter;
+  }
   if (limit) data = data.slice(0, limit);
   return data;
 }

@@ -25,18 +25,18 @@ export const metadata = {
 
 const features = [
   {
-    title: "Fachwortschatz mit Berufsbezug",
-    text: "Lerne relevante Begriffe nicht isoliert, sondern direkt im beruflichen Kontext.",
+    title: "Lernen mit erkennbarem Berufsbezug",
+    text: "Begriffe, Situationen und Redemittel greifen typische Abläufe aus dem Arbeitsalltag auf.",
     icon: Briefcase,
   },
   {
-    title: "Kommunikation, die ankommt",
-    text: "Trainiere Redemittel und typische Situationen für Gespräche im Alltag und im Beruf.",
+    title: "Kommunikation klarer aufbauen",
+    text: "Gespräche, Rückfragen und Formulierungen werden so trainiert, dass sie im Beruf sicher nutzbar sind.",
     icon: MessageCircle,
   },
   {
-    title: "Strukturiertes B2-Training",
-    text: "Arbeite mit klaren Lernwegen, kurzen Einheiten und sichtbarem Fortschritt.",
+    title: "Strukturiert auf B2 hinarbeiten",
+    text: "Kurze Wege, klare Schwerpunkte und ein Aufbau, der sich auch langfristig gut tragen lässt.",
     icon: GraduationCap,
   },
 ];
@@ -200,13 +200,14 @@ export default async function HomePage() {
       <section className="section-padding">
         <Container>
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Warum diese Plattform</p>
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-primary">Warum diese Lernumgebung</p>
             <h2 className="mt-4 text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
-              Ruhige Technologie statt visuellem Lärm.
+              Weniger Ablenkung. Mehr sprachliche Sicherheit.
             </h2>
             <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-              Die Oberfläche setzt auf Ruhe, klare Wege und berufliche Praxis.
-              So fühlt sich Lernen wertiger an und der Einstieg wird deutlich leichter.
+              Die Plattform ist so aufgebaut, dass Inhalte schnell greifbar werden,
+              Lernwege verständlich bleiben und der Fokus auf Sprache im Beruf liegt
+              statt auf unnötiger Komplexität.
             </p>
           </div>
 
