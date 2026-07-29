@@ -4,10 +4,8 @@ import {
   ArrowRight,
   BookOpen,
   Briefcase,
-  CheckCircle2,
   GraduationCap,
   MessageCircle,
-  Sparkles,
   Users,
   Trophy,
 } from "lucide-react";
@@ -77,119 +75,65 @@ export default async function HomePage() {
     <div className="relative overflow-hidden">
       <section className="px-4 pb-18 pt-20 sm:pt-24 lg:pb-28 lg:pt-32">
         <Container>
-          <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[1fr_1.02fr]">
-            <div className="animate-fade-in-up">
-              <div className="editorial-badge">
-                <Sparkles className="h-4 w-4" />
-                Berufssprache B2 für den beruflichen Alltag
-              </div>
-
-              <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-[4.5rem] lg:leading-[0.98]">
-                Deutsch, das
-                <br />
-                im Beruf
-                <br />
-                <span className="text-[#73beb2]">
-                  sicher macht.
-                </span>
-              </h1>
-
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                {APP_NAME} verbindet Fachwortschatz, berufliche Kommunikation
-                und prüfungsnahe Inhalte in einer klaren Lernumgebung, die
-                Orientierung gibt und ohne Umwege zum passenden Bereich führt.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-                <Button asChild size="lg" className="h-12 rounded-full bg-[#0f4f55] px-7 text-base hover:bg-[#0c4348]">
-                  <Link href={primaryHref}>
-                    {primaryLabel}
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="h-12 rounded-full px-7 text-base">
-                  <Link href="/berufsfelder">Berufsfelder entdecken</Link>
-                </Button>
-              </div>
-
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                <div className="glass-panel rounded-[1.5rem] p-4">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">Kompakte Lerneinheiten</p>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">Schnell beginnen, auch wenn im Alltag nur wenig Zeit bleibt.</p>
+          <div className="mx-auto max-w-7xl">
+            <div className="editorial-shell relative overflow-hidden p-5 sm:p-6">
+              <div className="pointer-events-none absolute inset-0 editorial-grid opacity-25" />
+              <div className="grid gap-4">
+                <div className="relative overflow-hidden rounded-[1.7rem] border border-[#eadfce] bg-white">
+                  <div className="absolute inset-y-0 left-0 w-[42%] bg-[linear-gradient(90deg,rgba(255,252,247,0.98)_0%,rgba(255,252,247,0.76)_65%,transparent_100%)]" />
+                  <Image
+                    src="/images/professions/office.png"
+                    alt="Beruflicher Erfolg"
+                    width={1600}
+                    height={1000}
+                    className="h-[18rem] w-full object-cover sm:h-[24rem] lg:h-[32rem]"
+                  />
+                  <div className="absolute left-6 top-6 max-w-sm">
+                    <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#8f6d47]">
+                      Klar. Hochwertig. Berufsnah.
+                    </p>
+                    <p className="mt-3 text-2xl font-semibold leading-tight text-foreground sm:text-3xl lg:text-4xl">
+                      Sprache lernen mit Struktur, Fokus und echter Berufspraxis.
+                    </p>
                   </div>
                 </div>
-                <div className="glass-panel rounded-[1.5rem] p-4">
-                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
-                  <div>
-                    <p className="text-sm font-semibold text-foreground">Praxisnah aufgebaut</p>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">Inhalte aus typischen Situationen in Beruf, Kurs und Prüfung.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
-            <div className="relative">
-              <div className="editorial-shell relative overflow-hidden p-5">
-                <div className="pointer-events-none absolute inset-0 editorial-grid opacity-25" />
-                <div className="grid gap-4">
-                  <div className="relative overflow-hidden rounded-[1.7rem] border border-[#eadfce] bg-white">
-                    <div className="absolute inset-y-0 left-0 w-[42%] bg-[linear-gradient(90deg,rgba(255,252,247,0.98)_0%,rgba(255,252,247,0.76)_65%,transparent_100%)]" />
-                    <Image
-                      src="/images/professions/office.png"
-                      alt="Beruflicher Erfolg"
-                      width={1600}
-                      height={1000}
-                      className="h-[18rem] w-full object-cover sm:h-[22rem] lg:h-[28rem]"
-                    />
-                    <div className="absolute left-6 top-6 max-w-xs">
-                      <p className="text-xs font-semibold uppercase tracking-[0.22em] text-[#8f6d47]">
-                        Editorial Einstieg
-                      </p>
-                      <p className="mt-3 max-w-[13rem] text-2xl font-semibold leading-tight text-foreground sm:max-w-xs sm:text-3xl">
-                        Lernen mit Struktur und beruflicher Relevanz.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid gap-4 sm:grid-cols-3">
-                    {[
-                      {
-                        title: "Gesundheit & Pflege",
-                        text: "Sprache für Betreuung und Patientenkommunikation.",
-                        image: "/images/professions/healthcare.png",
-                      },
-                      {
-                        title: "Büro & Verwaltung",
-                        text: "E-Mails, Telefonate und Arbeitsabläufe sicher nutzen.",
-                        image: "/images/professions/office.png",
-                      },
-                      {
-                        title: "Handel & Logistik",
-                        text: "Praxisnahe Begriffe für Lager, Kundenkontakt und Prozesse.",
-                        image: "/images/professions/logistics.png",
-                      },
-                    ].map((item) => (
-                      <Link
-                        key={item.title}
-                        href="/berufsfelder"
-                        className="group editorial-card overflow-hidden p-0 transition-all hover:-translate-y-1"
-                      >
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          width={1200}
-                          height={900}
-                          className="h-36 w-full object-cover sm:h-40"
-                        />
-                        <div className="p-4">
-                          <p className="text-base font-semibold text-foreground">{item.title}</p>
-                          <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
-                        </div>
-                      </Link>
-                    ))}
-                  </div>
+                <div className="grid gap-4 sm:grid-cols-3">
+                  {[
+                    {
+                      title: "Gesundheit & Pflege",
+                      text: "Sprache für Betreuung und Patientenkommunikation.",
+                      image: "/images/professions/healthcare.png",
+                    },
+                    {
+                      title: "Büro & Verwaltung",
+                      text: "E-Mails, Telefonate und Arbeitsabläufe sicher nutzen.",
+                      image: "/images/professions/office.png",
+                    },
+                    {
+                      title: "Handel & Logistik",
+                      text: "Praxisnahe Begriffe für Lager, Kundenkontakt und Prozesse.",
+                      image: "/images/professions/logistics.png",
+                    },
+                  ].map((item) => (
+                    <Link
+                      key={item.title}
+                      href="/berufsfelder"
+                      className="group editorial-card overflow-hidden p-0 transition-all hover:-translate-y-1"
+                    >
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={1200}
+                        height={900}
+                        className="h-36 w-full object-cover sm:h-40"
+                      />
+                      <div className="p-4">
+                        <p className="text-base font-semibold text-foreground">{item.title}</p>
+                        <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.text}</p>
+                      </div>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
