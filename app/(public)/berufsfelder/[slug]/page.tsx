@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, BookOpen, Users, Dumbbell } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,6 +13,10 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { AudioPlayer } from "@/components/exercises/audio-player";
 import { FavoriteButton } from "@/components/favorite-button";
+import {
+  BERUFSFELD_VISUALS,
+  DEFAULT_BERUFSFELD_VISUAL,
+} from "@/lib/berufsfeld-visuals";
 import { APP_NAME } from "@/lib/constants";
 import {
   getBerufsfeldById,
@@ -47,6 +52,7 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
 
   const berufe = await getBerufeByFeld(slug);
   const fachwoerter = await getFachwoerterByFeld(slug);
+  const visual = BERUFSFELD_VISUALS[slug] ?? DEFAULT_BERUFSFELD_VISUAL;
 
   return (
     <div className="container mx-auto flex-1 px-4 py-12">
@@ -76,17 +82,42 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
                 <Users className="h-5 w-5" />
                 Typische Berufe
               </CardTitle>
+              <CardDescription>
+                Alle Berufe aus diesem Bereich mit einer passenden visuellen
+                Einordnung.
+              </CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-wrap gap-2">
+              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {berufe.map((beruf) => (
-                  <Badge
+                  <article
                     key={beruf.id}
-                    variant="secondary"
-                    className="px-3 py-1 text-sm font-normal"
+                    className="group overflow-hidden rounded-[1.6rem] border border-[#eadfce] bg-white shadow-[0_18px_42px_-32px_rgba(115,190,178,0.18)] transition-all duration-300 hover:-translate-y-1 hover:border-[#d6c4ac] hover:shadow-[0_28px_58px_-34px_rgba(115,190,178,0.24)]"
                   >
-                    {beruf.title}
-                  </Badge>
+                    <div className="relative aspect-[4/3] overflow-hidden bg-[#f6f2ea]">
+                      <Image
+                        src={visual.image}
+                        alt={beruf.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-slate-950/5 to-transparent" />
+                      <div className="absolute left-3 top-3">
+                        <span className="rounded-full border border-white/70 bg-white/88 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-700 shadow-sm backdrop-blur">
+                          {visual.eyebrow}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="space-y-2 p-4">
+                      <h3 className="text-base font-semibold leading-snug text-slate-900">
+                        {beruf.title}
+                      </h3>
+                      <p className="text-sm leading-6 text-slate-600">
+                        Sprachpraxis und Fachwortschatz im Bereich {feld.title}.
+                      </p>
+                    </div>
+                  </article>
                 ))}
               </div>
             </CardContent>
