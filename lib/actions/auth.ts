@@ -2,9 +2,27 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { isMockMode } from "@/lib/mock-user";
+
+async function getSiteUrl() {
+  const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (envUrl) {
+    return envUrl.replace(/\/$/, "");
+  }
+
+  const headerStore = await headers();
+  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
+  const proto = headerStore.get("x-forwarded-proto") ?? "https";
+
+  if (host) {
+    return `${proto}://${host}`;
+  }
+
+  return "http://localhost:3000";
+}
 
 export async function login(formData: FormData) {
   const supabase = await createClient();
@@ -26,13 +44,14 @@ export async function register(formData: FormData) {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
   const fullName = formData.get("fullName") as string;
+  const siteUrl = await getSiteUrl();
 
   const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
       data: { full_name: fullName },
-      emailRedirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback`,
+      emailRedirectTo: `${siteUrl}/api/auth/callback`,
     },
   });
 
@@ -46,9 +65,10 @@ export async function register(formData: FormData) {
 export async function resetPassword(formData: FormData) {
   const supabase = await createClient();
   const email = formData.get("email") as string;
+  const siteUrl = await getSiteUrl();
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL}/api/auth/callback?next=/passwort-neu`,
+    redirectTo: `${siteUrl}/api/auth/callback?next=/reset-password`,
   });
 
   if (error) {
