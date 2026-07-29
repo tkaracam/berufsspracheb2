@@ -81,25 +81,23 @@ export default async function HomePage() {
             <div className="animate-fade-in-up">
               <div className="editorial-badge">
                 <Sparkles className="h-4 w-4" />
-                Deutsch B2 für Beruf, Kurs und Prüfung
+                Berufssprache B2 für den beruflichen Alltag
               </div>
 
               <h1 className="mt-6 text-balance text-4xl font-semibold tracking-tight text-foreground sm:text-5xl lg:text-[4.5rem] lg:leading-[0.98]">
-                Sprache für
+                Deutsch, das
                 <br />
-                Ihren Beruf.
+                im Beruf
                 <br />
                 <span className="text-[#73beb2]">
-                  Klar. Sicher.
+                  sicher macht.
                 </span>
-                <br />
-                Wirksam.
               </h1>
 
               <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-                {APP_NAME} verbindet Fachwortschatz, Kommunikation und
-                prüfungsnahe Inhalte in einer hochwertigen Weboberfläche, die
-                ruhig wirkt und direkt in die passenden Lernbereiche führt.
+                {APP_NAME} verbindet Fachwortschatz, berufliche Kommunikation
+                und prüfungsnahe Inhalte in einer klaren Lernumgebung, die
+                Orientierung gibt und ohne Umwege zum passenden Bereich führt.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -118,15 +116,15 @@ export default async function HomePage() {
                 <div className="glass-panel rounded-[1.5rem] p-4">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
-                    <p className="text-sm font-semibold text-foreground">Kurze Lerneinheiten</p>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">Direkt startbar und leicht in den Alltag integrierbar.</p>
+                    <p className="text-sm font-semibold text-foreground">Kompakte Lerneinheiten</p>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">Schnell beginnen, auch wenn im Alltag nur wenig Zeit bleibt.</p>
                   </div>
                 </div>
                 <div className="glass-panel rounded-[1.5rem] p-4">
                   <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
                   <div>
-                    <p className="text-sm font-semibold text-foreground">Beruflich relevant</p>
-                    <p className="mt-1 text-sm leading-6 text-muted-foreground">Inhalte für reale Situationen im Beruf und im Kurs.</p>
+                    <p className="text-sm font-semibold text-foreground">Praxisnah aufgebaut</p>
+                    <p className="mt-1 text-sm leading-6 text-muted-foreground">Inhalte aus typischen Situationen in Beruf, Kurs und Prüfung.</p>
                   </div>
                 </div>
               </div>
