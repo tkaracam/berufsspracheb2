@@ -165,6 +165,22 @@ export const DEFAULT_BERUFSFELD_VISUAL = {
 };
 
 const ROLE_VISUALS: Record<string, { image: string; eyebrow: string }> = {
+  "pflege-gesundheit::krankenpfleger": {
+    image: "/images/professions/roles/pflege-gesundheit--krankenpfleger.png",
+    eyebrow: "Pflege",
+  },
+  "pflege-gesundheit::altenpfleger": {
+    image: "/images/professions/roles/pflege-gesundheit--altenpfleger.png",
+    eyebrow: "Seniorenpflege",
+  },
+  "pflege-gesundheit::medizinischer fachangestellter": {
+    image: "/images/professions/roles/pflege-gesundheit--medizinischer-fachangestellter.png",
+    eyebrow: "Praxis",
+  },
+  "pflege-gesundheit::pflegehelfer": {
+    image: "/images/professions/roles/pflege-gesundheit--pflegehelfer.png",
+    eyebrow: "Alltagspflege",
+  },
   "hotel-gastronomie::kellner / servicekraft": {
     image: "/images/professions/roles/kellner-servicekraft.png",
     eyebrow: "Service",
@@ -442,18 +458,18 @@ function getGeneratedRoleImagePath(berufsfeldId: string, berufTitle: string) {
 
 export function getBerufVisual(berufsfeldId: string, berufTitle: string) {
   const fieldVisual = BERUFSFELD_VISUALS[berufsfeldId] ?? DEFAULT_BERUFSFELD_VISUAL;
+  const exactKey = `${berufsfeldId}::${berufTitle.toLowerCase()}`;
+  const exactVisual = ROLE_VISUALS[exactKey];
+
+  if (exactVisual) {
+    return exactVisual;
+  }
 
   if (berufTitle.trim()) {
     return {
       image: getGeneratedRoleImagePath(berufsfeldId, berufTitle),
       eyebrow: fieldVisual.eyebrow,
     };
-  }
-
-  const exactKey = `${berufsfeldId}::${berufTitle.toLowerCase()}`;
-  const exactVisual = ROLE_VISUALS[exactKey];
-  if (exactVisual) {
-    return exactVisual;
   }
 
   const pool = FIELD_VISUAL_POOLS[berufsfeldId];
