@@ -163,10 +163,60 @@ def pick_icon(field: str, title: str) -> str:
     return pick_style(field)["icon"]
 
 
+def build_scene(variant: int, style: dict[str, str], seed: int) -> str:
+    warm = style["warm"]
+    accent = style["accent"]
+    surface = style["surface"]
+    if variant == 0:
+        return f'''
+  <rect x="758" y="182" width="268" height="360" rx="52" fill="{accent}" fill-opacity="0.14" stroke="rgba(32,40,52,0.06)"/>
+  <circle cx="894" cy="290" r="82" fill="white" fill-opacity="0.88"/>
+  <rect x="838" y="372" width="112" height="154" rx="42" fill="{warm}" fill-opacity="0.98"/>
+  <rect x="870" y="398" width="48" height="76" rx="18" fill="white" fill-opacity="0.9"/>
+'''
+    if variant == 1:
+        return f'''
+  <rect x="742" y="194" width="310" height="334" rx="48" fill="{surface}" fill-opacity="0.76" stroke="rgba(32,40,52,0.06)"/>
+  <circle cx="842" cy="296" r="96" fill="{warm}" fill-opacity="0.84"/>
+  <rect x="904" y="248" width="92" height="212" rx="34" fill="white" fill-opacity="0.88"/>
+  <rect x="922" y="286" width="56" height="72" rx="18" fill="{accent}" fill-opacity="0.72"/>
+'''
+    if variant == 2:
+        return f'''
+  <circle cx="886" cy="256" r="124" fill="{accent}" fill-opacity="0.18"/>
+  <rect x="772" y="228" width="246" height="286" rx="46" fill="white" fill-opacity="0.82" stroke="rgba(32,40,52,0.06)"/>
+  <rect x="816" y="330" width="142" height="174" rx="48" fill="{warm}" fill-opacity="0.96"/>
+  <circle cx="886" cy="292" r="62" fill="{surface}" fill-opacity="0.96"/>
+'''
+    if variant == 3:
+        return f'''
+  <rect x="764" y="186" width="274" height="350" rx="52" fill="white" fill-opacity="0.74" stroke="rgba(32,40,52,0.06)"/>
+  <path d="M782 470c34-92 102-188 212-236 14 44 20 90 20 132 0 86-30 134-76 170H782z" fill="{accent}" fill-opacity="0.2"/>
+  <circle cx="864" cy="286" r="72" fill="{warm}" fill-opacity="0.88"/>
+  <rect x="840" y="356" width="104" height="148" rx="38" fill="{surface}" fill-opacity="0.96"/>
+'''
+    if variant == 4:
+        return f'''
+  <circle cx="972" cy="236" r="108" fill="{warm}" fill-opacity="0.72"/>
+  <circle cx="804" cy="420" r="144" fill="{accent}" fill-opacity="0.14"/>
+  <rect x="816" y="218" width="158" height="124" rx="40" fill="white" fill-opacity="0.84" stroke="rgba(32,40,52,0.06)"/>
+  <rect x="860" y="342" width="120" height="180" rx="42" fill="{warm}" fill-opacity="0.94"/>
+  <rect x="888" y="378" width="52" height="78" rx="18" fill="white" fill-opacity="0.9"/>
+'''
+    return f'''
+  <rect x="760" y="214" width="282" height="308" rx="44" fill="{surface}" fill-opacity="0.86" stroke="rgba(32,40,52,0.06)"/>
+  <path d="M760 322c66-46 132-70 200-70 40 0 78 8 120 24v246H760V322z" fill="{accent}" fill-opacity="0.18"/>
+  <circle cx="900" cy="274" r="70" fill="white" fill-opacity="0.9"/>
+  <rect x="846" y="342" width="116" height="166" rx="40" fill="{warm}" fill-opacity="0.96"/>
+  <rect x="876" y="372" width="54" height="74" rx="18" fill="{surface}" fill-opacity="0.96"/>
+'''
+
+
 def build_svg(field: str, title: str) -> str:
     style = pick_style(field)
     seed = hashed(f"{field}::{title}")
     title_slug = slugify(title)
+    variant = seed % 6
     accent_x = 760 + (seed % 140)
     accent_y = 150 + ((seed // 7) % 180)
     accent_r = 120 + ((seed // 13) % 80)
@@ -190,6 +240,7 @@ def build_svg(field: str, title: str) -> str:
         elif title_slug == "it-techniker":
             accent_x, accent_y, accent_r = 782, 238, 154
             orb_x, orb_y, orb_r = 284, 548, 134
+    scene_svg = build_scene(variant, style, seed)
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" fill="none">
   <rect width="1200" height="760" rx="40" fill="{style['bg']}"/>
@@ -204,10 +255,7 @@ def build_svg(field: str, title: str) -> str:
   <text x="108" y="608" font-size="24" font-family="Arial, sans-serif" fill="{style['ink']}" opacity="0.78" letter-spacing="2.4">{field_label.upper()}</text>
   <rect x="76" y="128" width="114" height="114" rx="30" fill="white" fill-opacity="0.92" stroke="rgba(32,40,52,0.06)"/>
   <g transform="translate(88 140)" style="color:{style['accent']}">{icon_svg}</g>
-  <rect x="758" y="182" width="268" height="360" rx="52" fill="{style['accent']}" fill-opacity="0.14" stroke="rgba(32,40,52,0.06)"/>
-  <circle cx="894" cy="290" r="82" fill="white" fill-opacity="0.88"/>
-  <rect x="838" y="372" width="112" height="154" rx="42" fill="{style['warm']}" fill-opacity="0.98"/>
-  <rect x="870" y="398" width="48" height="76" rx="18" fill="white" fill-opacity="0.9"/>
+{scene_svg}
   <path d="M742 {660-arc_shift}c90-40 170-44 264-10 94 34 126 102 170 114" stroke="{style['accent']}" stroke-opacity="0.34" stroke-width="5" stroke-linecap="round"/>
   <path d="M120 520c52-66 118-106 182-126 74-22 154-10 222 46" stroke="{style['accent']}" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
   <defs>

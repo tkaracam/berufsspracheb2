@@ -11,10 +11,13 @@
   <text x="108" y="608" font-size="24" font-family="Arial, sans-serif" fill="#203247" opacity="0.78" letter-spacing="2.4">KFZ MECHATRONIK</text>
   <rect x="76" y="128" width="114" height="114" rx="30" fill="white" fill-opacity="0.92" stroke="rgba(32,40,52,0.06)"/>
   <g transform="translate(88 140)" style="color:#7289a7"><path d="M18 22l10-8 12 12-8 10zM34 34l22 22" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M44 16l10 10" stroke="currentColor" stroke-width="2.8"/></g>
-  <rect x="758" y="182" width="268" height="360" rx="52" fill="#7289a7" fill-opacity="0.14" stroke="rgba(32,40,52,0.06)"/>
-  <circle cx="894" cy="290" r="82" fill="white" fill-opacity="0.88"/>
-  <rect x="838" y="372" width="112" height="154" rx="42" fill="#c58c62" fill-opacity="0.98"/>
-  <rect x="870" y="398" width="48" height="76" rx="18" fill="white" fill-opacity="0.9"/>
+
+  <rect x="760" y="214" width="282" height="308" rx="44" fill="#d9e0ec" fill-opacity="0.86" stroke="rgba(32,40,52,0.06)"/>
+  <path d="M760 322c66-46 132-70 200-70 40 0 78 8 120 24v246H760V322z" fill="#7289a7" fill-opacity="0.18"/>
+  <circle cx="900" cy="274" r="70" fill="white" fill-opacity="0.9"/>
+  <rect x="846" y="342" width="116" height="166" rx="40" fill="#c58c62" fill-opacity="0.96"/>
+  <rect x="876" y="372" width="54" height="74" rx="18" fill="#d9e0ec" fill-opacity="0.96"/>
+
   <path d="M742 631c90-40 170-44 264-10 94 34 126 102 170 114" stroke="#7289a7" stroke-opacity="0.34" stroke-width="5" stroke-linecap="round"/>
   <path d="M120 520c52-66 118-106 182-126 74-22 154-10 222 46" stroke="#7289a7" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
   <defs>

@@ -11,10 +11,12 @@
   <text x="108" y="608" font-size="24" font-family="Arial, sans-serif" fill="#4a2638" opacity="0.78" letter-spacing="2.4">TEXTIL MODE</text>
   <rect x="76" y="128" width="114" height="114" rx="30" fill="white" fill-opacity="0.92" stroke="rgba(32,40,52,0.06)"/>
   <g transform="translate(88 140)" style="color:#c07f9d"><path d="M22 56L54 24M46 22c3-3 8-3 11 0s3 8 0 11L46 44 34 32z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M18 60l10-10" stroke="currentColor" stroke-width="2.8"/></g>
+
   <rect x="758" y="182" width="268" height="360" rx="52" fill="#c07f9d" fill-opacity="0.14" stroke="rgba(32,40,52,0.06)"/>
   <circle cx="894" cy="290" r="82" fill="white" fill-opacity="0.88"/>
   <rect x="838" y="372" width="112" height="154" rx="42" fill="#e9c08e" fill-opacity="0.98"/>
   <rect x="870" y="398" width="48" height="76" rx="18" fill="white" fill-opacity="0.9"/>
+
   <path d="M742 660c90-40 170-44 264-10 94 34 126 102 170 114" stroke="#c07f9d" stroke-opacity="0.34" stroke-width="5" stroke-linecap="round"/>
   <path d="M120 520c52-66 118-106 182-126 74-22 154-10 222 46" stroke="#c07f9d" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
   <defs>

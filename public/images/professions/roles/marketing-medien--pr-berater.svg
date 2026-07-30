@@ -11,10 +11,12 @@
   <text x="108" y="608" font-size="24" font-family="Arial, sans-serif" fill="#4b2a20" opacity="0.78" letter-spacing="2.4">MARKETING MEDIEN</text>
   <rect x="76" y="128" width="114" height="114" rx="30" fill="white" fill-opacity="0.92" stroke="rgba(32,40,52,0.06)"/>
   <g transform="translate(88 140)" style="color:#d08569"><rect x="14" y="16" width="52" height="34" rx="4" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M28 60h24M40 50v10" stroke="currentColor" stroke-width="2.8"/><path d="M26 26l8 8 14-14" fill="none" stroke="currentColor" stroke-width="2.8"/></g>
+
   <rect x="758" y="182" width="268" height="360" rx="52" fill="#d08569" fill-opacity="0.14" stroke="rgba(32,40,52,0.06)"/>
   <circle cx="894" cy="290" r="82" fill="white" fill-opacity="0.88"/>
   <rect x="838" y="372" width="112" height="154" rx="42" fill="#89b7c1" fill-opacity="0.98"/>
   <rect x="870" y="398" width="48" height="76" rx="18" fill="white" fill-opacity="0.9"/>
+
   <path d="M742 605c90-40 170-44 264-10 94 34 126 102 170 114" stroke="#d08569" stroke-opacity="0.34" stroke-width="5" stroke-linecap="round"/>
   <path d="M120 520c52-66 118-106 182-126 74-22 154-10 222 46" stroke="#d08569" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
   <defs>
