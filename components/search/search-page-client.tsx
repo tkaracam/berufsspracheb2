@@ -1,0 +1,274 @@
+"use client";
+
+import { Suspense, useMemo, useState } from "react";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import {
+  BookOpen,
+  Brain,
+  Eye,
+  Headphones,
+  MessageCircle,
+  Mic,
+  Pencil,
+  Search,
+  Shuffle,
+} from "lucide-react";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Container } from "@/components/ui/container";
+import { grammarQuestions } from "@/lib/grammar-data";
+import { communicationModules } from "@/lib/communication-data";
+import { readingTexts } from "@/lib/reading-data";
+import { listeningTasks } from "@/lib/listening-data";
+
+type FachwortIndexItem = {
+  id: string;
+  begriff: string;
+  artikel: string;
+  synonym: string | null;
+  beispielsatz: string | null;
+  feldTitle: string;
+};
+
+type NomenVerbIndexItem = {
+  id: string;
+  phrase: string;
+  synonym: string | null;
+  beispielsatz: string | null;
+  kategorie: string | null;
+};
+
+type Result = {
+  id: string;
+  type: string;
+  title: string;
+  subtitle?: string;
+  href?: string;
+};
+
+const typeIcons: Record<string, React.ReactNode> = {
+  Fachwort: <BookOpen className="h-4 w-4" />,
+  "Nomen-Verb": <Shuffle className="h-4 w-4" />,
+  Grammatik: <Brain className="h-4 w-4" />,
+  Redemittel: <MessageCircle className="h-4 w-4" />,
+  Lesen: <Eye className="h-4 w-4" />,
+  Hören: <Headphones className="h-4 w-4" />,
+  Schreiben: <Pencil className="h-4 w-4" />,
+  Sprechen: <Mic className="h-4 w-4" />,
+};
+
+function SearchContent({
+  fachwoerter,
+  nomenVerb,
+}: {
+  fachwoerter: FachwortIndexItem[];
+  nomenVerb: NomenVerbIndexItem[];
+}) {
+  const searchParams = useSearchParams();
+  const initialQuery = searchParams.get("q") ?? "";
+  const [query, setQuery] = useState(initialQuery);
+  const [submittedQuery, setSubmittedQuery] = useState(initialQuery);
+
+  const results = useMemo(() => {
+    const q = submittedQuery.trim().toLowerCase();
+    if (!q) return [];
+
+    const nextResults: Result[] = [];
+
+    fachwoerter.forEach((wort) => {
+      if (
+        wort.begriff.toLowerCase().includes(q) ||
+        (wort.synonym?.toLowerCase().includes(q) ?? false) ||
+        (wort.beispielsatz?.toLowerCase().includes(q) ?? false) ||
+        wort.feldTitle.toLowerCase().includes(q)
+      ) {
+        nextResults.push({
+          id: `fw-${wort.id}`,
+          type: "Fachwort",
+          title: `${wort.artikel} ${wort.begriff}`,
+          subtitle: wort.feldTitle,
+          href: "/trainer/fachwortschatz",
+        });
+      }
+    });
+
+    nomenVerb.forEach((eintrag) => {
+      if (
+        eintrag.phrase.toLowerCase().includes(q) ||
+        (eintrag.synonym?.toLowerCase().includes(q) ?? false) ||
+        (eintrag.beispielsatz?.toLowerCase().includes(q) ?? false) ||
+        (eintrag.kategorie?.toLowerCase().includes(q) ?? false)
+      ) {
+        nextResults.push({
+          id: `nv-${eintrag.id}`,
+          type: "Nomen-Verb",
+          title: eintrag.phrase,
+          subtitle: eintrag.kategorie ?? "",
+          href: "/nomen-verb",
+        });
+      }
+    });
+
+    grammarQuestions.forEach((frage) => {
+      if (
+        frage.question.toLowerCase().includes(q) ||
+        frage.topic.toLowerCase().includes(q) ||
+        frage.explanation.toLowerCase().includes(q)
+      ) {
+        nextResults.push({
+          id: `g-${frage.id}`,
+          type: "Grammatik",
+          title: frage.question,
+          subtitle: frage.topic,
+          href: "/trainer/grammatik",
+        });
+      }
+    });
+
+    communicationModules.forEach((modul) => {
+      modul.redemittel.forEach((phrase, index) => {
+        if (phrase.toLowerCase().includes(q) || modul.title.toLowerCase().includes(q)) {
+          nextResults.push({
+            id: `rd-${modul.id}-${index}`,
+            type: "Redemittel",
+            title: phrase,
+            subtitle: modul.title,
+            href: "/redemittel",
+          });
+        }
+      });
+    });
+
+    readingTexts.forEach((text) => {
+      if (text.title.toLowerCase().includes(q) || text.text.toLowerCase().includes(q)) {
+        nextResults.push({
+          id: `rt-${text.id}`,
+          type: "Lesen",
+          title: text.title,
+          href: "/lesen",
+        });
+      }
+    });
+
+    listeningTasks.forEach((task) => {
+      if (task.title.toLowerCase().includes(q) || task.transcript.toLowerCase().includes(q)) {
+        nextResults.push({
+          id: `lt-${task.id}`,
+          type: "Hören",
+          title: task.title,
+          href: "/hoeren",
+        });
+      }
+    });
+
+    return nextResults.slice(0, 50);
+  }, [fachwoerter, nomenVerb, submittedQuery]);
+
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    setSubmittedQuery(query);
+  };
+
+  return (
+    <div className="section-padding">
+      <Container>
+        <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-br from-primary/10 via-background to-accent/20 p-6 shadow-lg shadow-slate-900/5 sm:p-10">
+          <div className="relative z-10 max-w-3xl">
+            <Badge variant="secondary" className="mb-4 rounded-full">
+              Inhalte schnell finden
+            </Badge>
+            <h1 className="text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
+              Suche
+            </h1>
+            <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+              Durchsuche Fachwörter, Nomen-Verb-Verbindungen, Grammatik,
+              Redemittel und weitere Lerninhalte zentral an einer Stelle.
+            </p>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mx-auto mt-8 max-w-2xl">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <Input
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Suchbegriff eingeben ..."
+              className="h-14 pl-12 pr-28 text-base"
+            />
+            <Button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 rounded-lg">
+              Suchen
+            </Button>
+          </div>
+        </form>
+
+        <div className="mx-auto mt-8 max-w-3xl">
+          {submittedQuery ? (
+            <p className="mb-4 text-sm text-muted-foreground">
+              {results.length} Ergebnis{results.length !== 1 ? "se" : ""} für „{submittedQuery}“
+            </p>
+          ) : null}
+
+          {results.length > 0 ? (
+            <div className="space-y-3">
+              {results.map((result) => (
+                <Card key={result.id}>
+                  <CardContent className="p-4">
+                    <div className="flex items-start gap-3">
+                      <Badge variant="secondary" className="shrink-0 gap-1 rounded-full">
+                        {typeIcons[result.type] ?? null}
+                        {result.type}
+                      </Badge>
+                      <div className="min-w-0 flex-1">
+                        <p className="font-semibold text-foreground">{result.title}</p>
+                        {result.subtitle ? (
+                          <p className="text-sm text-muted-foreground">{result.subtitle}</p>
+                        ) : null}
+                      </div>
+                      {result.href ? (
+                        <Button variant="ghost" size="sm" asChild>
+                          <Link href={result.href}>Öffnen</Link>
+                        </Button>
+                      ) : null}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : submittedQuery ? (
+            <Card>
+              <CardContent className="py-12 text-center text-muted-foreground">
+                Keine Ergebnisse gefunden.
+              </CardContent>
+            </Card>
+          ) : null}
+        </div>
+      </Container>
+    </div>
+  );
+}
+
+export function SearchPageClient(props: {
+  fachwoerter: FachwortIndexItem[];
+  nomenVerb: NomenVerbIndexItem[];
+}) {
+  return (
+    <Suspense
+      fallback={
+        <div className="section-padding">
+          <Container>
+            <div className="text-center">
+              <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">Suche</h1>
+              <p className="mt-2 text-muted-foreground">Suche wird geladen ...</p>
+            </div>
+          </Container>
+        </div>
+      }
+    >
+      <SearchContent {...props} />
+    </Suspense>
+  );
+}
