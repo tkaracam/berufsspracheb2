@@ -27,7 +27,14 @@ export function CustomDeckSection() {
 
   return (
     <section className="space-y-4">
-      <h2 className="text-xl font-bold">Eigene Decks</h2>
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8f6d47]">
+          Eigene Decks
+        </p>
+        <h2 className="mt-2 text-2xl font-semibold tracking-[-0.03em] text-slate-950">
+          Persönlich zusammengestellte Karten
+        </h2>
+      </div>
       <DeckGrid decks={decks} stats={stats} />
     </section>
   );
