@@ -207,6 +207,211 @@ const ROLE_VISUALS: Record<string, { image: string; eyebrow: string }> = {
   },
 };
 
+const FIELD_VISUAL_POOLS: Record<string, string[]> = {
+  "logistik-transport": [
+    "/images/professions/roles/lagerarbeiter.png",
+    "/images/professions/roles/gabelstaplerfahrer.png",
+    "/images/professions/roles/speditionskaufmann.png",
+    "/images/professions/roles/lkw-fahrer.png",
+    "/images/professions/roles/kommissionierer.png",
+    "/images/professions/roles/disponent.png",
+  ],
+  "hotel-gastronomie": [
+    "/images/professions/roles/kellner-servicekraft.png",
+    "/images/professions/roles/koch.png",
+    "/images/professions/roles/hotelrezeptionist.png",
+    "/images/professions/roles/restaurantleiter.png",
+  ],
+  "lager-produktion": [
+    "/images/professions/logistics.png",
+    "/images/professions/craft.png",
+    "/images/professions/technology.png",
+  ],
+  "pflege-gesundheit": [
+    "/images/professions/healthcare.png",
+    "/images/professions/service.png",
+    "/images/professions/office.png",
+  ],
+  "erziehung-paedagogik": [
+    "/images/professions/healthcare.png",
+    "/images/professions/service.png",
+    "/images/professions/office.png",
+  ],
+  "einzelhandel-verkauf": [
+    "/images/professions/retail.png",
+    "/images/professions/service.png",
+    "/images/professions/office.png",
+  ],
+  "buero-verwaltung": [
+    "/images/professions/office.png",
+    "/images/professions/service.png",
+    "/images/professions/technology.png",
+  ],
+  "it-digitale-berufe": [
+    "/images/professions/technology.png",
+    "/images/professions/office.png",
+    "/images/professions/creative.png",
+  ],
+  "handwerk-bau": [
+    "/images/professions/craft.png",
+    "/images/professions/technology.png",
+    "/images/professions/green-tech.png",
+  ],
+  "reinigung-gebaeudemanagement": [
+    "/images/professions/service.png",
+    "/images/professions/office.png",
+    "/images/professions/craft.png",
+  ],
+  "sicherheit-service": [
+    "/images/professions/service.png",
+    "/images/professions/office.png",
+    "/images/professions/logistics.png",
+  ],
+  "bewerbung-arbeitsmarkt": [
+    "/images/professions/office.png",
+    "/images/professions/service.png",
+    "/images/professions/retail.png",
+  ],
+  "landwirtschaft-gartenbau": [
+    "/images/professions/green-tech.png",
+    "/images/professions/craft.png",
+    "/images/professions/service.png",
+  ],
+  "kfz-mechatronik": [
+    "/images/professions/craft.png",
+    "/images/professions/technology.png",
+    "/images/professions/logistics.png",
+  ],
+  "friseur-kosmetik": [
+    "/images/professions/service.png",
+    "/images/professions/retail.png",
+    "/images/professions/creative.png",
+  ],
+  "lebensmittel-metzgerei": [
+    "/images/professions/hospitality.png",
+    "/images/professions/service.png",
+    "/images/professions/craft.png",
+  ],
+  "tourismus-reisen": [
+    "/images/professions/hospitality.png",
+    "/images/professions/office.png",
+    "/images/professions/service.png",
+  ],
+  "soziales-behindertenbetreuung": [
+    "/images/professions/healthcare.png",
+    "/images/professions/service.png",
+    "/images/professions/office.png",
+  ],
+  "erneuerbare-energien-umwelt": [
+    "/images/professions/green-tech.png",
+    "/images/professions/technology.png",
+    "/images/professions/craft.png",
+  ],
+  "banken-versicherungen": [
+    "/images/professions/office.png",
+    "/images/professions/technology.png",
+    "/images/professions/service.png",
+  ],
+  "marketing-medien": [
+    "/images/professions/creative.png",
+    "/images/professions/technology.png",
+    "/images/professions/office.png",
+  ],
+  "chemie-pharma": [
+    "/images/professions/healthcare.png",
+    "/images/professions/technology.png",
+    "/images/professions/service.png",
+  ],
+  "maschinenbau-anlagenbau": [
+    "/images/professions/technology.png",
+    "/images/professions/craft.png",
+    "/images/professions/logistics.png",
+  ],
+  "textil-mode": [
+    "/images/professions/retail.png",
+    "/images/professions/creative.png",
+    "/images/professions/service.png",
+  ],
+  "sport-fitness": [
+    "/images/professions/healthcare.png",
+    "/images/professions/service.png",
+    "/images/professions/green-tech.png",
+  ],
+  "kunst-kultur": [
+    "/images/professions/creative.png",
+    "/images/professions/service.png",
+    "/images/professions/office.png",
+  ],
+  elektrotechnik: [
+    "/images/professions/technology.png",
+    "/images/professions/craft.png",
+    "/images/professions/green-tech.png",
+  ],
+  "tiefbau-strassenbau": [
+    "/images/professions/craft.png",
+    "/images/professions/logistics.png",
+    "/images/professions/technology.png",
+  ],
+  "druck-medienproduktion": [
+    "/images/professions/creative.png",
+    "/images/professions/technology.png",
+    "/images/professions/office.png",
+  ],
+  kunststofftechnik: [
+    "/images/professions/technology.png",
+    "/images/professions/craft.png",
+    "/images/professions/logistics.png",
+  ],
+  "optik-medizintechnik": [
+    "/images/professions/technology.png",
+    "/images/professions/healthcare.png",
+    "/images/professions/office.png",
+  ],
+  "hauswirtschaft-familienpflege": [
+    "/images/professions/service.png",
+    "/images/professions/healthcare.png",
+    "/images/professions/office.png",
+  ],
+  "oeffentlicher-dienst": [
+    "/images/professions/office.png",
+    "/images/professions/service.png",
+    "/images/professions/healthcare.png",
+  ],
+  "schmuck-uhren": [
+    "/images/professions/creative.png",
+    "/images/professions/retail.png",
+    "/images/professions/technology.png",
+  ],
+  "moebel-kuechenbau": [
+    "/images/professions/craft.png",
+    "/images/professions/retail.png",
+    "/images/professions/service.png",
+  ],
+  "tierpflege-veterinaermedizin": [
+    "/images/professions/green-tech.png",
+    "/images/professions/healthcare.png",
+    "/images/professions/service.png",
+  ],
+  "musikinstrumente-tonstudio": [
+    "/images/professions/creative.png",
+    "/images/professions/technology.png",
+    "/images/professions/service.png",
+  ],
+  fahrzeugaufbereitung: [
+    "/images/professions/craft.png",
+    "/images/professions/service.png",
+    "/images/professions/logistics.png",
+  ],
+};
+
+function hashString(value: string) {
+  let hash = 0;
+  for (let i = 0; i < value.length; i += 1) {
+    hash = (hash * 31 + value.charCodeAt(i)) >>> 0;
+  }
+  return hash;
+}
+
 const IMAGE_BY_KEYWORD: Array<{ match: RegExp; image: string }> = [
   { match: /pflege|arzt|patient|therapie|physio|medizin|pharma|apotheke/i, image: "/images/professions/healthcare.png" },
   { match: /koch|service|kellner|hotel|rezeption|gast|tourismus|reise/i, image: "/images/professions/hospitality.png" },
@@ -225,6 +430,16 @@ export function getBerufVisual(berufsfeldId: string, berufTitle: string) {
   const exactVisual = ROLE_VISUALS[exactKey];
   if (exactVisual) {
     return exactVisual;
+  }
+
+  const pool = FIELD_VISUAL_POOLS[berufsfeldId];
+  if (pool?.length) {
+    const image = pool[hashString(exactKey) % pool.length];
+    const fieldVisual = BERUFSFELD_VISUALS[berufsfeldId] ?? DEFAULT_BERUFSFELD_VISUAL;
+    return {
+      image,
+      eyebrow: fieldVisual.eyebrow,
+    };
   }
 
   const normalized = `${berufsfeldId} ${berufTitle}`;
