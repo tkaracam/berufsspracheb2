@@ -17,6 +17,20 @@ export interface DeckCard {
   extra?: string;
 }
 
+function normalizeDeckId(deckId: string) {
+  let current = deckId;
+
+  for (let i = 0; i < 3; i += 1) {
+    const decoded = decodeURIComponent(current);
+    if (decoded === current) {
+      return decoded;
+    }
+    current = decoded;
+  }
+
+  return current;
+}
+
 export async function getDeckById(deckId: string): Promise<Deck | null> {
   const [woerter, nvResult, berufsfelder] = await Promise.all([
     getAllFachwoerter(),
@@ -45,13 +59,13 @@ export async function getDeckById(deckId: string): Promise<Deck | null> {
 
   const decks: Deck[] = [
     ...Array.from(fachwortGroups.entries()).map(([title, itemIds]) => ({
-      id: encodeURIComponent(title),
+      id: title,
       title,
       type: "fachwort" as DeckType,
       itemIds,
     })),
     ...Array.from(nvGroups.entries()).map(([title, itemIds]) => ({
-      id: encodeURIComponent(title),
+      id: title,
       title,
       type: "nomen_verb" as DeckType,
       itemIds,
@@ -70,7 +84,8 @@ export async function getDeckById(deckId: string): Promise<Deck | null> {
     },
   ].filter((d) => d.itemIds.length > 0);
 
-  return decks.find((d) => d.id === decodeURIComponent(deckId)) ?? null;
+  const normalizedDeckId = normalizeDeckId(deckId);
+  return decks.find((d) => d.id === normalizedDeckId) ?? null;
 }
 
 export async function getDeckCards(deck: Deck): Promise<DeckCard[]> {

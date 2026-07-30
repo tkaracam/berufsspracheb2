@@ -202,7 +202,7 @@ function groupFachwortDecks(
     groups.set(title, list);
   });
   return Array.from(groups.entries()).map(([title, itemIds]) => ({
-    id: encodeURIComponent(title),
+    id: title,
     title,
     type: "fachwort" as const,
     itemIds,
@@ -220,7 +220,7 @@ function groupNomenVerbDecks(
     groups.set(title, list);
   });
   return Array.from(groups.entries()).map(([title, itemIds]) => ({
-    id: encodeURIComponent(title),
+    id: title,
     title,
     type: "nomen_verb" as const,
     itemIds,

@@ -45,7 +45,7 @@ export function TodayHero({
         </div>
         {dueCount > 0 && firstDeckId && (
           <Button size="lg" className="shrink-0 gap-2 rounded-2xl bg-sky-500 text-base hover:bg-sky-600" asChild>
-            <Link href={`/decks/${firstDeckId}/learn`}>
+            <Link href={`/decks/${encodeURIComponent(firstDeckId)}/learn`}>
               <Play className="h-5 w-5" />
               Jetzt lernen
             </Link>

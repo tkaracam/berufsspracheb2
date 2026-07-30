@@ -44,13 +44,13 @@ export default async function DecksPage() {
 
   const decks: Deck[] = [
     ...Array.from(fachwortGroups.entries()).map(([title, itemIds]) => ({
-      id: encodeURIComponent(title),
+      id: title,
       title,
       type: "fachwort" as DeckType,
       itemIds,
     })),
     ...Array.from(nvGroups.entries()).map(([title, itemIds]) => ({
-      id: encodeURIComponent(title),
+      id: title,
       title,
       type: "nomen_verb" as DeckType,
       itemIds,
@@ -92,7 +92,7 @@ export default async function DecksPage() {
             </CardHeader>
             <CardContent className="mt-auto">
               <Button className="w-full gap-2 rounded-xl" asChild>
-                <Link href={`/decks/${deck.id}/learn`}>
+                <Link href={`/decks/${encodeURIComponent(deck.id)}/learn`}>
                   <Play className="h-4 w-4" />
                   Lernen
                 </Link>
