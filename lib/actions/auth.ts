@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { isMockMode } from "@/lib/mock-user";
 import { getSiteUrl } from "@/lib/site-url";
+import { ensureProfileForUser } from "@/lib/supabase/ensure-profile";
 
 function normalizeAuthError(message: string) {
   const lower = message.toLowerCase();
@@ -27,14 +28,16 @@ function normalizeAuthError(message: string) {
 
 export async function login(formData: FormData) {
   const supabase = await createClient();
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
+  const email = String(formData.get("email") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
 
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
   if (error) {
     redirect(`/login?error=${encodeURIComponent(normalizeAuthError(error.message))}`);
   }
+
+  await ensureProfileForUser(data.user);
 
   revalidatePath("/", "layout");
   redirect("/dashboard");
@@ -42,16 +45,16 @@ export async function login(formData: FormData) {
 
 export async function register(formData: FormData) {
   const supabase = await createClient();
-  const email = formData.get("email") as string;
-  const password = formData.get("password") as string;
-  const fullName = formData.get("fullName") as string;
+  const email = String(formData.get("email") ?? "").trim();
+  const password = String(formData.get("password") ?? "");
+  const fullName = String(formData.get("fullName") ?? "").trim();
   const siteUrl = await getSiteUrl();
 
-  const { error } = await supabase.auth.signUp({
+  const { data, error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      data: { full_name: fullName },
+      data: { full_name: fullName || email },
       emailRedirectTo: `${siteUrl}/api/auth/callback`,
     },
   });
@@ -59,6 +62,8 @@ export async function register(formData: FormData) {
   if (error) {
     redirect(`/register?error=${encodeURIComponent(normalizeAuthError(error.message))}`);
   }
+
+  await ensureProfileForUser(data.user);
 
   redirect(`/login?registered=true&email=${encodeURIComponent(email)}`);
 }
