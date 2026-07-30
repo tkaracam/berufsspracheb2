@@ -1,8 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" fill="none">
   <rect width="1200" height="760" rx="40" fill="#f2f8ff"/>
   <rect x="30" y="30" width="1140" height="700" rx="34" fill="url(#panelGradient)" stroke="rgba(32,40,52,0.06)"/>
-  <circle cx="792" cy="194" r="197" fill="#8fd1d0" fill-opacity="0.88"/>
-  <circle cx="273" cy="471" r="161" fill="#d8e5f7" fill-opacity="0.92"/>
+  <circle cx="962" cy="286" r="132" fill="#8fd1d0" fill-opacity="0.88"/>
+  <circle cx="152" cy="434" r="172" fill="#d8e5f7" fill-opacity="0.92"/>
   <path d="M0 610C130 560 180 516 282 516C388 516 444 608 548 608C652 608 718 502 824 502C952 502 1042 612 1200 574V760H0V610Z" fill="#d8e5f7" fill-opacity="0.92"/>
   <path d="M880 150c42 72 56 128 56 196 0 156-104 260-252 260-66 0-118-18-170-46 44-2 92-26 118-64 26-38 38-84 38-132 0-142-90-246-238-246 56-26 112-38 182-38 110 0 212 42 266 70Z" fill="#5a83b8" fill-opacity="0.18"/>
   <rect x="54" y="54" width="340" height="62" rx="31" fill="white" fill-opacity="0.88" stroke="rgba(32,40,52,0.07)"/>
@@ -10,7 +10,7 @@
   <rect x="72" y="574" width="220" height="54" rx="27" fill="white" fill-opacity="0.88" stroke="rgba(32,40,52,0.07)"/>
   <text x="108" y="608" font-size="24" font-family="Arial, sans-serif" fill="#162a48" opacity="0.78" letter-spacing="2.4">IT DIGITALE BERUFE</text>
   <rect x="76" y="128" width="114" height="114" rx="30" fill="white" fill-opacity="0.92" stroke="rgba(32,40,52,0.06)"/>
-  <g transform="translate(88 140)" style="color:#5a83b8"><rect x="14" y="16" width="52" height="34" rx="4" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M28 60h24M40 50v10" stroke="currentColor" stroke-width="2.8"/><path d="M26 26l8 8 14-14" fill="none" stroke="currentColor" stroke-width="2.8"/></g>
+  <g transform="translate(88 140)" style="color:#5a83b8"><rect x="16" y="18" width="48" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="2.8"/><rect x="16" y="42" width="48" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M24 26h4m0 24h4M46 26h10M46 50h10" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/></g>
   <rect x="758" y="182" width="268" height="360" rx="52" fill="#5a83b8" fill-opacity="0.14" stroke="rgba(32,40,52,0.06)"/>
   <circle cx="894" cy="290" r="82" fill="white" fill-opacity="0.88"/>
   <rect x="838" y="372" width="112" height="154" rx="42" fill="#8fd1d0" fill-opacity="0.98"/>

@@ -63,6 +63,10 @@ ICON_SVGS = {
     "bag": '<path d="M22 24h36l4 38H18z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M28 28a12 12 0 0 1 24 0" fill="none" stroke="currentColor" stroke-width="2.8"/>',
     "briefcase": '<path d="M14 26h52v32H14z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M30 26v-8h20v8m-36 14h52" fill="none" stroke="currentColor" stroke-width="2.8"/>',
     "monitor": '<rect x="14" y="16" width="52" height="34" rx="4" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M28 60h24M40 50v10" stroke="currentColor" stroke-width="2.8"/><path d="M26 26l8 8 14-14" fill="none" stroke="currentColor" stroke-width="2.8"/>',
+    "headset": '<path d="M18 40a22 22 0 0 1 44 0v10a6 6 0 0 1-6 6h-4V40h10M28 40H18v10a6 6 0 0 0 6 6h4V40z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M34 58c0 4 3 6 6 6h8" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>',
+    "code": '<path d="M28 24L14 40l14 16M52 24l14 16-14 16M46 18L34 62" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>',
+    "server": '<rect x="16" y="18" width="48" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="2.8"/><rect x="16" y="42" width="48" height="16" rx="4" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M24 26h4m0 24h4M46 26h10M46 50h10" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/>',
+    "chip": '<rect x="22" y="22" width="36" height="36" rx="6" fill="none" stroke="currentColor" stroke-width="2.8"/><path d="M30 14v8m10-8v8m10-8v8M30 58v8m10-8v8m10-8v8M14 30h8m-8 10h8m-8 10h8M58 30h8m-8 10h8m-8 10h8" stroke="currentColor" stroke-width="2.8"/><path d="M34 34h12v12H34z" fill="none" stroke="currentColor" stroke-width="2.8"/>',
     "hammer": '<path d="M18 22l10-8 12 12-8 10zM34 34l22 22" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M44 16l10 10" stroke="currentColor" stroke-width="2.8"/>',
     "sparkle": '<path d="M40 12l4 12 12 4-12 4-4 12-4-12-12-4 12-4z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M56 44l2 6 6 2-6 2-2 6-2-6-6-2 6-2z" fill="none" stroke="currentColor" stroke-width="2.8"/>',
     "shield": '<path d="M40 12l20 8v14c0 15-10 24-20 30-10-6-20-15-20-30V20z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/>',
@@ -96,6 +100,10 @@ ICON_SVGS = {
 }
 
 TITLE_ICON_RULES: list[tuple[re.Pattern[str], str]] = [
+    (re.compile(r"it-support|support", re.I), "headset"),
+    (re.compile(r"softwareentwickler", re.I), "code"),
+    (re.compile(r"systemadministrator", re.I), "server"),
+    (re.compile(r"it-techniker", re.I), "chip"),
     (re.compile(r"koch|bäcker|konditor|metzger|fleisch|servicekraft|kellner", re.I), "cloche"),
     (re.compile(r"hotel|rezeption|buchung|reise|fremdenführer|tourismus", re.I), "plane"),
     (re.compile(r"lager|kommission|postzusteller|spedition|transport|fahrer|disponent|bagger", re.I), "truck"),
@@ -158,6 +166,7 @@ def pick_icon(field: str, title: str) -> str:
 def build_svg(field: str, title: str) -> str:
     style = pick_style(field)
     seed = hashed(f"{field}::{title}")
+    title_slug = slugify(title)
     accent_x = 760 + (seed % 140)
     accent_y = 150 + ((seed // 7) % 180)
     accent_r = 120 + ((seed // 13) % 80)
@@ -168,6 +177,19 @@ def build_svg(field: str, title: str) -> str:
     icon_svg = ICON_SVGS[pick_icon(field, title)]
     title_badge = escape(badge_text(title))
     field_label = escape(field.replace("-", " ").replace("oe", "ö").replace("ae", "ä").replace("ue", "ü"))
+    if field == "it-digitale-berufe":
+        if title_slug == "it-support-mitarbeiter":
+            accent_x, accent_y, accent_r = 906, 214, 142
+            orb_x, orb_y, orb_r = 194, 522, 148
+        elif title_slug == "softwareentwickler":
+            accent_x, accent_y, accent_r = 834, 164, 188
+            orb_x, orb_y, orb_r = 246, 470, 160
+        elif title_slug == "systemadministrator":
+            accent_x, accent_y, accent_r = 962, 286, 132
+            orb_x, orb_y, orb_r = 152, 434, 172
+        elif title_slug == "it-techniker":
+            accent_x, accent_y, accent_r = 782, 238, 154
+            orb_x, orb_y, orb_r = 284, 548, 134
 
     return f"""<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" fill="none">
   <rect width="1200" height="760" rx="40" fill="{style['bg']}"/>
