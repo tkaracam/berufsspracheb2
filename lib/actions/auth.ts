@@ -2,27 +2,10 @@
 
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
-import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import { isMockMode } from "@/lib/mock-user";
-
-async function getSiteUrl() {
-  const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (envUrl) {
-    return envUrl.replace(/\/$/, "");
-  }
-
-  const headerStore = await headers();
-  const host = headerStore.get("x-forwarded-host") ?? headerStore.get("host");
-  const proto = headerStore.get("x-forwarded-proto") ?? "https";
-
-  if (host) {
-    return `${proto}://${host}`;
-  }
-
-  return "http://localhost:3000";
-}
+import { getSiteUrl } from "@/lib/site-url";
 
 function normalizeAuthError(message: string) {
   const lower = message.toLowerCase();
