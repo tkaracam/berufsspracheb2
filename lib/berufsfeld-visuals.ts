@@ -165,6 +165,54 @@ export const DEFAULT_BERUFSFELD_VISUAL = {
 };
 
 const ROLE_VISUALS: Record<string, { image: string; eyebrow: string }> = {
+  "erziehung-paedagogik::erzieher": {
+    image: "/images/professions/roles/erziehung-paedagogik--erzieher.png",
+    eyebrow: "Kita",
+  },
+  "erziehung-paedagogik::kinderpfleger": {
+    image: "/images/professions/roles/erziehung-paedagogik--kinderpfleger.png",
+    eyebrow: "Betreuung",
+  },
+  "erziehung-paedagogik::integrationshelfer": {
+    image: "/images/professions/roles/erziehung-paedagogik--integrationshelfer.png",
+    eyebrow: "Inklusion",
+  },
+  "erziehung-paedagogik::kita-leitung": {
+    image: "/images/professions/roles/erziehung-paedagogik--kita-leitung.png",
+    eyebrow: "Leitung",
+  },
+  "einzelhandel-verkauf::verkäufer": {
+    image: "/images/professions/roles/einzelhandel-verkauf--verkaufer.png",
+    eyebrow: "Verkauf",
+  },
+  "einzelhandel-verkauf::kassierer": {
+    image: "/images/professions/roles/einzelhandel-verkauf--kassierer.png",
+    eyebrow: "Kasse",
+  },
+  "einzelhandel-verkauf::filialleiter": {
+    image: "/images/professions/roles/einzelhandel-verkauf--filialleiter.png",
+    eyebrow: "Filiale",
+  },
+  "einzelhandel-verkauf::kundenberater": {
+    image: "/images/professions/roles/einzelhandel-verkauf--kundenberater.png",
+    eyebrow: "Beratung",
+  },
+  "buero-verwaltung::sachbearbeiter": {
+    image: "/images/professions/roles/buero-verwaltung--sachbearbeiter.png",
+    eyebrow: "Verwaltung",
+  },
+  "buero-verwaltung::sekretär / sekretärin": {
+    image: "/images/professions/roles/buero-verwaltung--sekretar-sekretarin.png",
+    eyebrow: "Organisation",
+  },
+  "buero-verwaltung::buchhalter": {
+    image: "/images/professions/roles/buero-verwaltung--buchhalter.png",
+    eyebrow: "Finanzen",
+  },
+  "buero-verwaltung::empfangsmitarbeiter": {
+    image: "/images/professions/roles/buero-verwaltung--empfangsmitarbeiter.png",
+    eyebrow: "Empfang",
+  },
   "lager-produktion::produktionshelfer": {
     image: "/images/professions/roles/lager-produktion--produktionshelfer.png",
     eyebrow: "Produktion",
