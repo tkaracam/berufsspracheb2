@@ -165,6 +165,22 @@ export const DEFAULT_BERUFSFELD_VISUAL = {
 };
 
 const ROLE_VISUALS: Record<string, { image: string; eyebrow: string }> = {
+  "handwerk-bau::elektriker": {
+    image: "/images/professions/roles/handwerk-bau--elektriker.png",
+    eyebrow: "Elektro",
+  },
+  "handwerk-bau::installateur (sanitär)": {
+    image: "/images/professions/roles/handwerk-bau--installateur-sanitar.png",
+    eyebrow: "Sanitär",
+  },
+  "handwerk-bau::maler und lackierer": {
+    image: "/images/professions/roles/handwerk-bau--maler-und-lackierer.png",
+    eyebrow: "Ausbau",
+  },
+  "handwerk-bau::tischler": {
+    image: "/images/professions/roles/handwerk-bau--tischler.png",
+    eyebrow: "Holz",
+  },
   "erziehung-paedagogik::erzieher": {
     image: "/images/professions/roles/erziehung-paedagogik--erzieher.png",
     eyebrow: "Kita",
