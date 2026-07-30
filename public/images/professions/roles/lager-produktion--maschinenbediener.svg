@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" fill="none">
+  <rect width="1200" height="760" rx="40" fill="#f5f3ee"/>
+  <rect x="30" y="30" width="1140" height="700" rx="34" fill="url(#panelGradient)" stroke="rgba(32,40,52,0.06)"/>
+  <circle cx="790" cy="154" r="186" fill="#c69263" fill-opacity="0.88"/>
+  <circle cx="235" cy="550" r="143" fill="#ded8cc" fill-opacity="0.92"/>
+  <path d="M0 610C130 560 180 516 282 516C388 516 444 608 548 608C652 608 718 502 824 502C952 502 1042 612 1200 574V760H0V610Z" fill="#ded8cc" fill-opacity="0.92"/>
+  <path d="M880 150c42 72 56 128 56 196 0 156-104 260-252 260-66 0-118-18-170-46 44-2 92-26 118-64 26-38 38-84 38-132 0-142-90-246-238-246 56-26 112-38 182-38 110 0 212 42 266 70Z" fill="#7f8f7a" fill-opacity="0.18"/>
+  <rect x="54" y="54" width="340" height="62" rx="31" fill="white" fill-opacity="0.88" stroke="rgba(32,40,52,0.07)"/>
+  <text x="88" y="93" font-size="28" font-family="Arial, sans-serif" fill="#25302a" letter-spacing="5.2">MASCHINENBEDIENER</text>
+  <rect x="72" y="574" width="220" height="54" rx="27" fill="white" fill-opacity="0.88" stroke="rgba(32,40,52,0.07)"/>
+  <text x="108" y="608" font-size="24" font-family="Arial, sans-serif" fill="#25302a" opacity="0.78" letter-spacing="2.4">LAGER PRODUKTION</text>
+  <rect x="76" y="128" width="114" height="114" rx="30" fill="white" fill-opacity="0.92" stroke="rgba(32,40,52,0.06)"/>
+  <g transform="translate(88 140)" style="color:#7f8f7a"><path d="M10 58V22l18 12V22l18 12V18h20v40H10z" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linejoin="round"/><path d="M18 58V46m12 12V42m12 16V46m12 12V42" stroke="currentColor" stroke-width="2.8"/></g>
+  <rect x="758" y="182" width="268" height="360" rx="52" fill="#7f8f7a" fill-opacity="0.14" stroke="rgba(32,40,52,0.06)"/>
+  <circle cx="894" cy="290" r="82" fill="white" fill-opacity="0.88"/>
+  <rect x="838" y="372" width="112" height="154" rx="42" fill="#c69263" fill-opacity="0.98"/>
+  <rect x="870" y="398" width="48" height="76" rx="18" fill="white" fill-opacity="0.9"/>
+  <path d="M742 609c90-40 170-44 264-10 94 34 126 102 170 114" stroke="#7f8f7a" stroke-opacity="0.34" stroke-width="5" stroke-linecap="round"/>
+  <path d="M120 520c52-66 118-106 182-126 74-22 154-10 222 46" stroke="#7f8f7a" stroke-opacity="0.22" stroke-width="5" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="panelGradient" x1="88" y1="78" x2="1130" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="white" stop-opacity="0.98"/>
+      <stop offset="1" stop-color="#f5f3ee" stop-opacity="0.92"/>
+    </linearGradient>
+  </defs>
+</svg>

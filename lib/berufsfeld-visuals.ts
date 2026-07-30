@@ -425,7 +425,31 @@ const IMAGE_BY_KEYWORD: Array<{ match: RegExp; image: string }> = [
   { match: /kunst|kultur|theater|restaurator|juwelier|goldschmied|uhr|grafik/i, image: "/images/professions/creative.png" },
 ];
 
+function slugifyRoleAssetSegment(value: string) {
+  return value
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/ß/g, "ss")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .replace(/-{2,}/g, "-");
+}
+
+function getGeneratedRoleImagePath(berufsfeldId: string, berufTitle: string) {
+  return `/images/professions/roles/${slugifyRoleAssetSegment(berufsfeldId)}--${slugifyRoleAssetSegment(berufTitle)}.svg`;
+}
+
 export function getBerufVisual(berufsfeldId: string, berufTitle: string) {
+  const fieldVisual = BERUFSFELD_VISUALS[berufsfeldId] ?? DEFAULT_BERUFSFELD_VISUAL;
+
+  if (berufTitle.trim()) {
+    return {
+      image: getGeneratedRoleImagePath(berufsfeldId, berufTitle),
+      eyebrow: fieldVisual.eyebrow,
+    };
+  }
+
   const exactKey = `${berufsfeldId}::${berufTitle.toLowerCase()}`;
   const exactVisual = ROLE_VISUALS[exactKey];
   if (exactVisual) {
@@ -435,7 +459,6 @@ export function getBerufVisual(berufsfeldId: string, berufTitle: string) {
   const pool = FIELD_VISUAL_POOLS[berufsfeldId];
   if (pool?.length) {
     const image = pool[hashString(exactKey) % pool.length];
-    const fieldVisual = BERUFSFELD_VISUALS[berufsfeldId] ?? DEFAULT_BERUFSFELD_VISUAL;
     return {
       image,
       eyebrow: fieldVisual.eyebrow,
@@ -452,7 +475,6 @@ export function getBerufVisual(berufsfeldId: string, berufTitle: string) {
     };
   }
 
-  const fieldVisual = BERUFSFELD_VISUALS[berufsfeldId] ?? DEFAULT_BERUFSFELD_VISUAL;
   return {
     image: fieldVisual.image,
     eyebrow: fieldVisual.eyebrow,
