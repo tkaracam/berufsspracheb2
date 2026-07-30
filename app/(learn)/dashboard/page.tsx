@@ -4,9 +4,11 @@ import {
   BookOpen,
   BriefcaseBusiness,
   CalendarDays,
+  CheckCircle2,
   Play,
   Sparkles,
   Target,
+  Timer,
 } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
 import { createClient } from "@/lib/supabase/server";
@@ -96,6 +98,7 @@ export default async function LearnerDashboardPage() {
   }
 
   const featuredDeck = decks[0] ?? null;
+  const quickDecks = decks.slice(0, 3);
   const dailyGoalMinutes = 45;
   const learnedMinutes = Math.min(todayDone * 5, dailyGoalMinutes);
   const completionPercent = Math.min(
@@ -103,6 +106,13 @@ export default async function LearnerDashboardPage() {
     100
   );
   const totalCards = decks.reduce((sum, deck) => sum + deck.itemIds.length, 0);
+  const remainingMinutes = Math.max(dailyGoalMinutes - learnedMinutes, 0);
+  const focusMessage =
+    learnedMinutes === 0
+      ? "Starten Sie mit einem kurzen Deck, um ruhig in den Lernfluss zu kommen."
+      : remainingMinutes > 0
+      ? `Noch ${remainingMinutes} Minuten bis zum heutigen Ziel.`
+      : "Ihr Tagesziel ist erreicht. Eine kurze Wiederholung hält den Rhythmus stabil.";
 
   return (
     <Container size="large">
@@ -126,6 +136,11 @@ export default async function LearnerDashboardPage() {
                 Ihr Bereich zeigt nur das Wesentliche: Fortschritt, Lernrhythmus und
                 den direkt passenden Einstieg in Ihre nächsten Decks.
               </p>
+
+              <div className="mt-6 inline-flex max-w-xl items-center gap-2 rounded-2xl border border-[#e6ddd2] bg-white/82 px-4 py-3 text-sm text-slate-600">
+                <Timer className="h-4 w-4 text-[#0f4f55]" />
+                <span>{focusMessage}</span>
+              </div>
 
               <div className="mt-7 flex flex-wrap gap-3">
                 {featuredDeck ? (
@@ -163,6 +178,69 @@ export default async function LearnerDashboardPage() {
               />
             </div>
           </div>
+        </section>
+
+        <section className="grid gap-4 lg:grid-cols-[0.95fr_1.05fr]">
+          <Card className="rounded-[1.8rem] border-[#eadfce] bg-white/90 shadow-[0_24px_70px_-52px_rgba(60,44,26,0.22)]">
+            <CardContent className="p-6 sm:p-7">
+              <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8f6d47]">
+                So starten Sie heute
+              </p>
+              <div className="mt-5 space-y-4">
+                <StepRow
+                  icon={<Play className="h-4 w-4" />}
+                  title="1. Direkt ein Deck öffnen"
+                  text={featuredDeck ? `${featuredDeck.title} ist als schnellster Einstieg vorbereitet.` : "Ein passendes Deck steht hier als Nächstes bereit."}
+                />
+                <StepRow
+                  icon={<Target className="h-4 w-4" />}
+                  title="2. Kurz und klar lernen"
+                  text="Schon 10 bis 15 Minuten reichen, um Wortschatz und Sicherheit sichtbar zu stärken."
+                />
+                <StepRow
+                  icon={<CheckCircle2 className="h-4 w-4" />}
+                  title="3. Rhythmus halten"
+                  text="Regelmäßige kurze Einheiten wirken stärker als lange, unregelmäßige Sessions."
+                />
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-[1.8rem] border-[#eadfce] bg-[linear-gradient(180deg,rgba(255,255,255,0.94)_0%,rgba(247,252,250,0.94)_100%)] shadow-[0_24px_70px_-52px_rgba(60,44,26,0.2)]">
+            <CardContent className="p-6 sm:p-7">
+              <div className="flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[#8f6d47]">
+                    Schnellzugriff
+                  </p>
+                  <h2 className="mt-2 text-xl font-semibold tracking-[-0.03em] text-slate-950">
+                    Ohne Umwege weiter
+                  </h2>
+                </div>
+                <Button asChild variant="outline" className="rounded-full border-[#d9ccbc] bg-white/80 text-slate-700">
+                  <Link href="/trainer">Trainer</Link>
+                </Button>
+              </div>
+
+              <div className="mt-5 grid gap-3">
+                {quickDecks.map((deck) => (
+                  <Link
+                    key={deck.id}
+                    href={`/decks/${encodeURIComponent(deck.id)}/learn`}
+                    className="group flex items-center justify-between rounded-[1.2rem] border border-[#ebe2d6] bg-white/84 px-4 py-4 transition-all hover:-translate-y-0.5 hover:border-[#d7ebe4] hover:bg-white"
+                  >
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold text-slate-950">{deck.title}</p>
+                      <p className="mt-1 text-sm text-slate-500">{deck.itemIds.length} Karten</p>
+                    </div>
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#edf7f3] text-[#0f4f55] transition-colors group-hover:bg-[#0f4f55] group-hover:text-white">
+                      <ArrowRight className="h-4 w-4" />
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         </section>
 
         <section className="grid gap-4 lg:grid-cols-[1.2fr_0.8fr]">
@@ -287,6 +365,28 @@ function MiniRow({
 }) {
   return (
     <div className="flex items-start gap-3 rounded-[1.2rem] border border-[#efe4d6] bg-white/76 p-4">
+      <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#edf7f3] text-[#0f4f55]">
+        {icon}
+      </div>
+      <div>
+        <p className="text-sm font-semibold text-slate-950">{title}</p>
+        <p className="mt-1 text-sm leading-6 text-slate-600">{text}</p>
+      </div>
+    </div>
+  );
+}
+
+function StepRow({
+  icon,
+  title,
+  text,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}) {
+  return (
+    <div className="flex items-start gap-3 rounded-[1.2rem] border border-[#efe4d6] bg-[#fffdfa] p-4">
       <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#edf7f3] text-[#0f4f55]">
         {icon}
       </div>
