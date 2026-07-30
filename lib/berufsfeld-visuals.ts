@@ -165,6 +165,22 @@ export const DEFAULT_BERUFSFELD_VISUAL = {
 };
 
 const ROLE_VISUALS: Record<string, { image: string; eyebrow: string }> = {
+  "lager-produktion::produktionshelfer": {
+    image: "/images/professions/roles/lager-produktion--produktionshelfer.png",
+    eyebrow: "Produktion",
+  },
+  "lager-produktion::maschinenbediener": {
+    image: "/images/professions/roles/lager-produktion--maschinenbediener.png",
+    eyebrow: "Maschine",
+  },
+  "lager-produktion::qualitätsprüfer": {
+    image: "/images/professions/roles/lager-produktion--qualitatsprufer.png",
+    eyebrow: "Qualität",
+  },
+  "lager-produktion::lagerfachkraft": {
+    image: "/images/professions/roles/lager-produktion--lagerfachkraft.png",
+    eyebrow: "Lager",
+  },
   "pflege-gesundheit::krankenpfleger": {
     image: "/images/professions/roles/pflege-gesundheit--krankenpfleger.png",
     eyebrow: "Pflege",
