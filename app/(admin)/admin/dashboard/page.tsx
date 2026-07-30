@@ -16,21 +16,21 @@ export default async function AdminDashboardPage() {
   let userCount = 0;
   let nvCount = mockNomenVerbVerbindungen.length;
   let fwCount = mockFachwoerter.length;
-  let classCount = mockBerufsfelder.length;
+  let fieldCount = mockBerufsfelder.length;
 
   if (isMockMode()) {
     return (
       <Container size="large">
         <PageHeader
           title="Admin-Dashboard"
-          description="Übersicht über Nutzer, Inhalte und Klassen. (Demo-Modus)"
+          description="Übersicht über Nutzer, Inhalte und Berufsfelder. (Demo-Modus)"
         />
 
         <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard label="Nutzer" value="—" icon={<Users className="h-5 w-5" />} />
           <StatCard label="Nomen-Verb-Verbindungen" value={nvCount} icon={<BookOpen className="h-5 w-5" />} />
           <StatCard label="Fachwörter" value={fwCount} icon={<GraduationCap className="h-5 w-5" />} />
-          <StatCard label="Berufsfelder" value={classCount} icon={<Layers className="h-5 w-5" />} />
+          <StatCard label="Berufsfelder" value={fieldCount} icon={<Layers className="h-5 w-5" />} />
         </div>
       </Container>
     );
@@ -50,27 +50,27 @@ export default async function AdminDashboardPage() {
     .from("fachwoerter")
     .select("*", { count: "exact", head: true });
 
-  const { count: classCountReal } = await supabase
-    .from("classes")
+  const { count: fieldCountReal } = await supabase
+    .from("berufsfelder")
     .select("*", { count: "exact", head: true });
 
   userCount = userCountReal ?? 0;
   nvCount = nvCountReal ?? 0;
   fwCount = fwCountReal ?? 0;
-  classCount = classCountReal ?? 0;
+  fieldCount = fieldCountReal ?? 0;
 
   return (
     <Container size="large">
       <PageHeader
         title="Admin-Dashboard"
-        description="Übersicht über Nutzer, Inhalte und Klassen."
+        description="Übersicht über Nutzer, Inhalte und Berufsfelder."
       />
 
       <div className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Nutzer" value={userCount} icon={<Users className="h-5 w-5" />} />
         <StatCard label="Nomen-Verb-Verbindungen" value={nvCount} icon={<BookOpen className="h-5 w-5" />} />
         <StatCard label="Fachwörter" value={fwCount} icon={<GraduationCap className="h-5 w-5" />} />
-        <StatCard label="Klassen" value={classCount} icon={<Layers className="h-5 w-5" />} />
+        <StatCard label="Berufsfelder" value={fieldCount} icon={<Layers className="h-5 w-5" />} />
       </div>
 
       <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-2">

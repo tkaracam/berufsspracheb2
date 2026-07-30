@@ -89,9 +89,14 @@ export async function getStats() {
     };
   }
   const supabase = await createClient();
-  const [{ count: fw }, { count: nv }] = await Promise.all([
+  const [{ count: bf }, { count: fw }, { count: nv }] = await Promise.all([
+    supabase.from("berufsfelder").select("*", { count: "exact", head: true }),
     supabase.from("fachwoerter").select("*", { count: "exact", head: true }),
     supabase.from("nomen_verb_verbindungen").select("*", { count: "exact", head: true }),
   ]);
-  return { berufsfelder: 12, fachwoerter: fw ?? 0, nomenVerb: nv ?? 0 };
+  return {
+    berufsfelder: bf ?? mockBerufsfelder.length,
+    fachwoerter: fw ?? 0,
+    nomenVerb: nv ?? 0,
+  };
 }

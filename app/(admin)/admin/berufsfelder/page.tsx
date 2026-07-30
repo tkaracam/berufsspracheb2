@@ -10,7 +10,7 @@ export const metadata = {
 export default async function AdminBerufsfelderPage() {
   const [berufsfelder, fachwoerter] = await Promise.all([
     getBerufsfelder(),
-    getAllFachwoerter(100),
+    getAllFachwoerter(),
   ]);
 
   type Wort = (typeof fachwoerter)[number];
