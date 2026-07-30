@@ -23,24 +23,28 @@ export const metadata = { title: `Berufsfelder – ${APP_NAME}` };
 
 const featuredAssets = [
   {
+    fieldId: "pflege-gesundheit",
     title: "Pflege",
     icon: HeartPulse,
     accent: "mint" as const,
     image: "/images/professions/healthcare.png",
   },
   {
+    fieldId: "buero-verwaltung",
     title: "Verwaltung",
     icon: Briefcase,
     accent: "sand" as const,
     image: "/images/professions/office.png",
   },
   {
+    fieldId: "it-digitale-berufe",
     title: "Technik",
     icon: Hammer,
     accent: "slate" as const,
     image: "/images/professions/technology.png",
   },
   {
+    fieldId: "hotel-gastronomie",
     title: "Gastronomie",
     icon: ShoppingBag,
     accent: "peach" as const,
@@ -98,11 +102,15 @@ export default async function BerufsfelderPage() {
       eyebrow: visual.eyebrow,
     };
   });
-  const featured = featuredAssets.map((asset, index) => ({
-    ...asset,
-    href: modules[index]?.href ?? "/berufsfelder",
-    lessons: modules[index]?.words ?? 0,
-  }));
+  const moduleMap = new Map(modules.map((module) => [module.id, module]));
+  const featured = featuredAssets.map((asset) => {
+    const target = moduleMap.get(asset.fieldId);
+    return {
+      ...asset,
+      href: target?.href ?? "/berufsfelder",
+      lessons: target?.words ?? 0,
+    };
+  });
   const totalWords = modules.reduce((sum, module) => sum + module.words, 0);
   const totalJobs = modules.reduce((sum, module) => sum + module.jobs, 0);
 
