@@ -19,106 +19,161 @@ type ExamBridge = {
 
 type FieldHint = {
   focus: string;
-  writing: string;
-  speaking: string;
   situation: string;
-  repetition: string;
+  recipients: string[];
+  speakingPartners: string[];
+  keywords: string;
 };
 
 const FIELD_HINTS: Record<string, FieldHint> = {
   "logistik-transport": {
-    focus: "Lieferabweichungen, Rückfragen und klare Abstimmung in der Transportkette",
-    writing: "eine kurze Reklamations- oder Statusmail zur Lieferung",
-    speaking: "ein Klärungsgespräch mit Lager, Fahrer oder Kundschaft",
-    situation: "eine verspätete Lieferung oder fehlende Ware",
-    repetition: "Fachwörter zu Lieferung, Lager und Transportablauf",
+    focus: "Lieferprobleme klären, Rückfragen stellen und Absprachen verbindlich festhalten",
+    situation: "eine verspätete Lieferung, eine fehlende Position oder eine unklare Tourenplanung",
+    recipients: ["Kundschaft", "Spedition", "Schichtleitung"],
+    speakingPartners: ["Fahrer", "Lagerteam", "Kunde"],
+    keywords: "Lieferung, Wareneingang, Termin, Reklamation",
   },
   "lager-produktion": {
-    focus: "Arbeitsanweisungen, Sicherheit und Rückmeldungen zur Produktion",
-    writing: "eine kurze Notiz zu Fehlern, Material oder Übergaben",
-    speaking: "eine Rückfrage zu Schicht, Maschine oder Qualitätskontrolle",
-    situation: "eine Abweichung in der Produktion oder bei der Verpackung",
-    repetition: "Begriffe zu Maschine, Qualität und Produktionsschritten",
+    focus: "Abweichungen melden, Arbeitsabläufe erklären und Sicherheitsfragen ansprechen",
+    situation: "ein Maschinenproblem, Materialmangel oder eine Abweichung in der Produktion",
+    recipients: ["Schichtleitung", "Qualitätssicherung", "Kollegium"],
+    speakingPartners: ["Schichtleiter", "Kollege", "Qualitätskontrolle"],
+    keywords: "Maschine, Qualität, Material, Ablauf",
   },
   "pflege-gesundheit": {
-    focus: "Patientenkommunikation, Übergaben und dokumentierte Beobachtungen",
-    writing: "eine knappe Pflegenotiz oder Rückmeldung an das Team",
-    speaking: "ein ruhiges Gespräch mit Patient, Angehörigen oder Kollegium",
-    situation: "eine Beobachtung im Stationsalltag oder bei der Versorgung",
-    repetition: "Wortschatz zu Pflege, Gesundheit und Gesprächsführung",
+    focus: "Beobachtungen weitergeben, empathisch kommunizieren und Informationen dokumentieren",
+    situation: "eine Veränderung beim Patienten, eine Übergabe oder eine Rückfrage von Angehörigen",
+    recipients: ["Stationsleitung", "Kollegium", "Angehörige"],
+    speakingPartners: ["Patient", "Angehörige", "Team"],
+    keywords: "Pflege, Beobachtung, Übergabe, Gesundheit",
   },
   "erziehung-paedagogik": {
-    focus: "Elternkommunikation, Teamabsprachen und Beobachtungen im Alltag",
-    writing: "eine kurze Information an Eltern oder das Team",
-    speaking: "ein Gespräch über Verhalten, Tagesablauf oder Förderung",
-    situation: "eine Rückmeldung zu einem Kind oder einer Gruppe",
-    repetition: "Begriffe zu Betreuung, Entwicklung und Zusammenarbeit",
+    focus: "Entwicklungen beschreiben, Eltern informieren und pädagogische Absprachen treffen",
+    situation: "eine Beobachtung im Gruppenalltag, ein Elterngespräch oder eine Teamabsprache",
+    recipients: ["Eltern", "Kita-Leitung", "Team"],
+    speakingPartners: ["Elternteil", "Kollegin", "Leitung"],
+    keywords: "Kind, Entwicklung, Alltag, Zusammenarbeit",
   },
   "hotel-gastronomie": {
-    focus: "Gästekommunikation, Serviceabläufe und höfliche Reaktion auf Probleme",
-    writing: "eine kurze Nachricht zu Reservierung, Beschwerde oder Schicht",
-    speaking: "ein Gespräch mit Gast, Rezeption oder Küchenteam",
-    situation: "eine Reklamation oder ein Wunsch im Gästekontakt",
-    repetition: "Wortschatz zu Service, Küche und Rezeption",
+    focus: "Beschwerden höflich bearbeiten, Gästewünsche aufnehmen und intern abstimmen",
+    situation: "eine Reklamation, eine Reservierungsänderung oder eine Rückfrage zum Service",
+    recipients: ["Gast", "Rezeption", "Küchenteam"],
+    speakingPartners: ["Gast", "Kollege", "Schichtleitung"],
+    keywords: "Reservierung, Service, Reklamation, Gast",
   },
   "einzelhandel-verkauf": {
-    focus: "Beratung, Reklamationen und klare Kundengespräche",
-    writing: "eine kurze Antwort zu Reklamation, Bestellung oder Umtausch",
-    speaking: "ein Verkaufsgespräch oder eine sachliche Reklamationsklärung",
-    situation: "eine Nachfrage zu Produkt, Preis oder Rückgabe",
-    repetition: "Begriffe zu Verkauf, Sortiment und Kasse",
+    focus: "beraten, nachfragen, reklamieren und kundenorientiert Lösungen anbieten",
+    situation: "eine Rückgabe, ein Beratungsgespräch oder eine Reklamation an der Kasse",
+    recipients: ["Kunde", "Filialleitung", "Team"],
+    speakingPartners: ["Kundin", "Kollege", "Filialleiter"],
+    keywords: "Produkt, Kasse, Umtausch, Beratung",
   },
   "buero-verwaltung": {
-    focus: "E-Mails, Terminabstimmung und formelle Kommunikation",
-    writing: "eine präzise E-Mail mit Anliegen, Frist und Abschluss",
-    speaking: "ein Telefonat oder Meetingbeitrag mit klarer Struktur",
-    situation: "eine Terminverschiebung oder Rückfrage zu Unterlagen",
-    repetition: "Begriffe zu Bürokommunikation und Abläufen",
+    focus: "formelle Nachrichten schreiben, Termine abstimmen und professionell nachfragen",
+    situation: "eine Terminverschiebung, fehlende Unterlagen oder eine interne Rückfrage",
+    recipients: ["Kollegium", "Kunde", "Vorgesetzte"],
+    speakingPartners: ["Sekretariat", "Projektleitung", "Kunde"],
+    keywords: "E-Mail, Termin, Unterlagen, Rückfrage",
   },
   "it-digitale-berufe": {
-    focus: "Tickets, Supportgespräche und verständliche Problembeschreibung",
-    writing: "ein kurzes Ticket-Update oder eine technische Rückmeldung",
-    speaking: "ein Supportgespräch mit Schritt-für-Schritt-Erklärung",
-    situation: "eine Störung, ein Zugangsthema oder eine Rückfrage aus dem Team",
-    repetition: "Begriffe zu IT-Support, Systemen und Abstimmung",
+    focus: "Störungen präzise beschreiben, Support geben und technische Schritte verständlich erklären",
+    situation: "eine Zugriffsproblematik, ein Supportfall oder ein Ausfall im System",
+    recipients: ["Nutzer", "IT-Team", "Projektleitung"],
+    speakingPartners: ["Nutzerin", "Support-Team", "Kollege"],
+    keywords: "Ticket, Zugang, Fehler, Lösung",
   },
   "handwerk-bau": {
-    focus: "Sicherheitsabsprachen, Materialbedarf und klare Arbeitskommunikation",
-    writing: "eine Baustellennotiz oder Materialanforderung",
-    speaking: "eine Abstimmung zu Ablauf, Sicherheit oder Termin",
-    situation: "eine Änderung auf der Baustelle oder ein Sicherheitsproblem",
-    repetition: "Wortschatz zu Werkzeugen, Baustelle und Ausführung",
+    focus: "Arbeitsstände melden, Sicherheit ansprechen und klare Baustellenabsprachen treffen",
+    situation: "eine Planänderung, ein Sicherheitsproblem oder fehlendes Material",
+    recipients: ["Bauleitung", "Kollegium", "Kunde"],
+    speakingPartners: ["Vorarbeiter", "Kollege", "Bauleiter"],
+    keywords: "Baustelle, Material, Sicherheit, Termin",
   },
   "reinigung-gebaeudemanagement": {
-    focus: "Arbeitsanweisungen, Hygiene und Rückmeldungen zum Zustand",
-    writing: "eine kurze Meldung zu Raum, Material oder Hygieneproblem",
-    speaking: "eine Übergabe oder Rückfrage zum Reinigungsplan",
-    situation: "eine besondere Verschmutzung oder fehlendes Material",
-    repetition: "Begriffe zu Reinigung, Ablauf und Gebäudebetreuung",
+    focus: "Hygieneprobleme melden, Reinigungsabläufe erklären und Zustände dokumentieren",
+    situation: "ein Sonderreinigungsfall, fehlendes Material oder eine Rückmeldung zum Objekt",
+    recipients: ["Objektleitung", "Kunde", "Team"],
+    speakingPartners: ["Hausmeister", "Schichtleitung", "Kundin"],
+    keywords: "Hygiene, Plan, Material, Objekt",
   },
   "sicherheit-service": {
-    focus: "Ruhe, Präzision und deeskalierende Kommunikation",
-    writing: "einen kurzen Vorfallsbericht oder eine Dienstnotiz",
-    speaking: "eine höfliche, aber klare Ansprache in einer heiklen Situation",
-    situation: "eine Kontrolle, ein Konflikt oder ein Zwischenfall",
-    repetition: "Begriffe zu Sicherheit, Meldung und Servicekontakt",
+    focus: "ruhig informieren, Vorfälle beschreiben und in heiklen Situationen deeskalieren",
+    situation: "eine Kontrolle, ein Konflikt im Eingangsbereich oder eine Meldung zum Sicherheitsvorfall",
+    recipients: ["Schichtleitung", "Empfang", "Leitung"],
+    speakingPartners: ["Besucher", "Kollege", "Vorgesetzter"],
+    keywords: "Kontrolle, Vorfall, Meldung, Sicherheit",
   },
   "bewerbung-arbeitsmarkt": {
-    focus: "Bewerbung, Vorstellung und Arbeitsweltkommunikation",
-    writing: "eine kurze Bewerbungsmail oder formelle Anfrage",
-    speaking: "eine Selbstvorstellung oder Antwort im Bewerbungsgespräch",
-    situation: "eine Kontaktaufnahme mit Arbeitgeber oder Personalabteilung",
-    repetition: "Begriffe zu Bewerbung, Vertrag und Arbeitsmarkt",
+    focus: "sich professionell vorstellen, formelle Anfragen schreiben und Kompetenzen klar darstellen",
+    situation: "eine Bewerbung, ein Vorstellungsgespräch oder eine Rückfrage zum Arbeitsvertrag",
+    recipients: ["Personalabteilung", "Arbeitgeber", "Unternehmen"],
+    speakingPartners: ["Personalreferentin", "Arbeitgeber", "Interviewer"],
+    keywords: "Bewerbung, Erfahrung, Vertrag, Motivation",
   },
 };
 
 function fallbackHint(feldTitle: string, feldDescription: string): FieldHint {
   return {
-    focus: `berufliche Kommunikation und typische Situationen in ${feldTitle}`,
-    writing: `eine kurze berufliche Nachricht passend zu ${feldTitle}`,
-    speaking: `ein berufliches Gespräch aus dem Bereich ${feldTitle}`,
-    situation: feldDescription || `eine typische Arbeitssituation in ${feldTitle}`,
-    repetition: `Wortschatz und Redemittel aus ${feldTitle}`,
+    focus: `berufliche Kommunikation in typischen Situationen aus ${feldTitle}`,
+    situation: feldDescription || `eine typische Arbeitssituation aus ${feldTitle}`,
+    recipients: ["Team", "Leitung", "Kunde"],
+    speakingPartners: ["Kollege", "Leitung", "Kunde"],
+    keywords: feldTitle,
+  };
+}
+
+function createWritingTasks(hint: FieldHint): PracticeTask[] {
+  return [
+    {
+      title: "Schreiben 1 – Formelle Nachricht",
+      mode: "Schreiben",
+      prompt: `Sie arbeiten im Bereich ${hint.keywords}. Schreiben Sie eine formelle Nachricht an ${hint.recipients[0]} zum Thema ${hint.situation}. Beschreiben Sie das Problem klar, nennen Sie die wichtigsten Fakten und formulieren Sie eine konkrete Bitte oder Lösung.`,
+      output: "BAMF-nah: klare Struktur, sachlicher Ton, vollständiger Schluss.",
+    },
+    {
+      title: "Schreiben 2 – Rückmeldung an den Betrieb",
+      mode: "Schreiben",
+      prompt: `Formulieren Sie eine kurze berufliche Rückmeldung an ${hint.recipients[1]}. Erklären Sie, was passiert ist, welche Folgen das hat und was als nächster Schritt sinnvoll ist.`,
+      output: "B2-Ziel: Informationen ordnen, Ursachen benennen, Handlungsschritt formulieren.",
+    },
+    {
+      title: "Schreiben 3 – Lösung vorschlagen",
+      mode: "Schreiben",
+      prompt: `Schreiben Sie an ${hint.recipients[2]} und schlagen Sie eine praktikable Lösung zu ${hint.situation} vor. Begründen Sie Ihren Vorschlag kurz und freundlich.`,
+      output: "DTB-nah: Problem, Vorschlag, Begründung, Abschluss.",
+    },
+  ];
+}
+
+function createSpeakingTasks(hint: FieldHint): PracticeTask[] {
+  return [
+    {
+      title: "Sprechen 1 – Situation erklären",
+      mode: "Sprechen",
+      prompt: `Sprechen Sie mit ${hint.speakingPartners[0]} über ${hint.situation}. Erklären Sie die Lage verständlich, nennen Sie die wichtigsten Informationen und reagieren Sie auf eine Rückfrage.`,
+      output: "Ziel: sicher erklären, nachfragen und verständlich reagieren.",
+    },
+    {
+      title: "Sprechen 2 – Lösung abstimmen",
+      mode: "Sprechen",
+      prompt: `Führen Sie mit ${hint.speakingPartners[1]} ein Gespräch, um eine Lösung zu vereinbaren. Beschreiben Sie das Problem, machen Sie einen Vorschlag und suchen Sie nach einem Kompromiss.`,
+      output: "BAMF-nah: Meinung äußern, begründen, gemeinsam entscheiden.",
+    },
+    {
+      title: "Sprechen 3 – Berufsnah argumentieren",
+      mode: "Sprechen",
+      prompt: `Besprechen Sie mit ${hint.speakingPartners[2]}, wie man in Zukunft besser mit ${hint.situation} umgehen kann. Nennen Sie Vorteile, mögliche Schwierigkeiten und Ihre Empfehlung.`,
+      output: "B2-Ziel: strukturiert argumentieren und Lösungen entwickeln.",
+    },
+  ];
+}
+
+function createPraxisTask(hint: FieldHint): PracticeTask {
+  return {
+    title: "Praxisauftrag – Berufsalltag",
+    mode: "Praxis",
+    prompt: `Bearbeiten Sie ${hint.situation} so, wie es im Berufsalltag verlangt wird: Informationen sammeln, Problem einordnen, angemessen reagieren und das Ergebnis sprachlich klar festhalten.`,
+    output: `Fokus: ${hint.focus}.`,
   };
 }
 
@@ -130,64 +185,49 @@ export function getBerufsfeldPracticeContent(
   const hint = FIELD_HINTS[feldId] ?? fallbackHint(feldTitle, feldDescription);
 
   const tasks: PracticeTask[] = [
-    {
-      title: "Praxisauftrag",
-      mode: "Praxis",
-      prompt: `Bearbeiten Sie ${hint.situation}. Formulieren Sie die wichtigsten Informationen klar und sachlich und entscheiden Sie, welche Rückfrage oder Reaktion im Arbeitsalltag jetzt nötig ist.`,
-      output: `Ziel: sicher auf ${hint.focus} reagieren.`,
-    },
-    {
-      title: "Schreibaufgabe",
-      mode: "Schreiben",
-      prompt: `Verfassen Sie ${hint.writing}. Achten Sie auf Betreff, klare Struktur, höfliche Formulierungen und ein konkretes nächstes Anliegen.`,
-      output: "Ziel: formell, verständlich und B2-gerecht schreiben.",
-    },
-    {
-      title: "Sprechimpuls",
-      mode: "Sprechen",
-      prompt: `Üben Sie ${hint.speaking}. Beschreiben Sie das Problem, schlagen Sie eine Lösung vor und reagieren Sie auf eine Rückfrage aus dem Gespräch.`,
-      output: "Ziel: flüssig, höflich und lösungsorientiert sprechen.",
-    },
+    createPraxisTask(hint),
+    ...createWritingTasks(hint),
+    ...createSpeakingTasks(hint),
   ];
 
   const repetition: RepetitionStage[] = [
     {
       level: "Stufe 1",
-      title: "Verstehen",
-      description: `Lernen Sie zuerst ${hint.repetition} mit Artikel, Beispielsatz und kurzer Wiederholung.`,
+      title: "Verstehen und sichern",
+      description: `Arbeiten Sie zuerst mit Fachwörtern und Redemitteln zu ${hint.keywords}. Markieren Sie wichtige Muster und typische Formulierungen.`,
     },
     {
       level: "Stufe 2",
-      title: "Anwenden",
-      description: `Nutzen Sie den Wortschatz aktiv in Mini-Dialogen, Kurzantworten und typischen Arbeitssituationen aus ${feldTitle}.`,
+      title: "Anwenden im Kurs",
+      description: `Übertragen Sie den Wortschatz in kurze Schreibaufgaben, Mini-Dialoge und Rollenspiele. So entsteht aktive Sprachpraxis statt reinem Wiedererkennen.`,
     },
     {
       level: "Stufe 3",
-      title: "Prüfen",
-      description: `Übertragen Sie die Inhalte in B2-Aufgaben: strukturierte Antworten, kurze Stellungnahmen und berufsnahe Reaktionen unter Zeitdruck.`,
+      title: "Prüfungsnah reagieren",
+      description: `Formulieren Sie unter Zeitdruck vollständige Antworten, begründen Sie Lösungen und trainieren Sie typische DTB-B2-Handlungsschritte.`,
     },
   ];
 
   const examBridge: ExamBridge[] = [
     {
-      title: "Schreiben im B2-Stil",
+      title: "Schreiben wie im Kurs- und Prüfungskontext",
       href: "/pruefungstraining/schreiben",
-      description: `Nutzen Sie ${hint.writing}, um längere strukturierte Antworten für formelle B2-Aufgaben zu trainieren.`,
+      description: "Trainieren Sie formelle Mitteilungen, strukturierte Antworten und kurze Stellungnahmen im berufsnahen B2-Stil.",
     },
     {
-      title: "Sprechen unter Prüfungsdruck",
+      title: "Sprechen mit BAMF-/DTB-Nähe",
       href: "/pruefungstraining/sprechen",
-      description: `Übertragen Sie ${hint.speaking} in freie B2-Sprechsituationen mit klarer Einleitung, Begründung und Lösung.`,
+      description: "Nutzen Sie diese Situationen für freies Sprechen, Meinungsäußerung, Nachfragen und begründete Lösungsvorschläge.",
     },
     {
-      title: "Lesen und Hören mit Berufsbezug",
+      title: "Lesen, Hören und Sprachbausteine verbinden",
       href: "/pruefungstraining",
-      description: `Verbinden Sie ${hint.repetition} mit typischen Prüfungsformaten aus Lesen, Hören und Sprachbausteinen.`,
+      description: "Kombinieren Sie Fachwortschatz mit Prüfungsaufgaben, damit Wortschatz, Verständnis und Handlungssprache zusammenwachsen.",
     },
   ];
 
   return {
-    intro: `Für ${feldTitle} reicht reines Wortlernen nicht aus. Entscheidend sind ${hint.focus}.`,
+    intro: `Für ${feldTitle} sollte das Training möglichst nah an Kurs, Alltag und BAMF-orientierten B2-Aufgaben liegen. Im Mittelpunkt stehen ${hint.focus}.`,
     tasks,
     repetition,
     examBridge,
