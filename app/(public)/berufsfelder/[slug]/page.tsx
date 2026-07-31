@@ -231,6 +231,29 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
                         </div>
                       </div>
                       <p className="text-sm leading-6 text-slate-700">{task.prompt}</p>
+                      <div className="mt-4 rounded-2xl border border-[#e8eee9] bg-[#f7fbf8] p-3">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#5a8d7d]">
+                          Musterantwort
+                        </p>
+                        <p className="mt-2 text-sm leading-6 text-slate-600">
+                          {task.sampleAnswer}
+                        </p>
+                      </div>
+                      <div className="mt-4">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-500">
+                          Bewertungskriterien
+                        </p>
+                        <ul className="mt-2 space-y-2">
+                          {task.criteria.map((criterion) => (
+                            <li
+                              key={criterion}
+                              className="rounded-xl border border-[#eadfce] bg-[#fffdfa] px-3 py-2 text-sm text-slate-600"
+                            >
+                              {criterion}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                       <p className="mt-4 text-xs font-medium uppercase tracking-[0.16em] text-[#5a8d7d]">
                         {task.output}
                       </p>

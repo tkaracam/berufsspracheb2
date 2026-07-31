@@ -3,6 +3,8 @@ type PracticeTask = {
   mode: "Schreiben" | "Sprechen" | "Praxis";
   prompt: string;
   output: string;
+  sampleAnswer: string;
+  criteria: string[];
 };
 
 type RepetitionStage = {
@@ -129,18 +131,36 @@ function createWritingTasks(hint: FieldHint): PracticeTask[] {
       mode: "Schreiben",
       prompt: `Sie arbeiten im Bereich ${hint.keywords}. Schreiben Sie eine formelle Nachricht an ${hint.recipients[0]} zum Thema ${hint.situation}. Beschreiben Sie das Problem klar, nennen Sie die wichtigsten Fakten und formulieren Sie eine konkrete Bitte oder Lösung.`,
       output: "BAMF-nah: klare Struktur, sachlicher Ton, vollständiger Schluss.",
+      sampleAnswer: "Ein guter Text nennt zuerst den Anlass, beschreibt dann die Situation mit 2 bis 3 konkreten Informationen und endet mit einer klaren Bitte oder einem Lösungsvorschlag.",
+      criteria: [
+        "Anlass klar benennen",
+        "wichtige Fakten vollständig nennen",
+        "höfliche Bitte oder Lösung formulieren",
+      ],
     },
     {
       title: "Schreiben 2 – Rückmeldung an den Betrieb",
       mode: "Schreiben",
       prompt: `Formulieren Sie eine kurze berufliche Rückmeldung an ${hint.recipients[1]}. Erklären Sie, was passiert ist, welche Folgen das hat und was als nächster Schritt sinnvoll ist.`,
       output: "B2-Ziel: Informationen ordnen, Ursachen benennen, Handlungsschritt formulieren.",
+      sampleAnswer: "Eine passende Antwort beschreibt zuerst das Ereignis, erklärt danach kurz die Auswirkungen und schlägt am Ende den nächsten sinnvollen Schritt vor.",
+      criteria: [
+        "Situation nachvollziehbar darstellen",
+        "Folgen oder Problem benennen",
+        "nächsten Schritt logisch formulieren",
+      ],
     },
     {
       title: "Schreiben 3 – Lösung vorschlagen",
       mode: "Schreiben",
       prompt: `Schreiben Sie an ${hint.recipients[2]} und schlagen Sie eine praktikable Lösung zu ${hint.situation} vor. Begründen Sie Ihren Vorschlag kurz und freundlich.`,
       output: "DTB-nah: Problem, Vorschlag, Begründung, Abschluss.",
+      sampleAnswer: "Ein starker Text zeigt kurz das Problem, macht dann einen umsetzbaren Vorschlag und erklärt in 1 bis 2 Sätzen, warum dieser Vorschlag sinnvoll ist.",
+      criteria: [
+        "Problem knapp und passend darstellen",
+        "konkreten Vorschlag machen",
+        "Vorschlag kurz begründen",
+      ],
     },
   ];
 }
@@ -152,18 +172,36 @@ function createSpeakingTasks(hint: FieldHint): PracticeTask[] {
       mode: "Sprechen",
       prompt: `Sprechen Sie mit ${hint.speakingPartners[0]} über ${hint.situation}. Erklären Sie die Lage verständlich, nennen Sie die wichtigsten Informationen und reagieren Sie auf eine Rückfrage.`,
       output: "Ziel: sicher erklären, nachfragen und verständlich reagieren.",
+      sampleAnswer: "Eine gute mündliche Antwort beginnt mit einer kurzen Einordnung, nennt dann die zwei wichtigsten Informationen und reagiert ruhig und direkt auf die Nachfrage.",
+      criteria: [
+        "Gespräch klar eröffnen",
+        "wichtige Informationen verständlich nennen",
+        "auf Rückfragen passend reagieren",
+      ],
     },
     {
       title: "Sprechen 2 – Lösung abstimmen",
       mode: "Sprechen",
       prompt: `Führen Sie mit ${hint.speakingPartners[1]} ein Gespräch, um eine Lösung zu vereinbaren. Beschreiben Sie das Problem, machen Sie einen Vorschlag und suchen Sie nach einem Kompromiss.`,
       output: "BAMF-nah: Meinung äußern, begründen, gemeinsam entscheiden.",
+      sampleAnswer: "Eine passende Antwort beschreibt erst das Problem, schlägt dann eine Lösung vor und zeigt Gesprächsbereitschaft mit Formulierungen wie 'Wie sehen Sie das?' oder 'Wäre das für Sie möglich?'.",
+      criteria: [
+        "Problem sachlich benennen",
+        "eigene Lösung verständlich formulieren",
+        "kooperativ auf den Partner eingehen",
+      ],
     },
     {
       title: "Sprechen 3 – Berufsnah argumentieren",
       mode: "Sprechen",
       prompt: `Besprechen Sie mit ${hint.speakingPartners[2]}, wie man in Zukunft besser mit ${hint.situation} umgehen kann. Nennen Sie Vorteile, mögliche Schwierigkeiten und Ihre Empfehlung.`,
       output: "B2-Ziel: strukturiert argumentieren und Lösungen entwickeln.",
+      sampleAnswer: "Eine starke Antwort nennt zuerst einen Vorschlag, beschreibt dann Vorteile und mögliche Schwierigkeiten und schließt mit einer klaren Empfehlung ab.",
+      criteria: [
+        "Vorteile und Schwierigkeiten nennen",
+        "eigene Position begründen",
+        "mit klarer Empfehlung abschließen",
+      ],
     },
   ];
 }
@@ -174,6 +212,12 @@ function createPraxisTask(hint: FieldHint): PracticeTask {
     mode: "Praxis",
     prompt: `Bearbeiten Sie ${hint.situation} so, wie es im Berufsalltag verlangt wird: Informationen sammeln, Problem einordnen, angemessen reagieren und das Ergebnis sprachlich klar festhalten.`,
     output: `Fokus: ${hint.focus}.`,
+    sampleAnswer: "Eine gute Bearbeitung trennt Beobachtung, Bewertung und Reaktion sauber. Zuerst wird beschrieben, dann eingeordnet und anschließend zielgerichtet gehandelt.",
+    criteria: [
+      "Situation richtig erfassen",
+      "angemessen reagieren",
+      "sprachlich klar und beruflich passend bleiben",
+    ],
   };
 }
 
