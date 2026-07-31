@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, BookOpen, Users, Dumbbell } from "lucide-react";
+import { ArrowLeft, BookOpen, Users, Dumbbell, PenTool, Mic, RotateCcw, Target } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -24,6 +24,7 @@ import {
   getBerufeByFeld,
   getFachwoerterByFeld,
 } from "@/lib/queries";
+import { getBerufsfeldPracticeContent } from "@/lib/berufsfeld-practice-content";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -54,6 +55,11 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
   const berufe = await getBerufeByFeld(slug);
   const fachwoerter = await getFachwoerterByFeld(slug);
   const visual = BERUFSFELD_VISUALS[slug] ?? DEFAULT_BERUFSFELD_VISUAL;
+  const practiceContent = getBerufsfeldPracticeContent(
+    slug,
+    feld.title,
+    feld.description ?? ""
+  );
 
   return (
     <div className="container mx-auto flex-1 px-4 py-12">
@@ -192,6 +198,48 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
               </div>
             </CardContent>
           </Card>
+
+          <Card className="rounded-[1.8rem] border border-[#eadfce] bg-[linear-gradient(180deg,#fffefb_0%,#f7fcf9_100%)] shadow-[0_20px_50px_-34px_rgba(115,190,178,0.14)]">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Target className="h-5 w-5" />
+                B2-Praxis für dieses Berufsfeld
+              </CardTitle>
+              <CardDescription>{practiceContent.intro}</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid gap-4 xl:grid-cols-3">
+                {practiceContent.tasks.map((task) => {
+                  const Icon =
+                    task.mode === "Schreiben"
+                      ? PenTool
+                      : task.mode === "Sprechen"
+                        ? Mic
+                        : Target;
+                  return (
+                    <article
+                      key={task.title}
+                      className="rounded-[1.4rem] border border-[#eadfce] bg-white/90 p-5 shadow-[0_16px_34px_-30px_rgba(115,190,178,0.18)]"
+                    >
+                      <div className="mb-4 flex items-center gap-3">
+                        <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#eef6ef] text-[#5a8d7d]">
+                          <Icon className="h-4 w-4" />
+                        </span>
+                        <div>
+                          <p className="text-sm font-medium text-slate-500">{task.mode}</p>
+                          <h3 className="text-base font-semibold text-slate-900">{task.title}</h3>
+                        </div>
+                      </div>
+                      <p className="text-sm leading-6 text-slate-700">{task.prompt}</p>
+                      <p className="mt-4 text-xs font-medium uppercase tracking-[0.16em] text-[#5a8d7d]">
+                        {task.output}
+                      </p>
+                    </article>
+                  );
+                })}
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <div className="space-y-6">
@@ -211,6 +259,59 @@ export default async function BerufsfeldDetailPage({ params }: Props) {
                   <Dumbbell className="mr-2 h-4 w-4" /> Fachwortschatz üben
                 </Link>
               </Button>
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-[1.8rem] border border-[#eadfce] bg-white/92 shadow-[0_20px_50px_-34px_rgba(115,190,178,0.14)]">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <RotateCcw className="h-5 w-5" />
+                Wiederholen in 3 Stufen
+              </CardTitle>
+              <CardDescription>
+                So wird aus Fachwortschatz echte B2-Handlungssicherheit.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {practiceContent.repetition.map((stage) => (
+                <div
+                  key={stage.level}
+                  className="rounded-[1.2rem] border border-[#eadfce] bg-[#fffdfa] p-4"
+                >
+                  <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#5a8d7d]">
+                    {stage.level}
+                  </p>
+                  <h3 className="mt-1 text-sm font-semibold text-slate-900">
+                    {stage.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {stage.description}
+                  </p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card className="rounded-[1.8rem] border border-[#eadfce] bg-white/92 shadow-[0_20px_50px_-34px_rgba(115,190,178,0.14)]">
+            <CardHeader>
+              <CardTitle>B2-Prüfungsbezug</CardTitle>
+              <CardDescription>
+                Dieses Berufsfeld direkt mit Schreiben, Sprechen und Prüfungstraining verbinden.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              {practiceContent.examBridge.map((item) => (
+                <Link
+                  key={item.title}
+                  href={item.href}
+                  className="block rounded-[1.2rem] border border-[#eadfce] bg-[#fffdfa] p-4 transition-colors hover:border-[#d7c7b1] hover:bg-white"
+                >
+                  <h3 className="text-sm font-semibold text-slate-900">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {item.description}
+                  </p>
+                </Link>
+              ))}
             </CardContent>
           </Card>
         </div>
